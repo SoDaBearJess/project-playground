@@ -1,5 +1,5 @@
 {
-  "name": "practice",
+  "name": "react-sanity-project",
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
@@ -15,10 +15,10 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^3.71.1",
+    "@sanity/vision": "^3.75.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity": "^3.71.1",
+    "sanity": "^3.75.1",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
