@@ -1,55 +1,65 @@
+/* Blue Green color scheme */
+body,
+.theme-blue-green {
+  --dark-primary-color: #22577a;
+  --primary-color: #38a3a5;
+  --dark-secondary-color: #57cc99;
+  --secondary-color: #80ed99;
+  --accent-color: #c7f9cc;
+  --text-color: #ffffff;
+  --background-color: #242424;
+}
+/* Purple color scheme */
+.theme-purple {
+  --background-color: #231942;
+  --accent-color: #5e548e;
+  --primary-color: #9f86c0;
+  --secondary-color: #be95c4;
+  --text-color: #e0b1cb;
+}
+/* Cottagecore color scheme */
+.theme-cottagecore {
+  --primary-color: #edafb8;
+  --background-color: #f7e1d7;
+  --accent-color: #dedbd2;
+  --secondary-color: #b0c4b1;
+  --dark-secondary-color: #4a5759;
+  --text-color: #242424;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* Blue Green color scheme */
-/*  
-  --primary-color: #22577a;
-  --secondary-color: #38a3a5;
-  --tertiary-color: #57cc99;
-  --quaternary-color: #80ed99;
-  --quinary-color: #c7f9cc;
-*/
-/* Purple color scheme */
-/*  
-  --primary-color: #231942;
-  --secondary-color: #5e548e;
-  --tertiary-color: #9f86c0;
-  --quaternary-color: #be95c4;
-  --quinary-color: #e0b1cb;
-*/
-/* Cottagecore color scheme */
-/*  
-  --primary-color: #edafb8;
-  --secondary-color: #f7e1d7;
-  --tertiary-color: #dedbd2;
-  --quaternary-color: #b0c4b1;
-  --quinary-color: #4a5759;
-*/
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
-a:hover {
-  color: #535bf2;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bowlby One SC", cursive;
+}
+
+p {
+  font-family: "Libre Baskerville", serif;
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -65,13 +75,14 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: "Libre Baskerville", serif;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -79,4 +90,4 @@ button {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
