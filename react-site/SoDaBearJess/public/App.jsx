@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,9 +26,10 @@ function App() {
           Some included elements: Contact info, bio and photo, embeded source
           code if possible. Education and experience/awards, and ofc resume.
         </p>
+        <p>Theme ideas include: flowers, polaroids, or doodles, or coffee</p>
         {/* <h1 className="font-fugaz-one">Heading</h1> */}
 
-        <h1 className="font-dm-serif-display">Heading</h1>
+        <h1 className="font-dm-serif-display">Possible Other Heading</h1>
         <p className="font-farsan">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

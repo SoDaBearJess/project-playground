@@ -27,16 +27,33 @@ body,
   --text-color: #242424;
 }
 
+.theme-coffee {
+  --primary-color: #b08968;
+  /* --primary-color: #d3a373; */
+  --background-color: #ddb892;
+  --accent-color: #e6ccb2;
+  --secondary-color: #ede0d4;
+  /* --text-color: #7f5539; */
+  --text-color: #543926;
+}
+
 :root {
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Screen Breakpoints: 1440, 1920, 768, 375 */
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border: 1px dotted white;
 }
 
 body {
@@ -80,6 +97,114 @@ button {
   color: var(--text-color);
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.polaroid-frame {
+  border: 1px solid var(--secondary-color);
+  background-color: #ffffff;
+  padding: 20px 20px 20px 20px;
+  flex: 1 16rem;
+  /* width: 12vw; */
+  height: 35vh;
+}
+
+.polaroid-image {
+  display: block;
+  height: 28vh;
+  width: 100%;
+  object-fit: cover;
+  background-color: #333333;
+}
+
+.polaroid-text {
+  color: #333333;
+}
+
+.polaroid-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.font-dm-serif-display {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+}
+
+.font-libre-baskerville {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+}
+
+.font-fugaz-one {
+  font-family: "Fugaz One", cursive;
+  font-weight: 400;
+}
+
+.font-farsan {
+  font-family: "Farsan", cursive;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.font-bowlby-one-sc {
+  font-family: "Bowlby One SC", cursive;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1281px) {
+  .polaroid-frame {
+    flex: 1 22rem;
+    height: 40vh;
+  }
+
+  .polaroid-image {
+    height: 32vh;
+  }
+
+  .polaroid-container {
+    gap: 4rem;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .polaroid-container {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .polaroid-container {
+    gap: 4rem;
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .polaroid-frame {
+    flex: 1;
+    height: 42vh;
+  }
+
+  .polaroid-image {
+    height: 36vh;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .polaroid-container {
+    gap: 2rem;
+    flex-direction: column;
+    padding: 0 2px;
+  }
+
+  .polaroid-image {
+    height: 30vh;
+  }
 }
 
 /* @media (prefers-color-scheme: light) {

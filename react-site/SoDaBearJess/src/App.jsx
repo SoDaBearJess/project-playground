@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
 import oneDark from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
@@ -51,24 +50,66 @@ function App() {
 
   return (
     <>
-      <h1>Jessna Rodriguez</h1>
+      <h1>Title</h1>
       <div className="card">
         <p>
-          Some included elements: Contact info, bio and photo, embeded source
+          Some included elements: Contact info, bio and photo, embedded source
           code if possible. Education and experience/awards, and ofc resume.
         </p>
         {/* <h1 className="font-fugaz-one">Heading</h1> */}
 
-        <h1 className="font-dm-serif-display">Jessna Rodriguez</h1>
+        <h1
+          className="font-dm-serif-display"
+          style={{ color: "var(--secondary-color)" }}
+        >
+          raspberry
+        </h1>
         <p className="font-farsan">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Some included elements: Contact info, bio and photo, embedded source
+          code if possible. Education and experience/awards, and ofc resume.
         </p>
+        <div className="polaroid-container">
+          <div className="polaroid-frame">
+            <div className="polaroid-image">
+              <img
+                src="/vite.svg"
+                className="polaroid-image"
+                alt="Polaroid Image"
+              />
+            </div>
+            <p className="polaroid-text">Polaroid Text</p>
+          </div>
+          <div className="polaroid-frame">
+            <div className="polaroid-image">
+              <img
+                src="/flowers.jpg"
+                className="polaroid-image"
+                alt="Polaroid Image"
+              />
+            </div>
+            <p className="polaroid-text">Polaroid Text</p>
+          </div>
+          <div className="polaroid-frame">
+            <div className="polaroid-image">
+              <img
+                src="/flowers.jpg"
+                className="polaroid-image"
+                alt="Polaroid Image"
+              />
+            </div>
+            <p className="polaroid-text">Polaroid Text</p>
+          </div>
+          <div className="polaroid-frame">
+            <div className="polaroid-image">
+              <img
+                src="/flowers.jpg"
+                className="polaroid-image"
+                alt="Polaroid Image"
+              />
+            </div>
+            <p className="polaroid-text">Polaroid Text</p>
+          </div>
+        </div>
         <button>Button</button>
         <div
           style={{
@@ -78,13 +119,13 @@ function App() {
             margin: "0 auto",
           }}
         >
-          <SyntaxHighlighter
+          {/* <SyntaxHighlighter
             language="jsx"
             style={oneDark}
             customStyle={customStyle}
           >
             {code}
-          </SyntaxHighlighter>
+          </SyntaxHighlighter> */}
         </div>
       </div>
     </>
