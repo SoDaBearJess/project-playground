@@ -1,0 +1,384 @@
+<div class="doc-filter-container">
+  <div class="doc-controls">
+    <input type="text" id="name-search" placeholder="Search by name..." />
+
+    <select id="specialty-filter">
+      <option value="all">All Specialties</option>
+    </select>
+
+    <select id="location-filter">
+      <option value="all">All Locations</option>
+    </select>
+  </div>
+
+  <div id="doctor-grid" class="doc-grid"></div>
+
+  <div id="no-results" style="display: none; text-align: center; padding: 20px">
+    <p>No doctors found matching these criteria.</p>
+  </div>
+</div>
+
+<style>
+  /* Filter Container */
+  .doc-controls {
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+
+  /* Inputs and Selects styling */
+  .doc-controls select,
+  .doc-controls input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+    font-size: 16px;
+    min-width: 200px;
+    flex: 1; /* Makes them grow to fill space */
+    max-width: 300px; /* Prevents them from getting too wide */
+  }
+
+  /* Grid Layout */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  /* Doctor Card Styling */
+  .doc-card {
+    display: block; /* Important for <a> tags */
+    text-decoration: none; /* Removes the link underline */
+    color: inherit; /* Keeps your text colors defined inside */
+
+    /* Previous styles remain the same... */
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .doc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .doc-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+  }
+
+  .doc-info {
+    padding: 15px;
+  }
+
+  .doc-name {
+    margin: 10px 0 5px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .doc-specialty {
+    color: #0073e6;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // --- A. THE DATA ---
+    const doctors = [
+      {
+        name: "Zachary P. Fallon, MD",
+        specialty: ["Physiatry"],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Zachary-Fallon-img.webp",
+        link: "/zachary-p-fallon-md",
+      },
+      {
+        name: "W. Anthony Frisella, MD",
+        specialty: ["Shoulder and Elbow"],
+        location: ["Wentzville", "St Peters"],
+        image: "/wp-content/uploads/2025/12/AnthonyFrisella-img.webp",
+        link: "/w-anthony-frisella-md/",
+      },
+      {
+        name: "Dane A. Glueck, MD",
+        specialty: ["General Orthopedics"],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Dane-Glueck-scaled-1.webp",
+        link: "/dane-a-glueck-md/",
+      },
+      {
+        name: "Nicholas J. Zarkadis, DO, FAAOS",
+        specialty: [
+          "Hip & Knee Replacement",
+          "Sports Medicine",
+          "Robotic-Assisted Surgery",
+        ],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Zarkadis-img-1.png",
+        link: "/nicholas-j-zarkadis-do-faaos/",
+      },
+      {
+        name: "Willliam M. McLaughlin, MD",
+        specialty: ["Orthopedic Surgery", "Sports Medicine"],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/McLaughlin-Headshot-2025.png",
+        link: "/willliam-m-mclaughlin-md/",
+      },
+      {
+        name: "Brandon D. Larkin, MD",
+        specialty: ["Sports Medicine"],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Brandon-Larkin-img.webp",
+        link: "/brandon-d-larkin-md/",
+      },
+      {
+        name: "Colleen E. Glisson, MD",
+        specialty: ["Hand and Wrist"],
+        location: ["O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Colleen-Glisson-img.webp",
+        link: "/coleen-e-glisson-md/",
+      },
+      {
+        name: "John W. McAllister, II, MD",
+        specialty: ["General Orthopedics"],
+        location: ["St Peters"],
+        image: "/wp-content/uploads/2025/12/John-McAllister.webp",
+        link: "/john-w-mcallister-ii-md/",
+      },
+      {
+        name: "Paul M. Spezia, DO, FAAOS",
+        specialty: ["General Orthopedics"],
+        location: ["St Peters"],
+        image: "/wp-content/uploads/2025/12/Paul-Spezia-img.webp",
+        link: "/paul-m-spezia-do-faaos/",
+      },
+      {
+        name: "Jeffrey S. Boberg, DPM",
+        specialty: ["Podiatry", "Foot and Ankle Surgery"],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Boberg_headshot.webp",
+        link: "/jeffrey-s-boberg-dpm/",
+      },
+      {
+        name: "Anthony M. Lombard, DPM",
+        specialty: ["Podiatry", "Foot and Ankle Surgery"],
+        location: ["O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Anthony-Lombardo-img.webp",
+        link: "/anthony-m-lombard-dpm/",
+      },
+      {
+        name: "Joy N. Bittle, MMS, PA-C",
+        specialty: [""],
+        location: ["Wentzville", "O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Joy-Bittle-img.webp",
+        link: "/joy-n-bittle-mms-pa-c/",
+      },
+      {
+        name: "Mary Beth Johnson, PA-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/Mary-Beth-Johnson-img.webp",
+        link: "/mary-beth-johnson-pa-c/",
+      },
+      {
+        name: "Matthew A. Pliske, PA-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/Matt-Pliske-i.webp",
+        link: "/matthew-a-pliske-pa-c/",
+      },
+      {
+        name: "Chad E. Schmitz, PA-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/Chad-2-img.webp",
+        link: "/chad-e-schmitz-pa-c/",
+      },
+      {
+        name: "Meghan Glover, PA-C",
+        specialty: [""],
+        location: [""],
+        image:
+          "/wp-content/uploads/2025/12/glover_headshot-e1734966187152.webp",
+        link: "/meghan-glover-pa-c/",
+      },
+      {
+        name: "Abigail J. Williams, PA-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/AJW2-img.webp",
+        link: "/abigail-j-williams-pa-c/",
+      },
+      {
+        name: "Karly Sheppard, MSN, FNP-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/female-placeholder.webp",
+        link: "/karly-sheppard-msn-fnp-c/",
+      },
+      {
+        name: "Tiffany Simon, PA-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/female-placeholder.webp",
+        link: "/tiffany-simon-pa-c/",
+      },
+      {
+        name: "Sara Herbert, FNP-BC",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/female-placeholder.webp",
+        link: "/sara-herbert-fnp-bc/",
+      },
+      {
+        name: "Samantha J. Bunch, FNP-BC, ONP-C",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/Sam-2-img.webp",
+        link: "/samantha-j-bunch-fnp-bc-onp-c/",
+      },
+      {
+        name: "Jennifer M. Eickhoff, FNP-BC",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/Jennifer-Eickhoff-img.webp",
+        link: "/jennifer-m-eickhoff-fnp-bc/",
+      },
+      {
+        name: "Matthew B. Hammer, FNP-BC",
+        specialty: [""],
+        location: [""],
+        image: "/wp-content/uploads/2025/12/Matt-Hammer-img.webp",
+        link: "/matthew-b-hammer-fnp-bc/",
+      },
+      {
+        name: "Leslie A. Simpson, FNP-BC",
+        specialty: [""],
+        location: ["O'Fallon", "St Peters"],
+        image: "/wp-content/uploads/2025/12/Leslie-Simpson-img.webp",
+        link: "/leslie-a-simpson-fnp-bc/",
+      },
+      {
+        name: "Adina Rey, APRN, FNP-BC",
+        specialty: [""],
+        location: [""],
+        image:
+          "/wp-content/uploads/2025/12/adina_rey_headshot-e1735840692623.webp",
+        link: "/adina-rey-aprn-fnp-bc/",
+      },
+    ];
+
+    // --- B. DOM ELEMENTS ---
+    const grid = document.getElementById("doctor-grid");
+    const nameInput = document.getElementById("name-search");
+    const specialtySelect = document.getElementById("specialty-filter");
+    const locationSelect = document.getElementById("location-filter");
+    const noResults = document.getElementById("no-results");
+
+    // --- C. INIT ---
+    populateFilters();
+    renderDoctors(doctors);
+
+    // --- D. LISTENERS ---
+    nameInput.addEventListener("input", filterDoctors);
+    specialtySelect.addEventListener("change", filterDoctors);
+    locationSelect.addEventListener("change", filterDoctors);
+
+    // --- E. FUNCTIONS ---
+
+    function renderDoctors(data) {
+      grid.innerHTML = "";
+
+      if (data.length === 0) {
+        noResults.style.display = "block";
+        return;
+      }
+
+      noResults.style.display = "none";
+
+      data.forEach((doc) => {
+        const card = document.createElement("a");
+        card.className = "doc-card";
+        card.href = doc.link;
+
+        // JOINING THE ARRAY FOR DISPLAY
+        // doc.specialty.join(', ') turns ["A", "B"] into "A, B"
+        const specialtyText = doc.specialty.join(", ");
+
+        card.innerHTML = `
+                <img src="${doc.image}" alt="${doc.name}" class="doc-image">
+                <div class="doc-info">
+                    <h3 class="doc-name">${doc.name}</h3>
+                    <div class="doc-specialty">${specialtyText}</div>
+                </div>
+            `;
+        grid.appendChild(card);
+      });
+    }
+
+    function populateFilters() {
+      // 1. Get all unique specialties from the arrays
+      const allSpecialties = doctors.flatMap((d) => d.specialty);
+      const uniqueSpecialties = [...new Set(allSpecialties)]
+        .filter(Boolean)
+        .sort();
+
+      // 2. Get all unique locations from the arrays
+      const allLocations = doctors.flatMap((d) => d.location);
+      const uniqueLocations = [...new Set(allLocations)].filter(Boolean).sort();
+
+      uniqueSpecialties.forEach((spec) => {
+        const option = document.createElement("option");
+        option.value = spec;
+        option.textContent = spec;
+        specialtySelect.appendChild(option);
+      });
+
+      uniqueLocations.forEach((loc) => {
+        const option = document.createElement("option");
+        option.value = loc;
+        option.textContent = loc;
+        locationSelect.appendChild(option);
+      });
+    }
+
+    function filterDoctors() {
+      const searchString = nameInput.value.toLowerCase();
+      const selectedSpecialty = specialtySelect.value;
+      const selectedLocation = locationSelect.value;
+
+      const filtered = doctors.filter((doc) => {
+        const matchName = doc.name.toLowerCase().includes(searchString);
+
+        // CHECK ARRAY INCLUDES FOR SPECIALTY
+        const matchSpecialty =
+          selectedSpecialty === "all" ||
+          doc.specialty.includes(selectedSpecialty);
+
+        // CHECK ARRAY INCLUDES FOR LOCATION
+        const matchLocation =
+          selectedLocation === "all" || doc.location.includes(selectedLocation);
+
+        return matchName && matchSpecialty && matchLocation;
+      });
+
+      renderDoctors(filtered);
+    }
+  });
+</script>

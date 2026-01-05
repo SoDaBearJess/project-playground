@@ -50,7 +50,7 @@ function App() {
 
   return (
     <>
-      <h1>Title</h1>
+      <h1>Jessna Rodriguez</h1>
       <div className="card">
         <p>
           Some included elements: Contact info, bio and photo, embedded source
@@ -69,7 +69,7 @@ function App() {
           code if possible. Education and experience/awards, and ofc resume.
         </p>
         <div className="polaroid-container">
-          <div className="polaroid-frame">
+          <div className="polaroid-frame rotate-right">
             <div className="polaroid-image">
               <img
                 src="/vite.svg"
@@ -79,7 +79,7 @@ function App() {
             </div>
             <p className="polaroid-text">Polaroid Text</p>
           </div>
-          <div className="polaroid-frame">
+          <div className="polaroid-frame rotate-left">
             <div className="polaroid-image">
               <img
                 src="/flowers.jpg"
@@ -89,7 +89,7 @@ function App() {
             </div>
             <p className="polaroid-text">Polaroid Text</p>
           </div>
-          <div className="polaroid-frame">
+          <div className="polaroid-frame rotate-right">
             <div className="polaroid-image">
               <img
                 src="/flowers.jpg"
@@ -99,7 +99,7 @@ function App() {
             </div>
             <p className="polaroid-text">Polaroid Text</p>
           </div>
-          <div className="polaroid-frame">
+          <div className="polaroid-frame rotate-left">
             <div className="polaroid-image">
               <img
                 src="/flowers.jpg"

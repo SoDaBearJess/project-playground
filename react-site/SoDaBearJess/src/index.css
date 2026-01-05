@@ -47,6 +47,13 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "Dreaming Out Loud";
+  src: url("./assets/dreaming-outloud-pro-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* Screen Breakpoints: 1440, 1920, 768, 375 */
 #root {
   max-width: 1440px;
@@ -71,7 +78,9 @@ h6 {
 }
 
 p {
-  font-family: "Libre Baskerville", serif;
+  /* font-family: "Libre Baskerville", serif; */
+  font-family: "Dreaming Out Loud", cursive;
+  font-size: 2rem;
 }
 
 body {
@@ -106,6 +115,14 @@ button {
   flex: 1 16rem;
   /* width: 12vw; */
   height: 35vh;
+}
+
+.rotate-left {
+  transform: rotate(-5deg);
+}
+
+.rotate-right {
+  transform: rotate(5deg);
 }
 
 .polaroid-image {
@@ -216,3 +233,36 @@ p {
     background-color: #f9f9f9;
   }
 } */
+
+/* Chips Grid */
+.chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.chips-grid > .chip {
+  background-color: var(--color-primary);
+  color: var(--color-on-accent);
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+  text-decoration: none;
+  transition: 150ms all;
+}
+
+.chips-grid > .chip:nth-of-type(4n + 2) {
+  background-color: var(--color-secondary);
+}
+
+.chips-grid > .chip:nth-of-type(4n + 3) {
+  background-color: var(--color-tertiary);
+}
+
+.chips-grid > .chip:nth-of-type(4n + 4) {
+  background-color: var(--color-quaternary);
+}
+
+.chips-grid > .chip:hover {
+  filter: brightness(0.9);
+  transition: 150ms all;
+}
