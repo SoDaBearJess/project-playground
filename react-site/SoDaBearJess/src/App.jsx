@@ -110,7 +110,7 @@ function App() {
             <p className="polaroid-text">Polaroid Text</p>
           </div>
         </div>
-        <button>Button</button>
+        <button>Click Here</button>
         <div
           style={{
             width: "60vw",
