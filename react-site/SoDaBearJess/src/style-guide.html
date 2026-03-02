@@ -1,0 +1,2401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Style Guide — Jessna Rodriguez Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =============================================
+         TOKENS — Coffee Design System
+         ============================================= */
+      :root {
+        /* — Color: Coffee Spectrum — */
+        --color-espresso: #1c0f0a;
+        --color-dark-roast: #3b1e0e;
+        --color-coffee: #543926;
+        --color-roasted: #7b4a2d;
+        --color-caramel: #b08968;
+        --color-latte: #c9a882;
+        --color-biscuit: #ddb892;
+        --color-cream: #e6ccb2;
+        --color-oat-milk: #ede0d4;
+        --color-foam: #f5efe6;
+        --color-white: #fefcfa;
+
+        /* — Color: Semantic — */
+        --color-bg: var(--color-foam);
+        --color-surface: var(--color-white);
+        --color-border: var(--color-cream);
+        --color-text: var(--color-coffee);
+        --color-text-muted: var(--color-caramel);
+        --color-text-light: var(--color-latte);
+        --color-primary: var(--color-roasted);
+        --color-primary-hover: var(--color-coffee);
+
+        /* — Color: Accent — */
+        --color-cinnamon: #c84b31;
+        --color-honey: #d4880b;
+        --color-sage: #5c7a61;
+        --color-ink: #2e3a4e;
+
+        /* — Typography — */
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-heading: "Libre Baskerville", Georgia, serif;
+        --font-body: "Lato", system-ui, sans-serif;
+        --font-code: "Fira Code", "Courier New", monospace;
+
+        /* — Type Scale — */
+        --text-display: clamp(2.75rem, 5vw, 4rem);
+        --text-h1: clamp(2rem, 4vw, 3rem);
+        --text-h2: clamp(1.625rem, 3vw, 2.25rem);
+        --text-h3: clamp(1.375rem, 2.5vw, 1.75rem);
+        --text-h4: 1.25rem;
+        --text-h5: 1.0625rem;
+        --text-h6: 0.8125rem;
+        --text-lg: 1.125rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+
+        /* — Line Height — */
+        --lh-tight: 1.2;
+        --lh-snug: 1.4;
+        --lh-normal: 1.6;
+        --lh-relaxed: 1.8;
+
+        /* — Letter Spacing — */
+        --ls-tight: -0.02em;
+        --ls-normal: 0;
+        --ls-wide: 0.05em;
+        --ls-wider: 0.1em;
+        --ls-widest: 0.15em;
+
+        /* — Spacing — */
+        --space-1: 0.25rem; /*  4px */
+        --space-2: 0.5rem; /*  8px */
+        --space-3: 0.75rem; /* 12px */
+        --space-4: 1rem; /* 16px */
+        --space-5: 1.25rem; /* 20px */
+        --space-6: 1.5rem; /* 24px */
+        --space-8: 2rem; /* 32px */
+        --space-10: 2.5rem; /* 40px */
+        --space-12: 3rem; /* 48px */
+        --space-16: 4rem; /* 64px */
+        --space-20: 5rem; /* 80px */
+        --space-24: 6rem; /* 96px */
+
+        /* — Radius — */
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+        --radius-full: 9999px;
+
+        /* — Shadow — */
+        --shadow-sm: 0 1px 3px rgba(84, 57, 38, 0.12);
+        --shadow-md: 0 4px 12px rgba(84, 57, 38, 0.14);
+        --shadow-lg: 0 8px 28px rgba(84, 57, 38, 0.18);
+        --shadow-xl: 0 16px 48px rgba(84, 57, 38, 0.22);
+
+        /* — Transition — */
+        --transition-fast: 150ms ease;
+        --transition-base: 250ms ease;
+        --transition-slow: 400ms ease;
+      }
+
+      /* =============================================
+         RESET & BASE
+         ============================================= */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        line-height: var(--lh-normal);
+        color: var(--color-text);
+        background-color: var(--color-bg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* =============================================
+         STYLE GUIDE LAYOUT
+         ============================================= */
+      .sg-page {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: var(--space-8) var(--space-6);
+      }
+
+      /* sticky sidebar nav */
+      .sg-layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: var(--space-12);
+        align-items: start;
+      }
+
+      .sg-nav {
+        position: sticky;
+        top: var(--space-8);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .sg-nav-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-4);
+      }
+
+      .sg-nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+      }
+
+      .sg-nav a {
+        display: block;
+        font-size: var(--text-sm);
+        color: var(--color-text);
+        text-decoration: none;
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-sm);
+        transition:
+          background var(--transition-fast),
+          color var(--transition-fast);
+      }
+
+      .sg-nav a:hover {
+        background: var(--color-oat-milk);
+        color: var(--color-primary);
+      }
+
+      /* sections */
+      .sg-section {
+        padding-top: var(--space-16);
+      }
+
+      .sg-section:first-child {
+        padding-top: 0;
+      }
+
+      .sg-section-label {
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-2);
+      }
+
+      .sg-section-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-h2);
+        font-weight: 700;
+        color: var(--color-text);
+        margin-bottom: var(--space-3);
+        line-height: var(--lh-tight);
+      }
+
+      .sg-section-desc {
+        font-size: var(--text-base);
+        color: var(--color-text-muted);
+        max-width: 60ch;
+        margin-bottom: var(--space-8);
+        line-height: var(--lh-relaxed);
+      }
+
+      .sg-divider {
+        border: none;
+        border-top: 1px solid var(--color-border);
+        margin: var(--space-12) 0;
+      }
+
+      /* card wrapper */
+      .sg-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-sm);
+      }
+
+      /* =============================================
+         HEADER
+         ============================================= */
+      .sg-header {
+        margin-bottom: var(--space-16);
+        padding-bottom: var(--space-12);
+        border-bottom: 2px solid var(--color-border);
+      }
+
+      .sg-header-eyebrow {
+        font-family: var(--font-body);
+        font-size: var(--text-sm);
+        font-weight: 700;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--color-caramel);
+        margin-bottom: var(--space-3);
+      }
+
+      .sg-header h1 {
+        font-family: var(--font-display);
+        font-size: var(--text-display);
+        font-weight: 700;
+        line-height: var(--lh-tight);
+        letter-spacing: var(--ls-tight);
+        color: var(--color-espresso);
+        margin-bottom: var(--space-4);
+      }
+
+      .sg-header h1 em {
+        font-style: italic;
+        color: var(--color-roasted);
+      }
+
+      .sg-header-sub {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        max-width: 52ch;
+        line-height: var(--lh-relaxed);
+      }
+
+      .sg-version-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        margin-top: var(--space-6);
+        padding: var(--space-1) var(--space-3);
+        background: var(--color-oat-milk);
+        border: 1px solid var(--color-cream);
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        font-family: var(--font-code);
+        color: var(--color-roasted);
+      }
+
+      .sg-version-badge::before {
+        content: "●";
+        color: var(--color-sage);
+      }
+
+      /* =============================================
+         COLOR SECTION
+         ============================================= */
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: var(--space-4);
+      }
+
+      .color-swatch {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .color-swatch-block {
+        height: 80px;
+      }
+
+      .color-swatch-info {
+        background: var(--color-white);
+        padding: var(--space-3);
+      }
+
+      .color-swatch-name {
+        font-family: var(--font-heading);
+        font-size: var(--text-sm);
+        font-weight: 700;
+        color: var(--color-text);
+        margin-bottom: 2px;
+      }
+
+      .color-swatch-hex {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+      }
+
+      .color-swatch-role {
+        font-size: var(--text-xs);
+        color: var(--color-text-light);
+        margin-top: 2px;
+      }
+
+      .color-group-label {
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin: var(--space-8) 0 var(--space-4);
+      }
+
+      .color-group-label:first-child {
+        margin-top: 0;
+      }
+
+      /* =============================================
+         TYPOGRAPHY SECTION
+         ============================================= */
+      .font-specimen {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-8);
+        margin-bottom: var(--space-6);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .font-specimen-meta {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+        padding-bottom: var(--space-4);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .font-specimen-label {
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+      }
+
+      .font-specimen-name {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: var(--color-caramel);
+        background: var(--color-oat-milk);
+        padding: 2px var(--space-2);
+        border-radius: var(--radius-sm);
+      }
+
+      .font-specimen-use {
+        margin-left: auto;
+        font-size: var(--text-xs);
+        color: var(--color-text-light);
+      }
+
+      .font-display-specimen {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        line-height: var(--lh-tight);
+        letter-spacing: var(--ls-tight);
+        color: var(--color-espresso);
+      }
+
+      .font-display-specimen em {
+        font-style: italic;
+        color: var(--color-roasted);
+      }
+
+      .font-heading-specimen {
+        font-family: var(--font-heading);
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        line-height: var(--lh-snug);
+        color: var(--color-coffee);
+      }
+
+      .font-body-specimen {
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        line-height: var(--lh-relaxed);
+        color: var(--color-text);
+        max-width: 65ch;
+      }
+
+      .font-body-specimen + .font-body-specimen {
+        margin-top: var(--space-4);
+      }
+
+      .font-code-specimen {
+        font-family: var(--font-code);
+        font-size: var(--text-base);
+        line-height: var(--lh-relaxed);
+        color: var(--color-espresso);
+        background: var(--color-oat-milk);
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        overflow-x: auto;
+      }
+
+      /* Type scale table */
+      .type-scale {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: var(--space-4);
+      }
+
+      .type-scale th {
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-wider);
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        text-align: left;
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 2px solid var(--color-border);
+      }
+
+      .type-scale td {
+        padding: var(--space-4);
+        border-bottom: 1px solid var(--color-border);
+        vertical-align: middle;
+      }
+
+      .type-scale tr:last-child td {
+        border-bottom: none;
+      }
+
+      .ts-name {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: var(--color-roasted);
+        background: var(--color-oat-milk);
+        padding: 2px 6px;
+        border-radius: var(--radius-sm);
+        white-space: nowrap;
+      }
+
+      .ts-size {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        white-space: nowrap;
+      }
+
+      .ts-preview-display {
+        font-family: var(--font-display);
+      }
+      .ts-preview-heading {
+        font-family: var(--font-heading);
+      }
+      .ts-preview-body {
+        font-family: var(--font-body);
+      }
+
+      /* =============================================
+         BUTTONS
+         ============================================= */
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+        align-items: center;
+        margin-bottom: var(--space-6);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        font-family: var(--font-body);
+        font-weight: 700;
+        letter-spacing: var(--ls-wide);
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: var(--radius-full);
+        transition:
+          background var(--transition-base),
+          color var(--transition-base),
+          border-color var(--transition-base),
+          box-shadow var(--transition-base),
+          transform var(--transition-fast);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      /* Sizes */
+      .btn-sm {
+        font-size: var(--text-xs);
+        padding: var(--space-2) var(--space-4);
+      }
+
+      .btn-md {
+        font-size: var(--text-sm);
+        padding: var(--space-3) var(--space-6);
+      }
+
+      .btn-lg {
+        font-size: var(--text-base);
+        padding: var(--space-4) var(--space-8);
+      }
+
+      /* Variants */
+      .btn-primary {
+        background: var(--color-roasted);
+        color: var(--color-foam);
+        border-color: var(--color-roasted);
+      }
+
+      .btn-primary:hover {
+        background: var(--color-coffee);
+        border-color: var(--color-coffee);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-secondary {
+        background: var(--color-biscuit);
+        color: var(--color-coffee);
+        border-color: var(--color-biscuit);
+      }
+
+      .btn-secondary:hover {
+        background: var(--color-cream);
+        border-color: var(--color-cream);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--color-roasted);
+        border-color: var(--color-roasted);
+      }
+
+      .btn-outline:hover {
+        background: var(--color-roasted);
+        color: var(--color-foam);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--color-text-muted);
+        border-color: transparent;
+      }
+
+      .btn-ghost:hover {
+        background: var(--color-oat-milk);
+        color: var(--color-text);
+      }
+
+      .btn-danger {
+        background: var(--color-cinnamon);
+        color: var(--color-white);
+        border-color: var(--color-cinnamon);
+      }
+
+      .btn-danger:hover {
+        background: #a83927;
+        border-color: #a83927;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-disabled {
+        background: var(--color-cream);
+        color: var(--color-latte);
+        border-color: var(--color-cream);
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      /* =============================================
+         LINKS
+         ============================================= */
+      .sg-link {
+        color: var(--color-roasted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: var(--color-latte);
+        transition:
+          color var(--transition-fast),
+          text-decoration-color var(--transition-fast);
+      }
+
+      .sg-link:hover {
+        color: var(--color-coffee);
+        text-decoration-color: var(--color-coffee);
+      }
+
+      .sg-link-subtle {
+        color: var(--color-text-muted);
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-cream);
+        transition:
+          color var(--transition-fast),
+          border-color var(--transition-fast);
+      }
+
+      .sg-link-subtle:hover {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+      }
+
+      /* =============================================
+         FORMS
+         ============================================= */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-family: var(--font-body);
+        font-size: var(--text-sm);
+        font-weight: 700;
+        color: var(--color-text);
+        letter-spacing: var(--ls-wide);
+      }
+
+      .form-hint {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        margin-top: -var(--space-1);
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="search"],
+      textarea,
+      select {
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        color: var(--color-text);
+        background: var(--color-white);
+        border: 2px solid var(--color-cream);
+        border-radius: var(--radius-md);
+        padding: var(--space-3) var(--space-4);
+        width: 100%;
+        transition:
+          border-color var(--transition-fast),
+          box-shadow var(--transition-fast);
+        outline: none;
+        appearance: none;
+      }
+
+      input[type="text"]:hover,
+      input[type="email"]:hover,
+      textarea:hover,
+      select:hover {
+        border-color: var(--color-latte);
+      }
+
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--color-caramel);
+        box-shadow: 0 0 0 3px rgba(176, 137, 104, 0.2);
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--color-text-light);
+        font-style: italic;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .input-error {
+        border-color: var(--color-cinnamon) !important;
+      }
+
+      .input-error:focus {
+        box-shadow: 0 0 0 3px rgba(200, 75, 49, 0.2) !important;
+      }
+
+      .form-error-msg {
+        font-size: var(--text-xs);
+        color: var(--color-cinnamon);
+        font-weight: 700;
+      }
+
+      .input-success {
+        border-color: var(--color-sage) !important;
+      }
+
+      .input-success:focus {
+        box-shadow: 0 0 0 3px rgba(92, 122, 97, 0.2) !important;
+      }
+
+      /* =============================================
+         CARDS
+         ============================================= */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: var(--space-6);
+      }
+
+      .card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition:
+          box-shadow var(--transition-base),
+          transform var(--transition-base);
+      }
+
+      .card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-3px);
+      }
+
+      .card-image {
+        height: 160px;
+        background: linear-gradient(
+          135deg,
+          var(--color-biscuit),
+          var(--color-caramel)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+      }
+
+      .card-body {
+        padding: var(--space-6);
+      }
+
+      .card-tag {
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-wider);
+        text-transform: uppercase;
+        color: var(--color-caramel);
+        margin-bottom: var(--space-2);
+      }
+
+      .card-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-h4);
+        font-weight: 700;
+        color: var(--color-text);
+        margin-bottom: var(--space-3);
+        line-height: var(--lh-snug);
+      }
+
+      .card-desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: var(--lh-relaxed);
+        margin-bottom: var(--space-5);
+      }
+
+      .card-footer {
+        padding: var(--space-4) var(--space-6);
+        border-top: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+      }
+
+      .card-meta {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: var(--color-text-light);
+      }
+
+      /* =============================================
+         BADGES & TAGS
+         ============================================= */
+      .badges-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        align-items: center;
+        margin-bottom: var(--space-4);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-wide);
+        text-transform: uppercase;
+        padding: 3px var(--space-3);
+        border-radius: var(--radius-full);
+        border: 1.5px solid transparent;
+      }
+
+      .badge-primary {
+        background: var(--color-oat-milk);
+        color: var(--color-roasted);
+        border-color: var(--color-cream);
+      }
+
+      .badge-coffee {
+        background: var(--color-roasted);
+        color: var(--color-foam);
+      }
+
+      .badge-success {
+        background: #edf4ee;
+        color: var(--color-sage);
+        border-color: #c3dac7;
+      }
+
+      .badge-warning {
+        background: #fdf5e6;
+        color: var(--color-honey);
+        border-color: #f5dfa5;
+      }
+
+      .badge-danger {
+        background: #fdf0ed;
+        color: var(--color-cinnamon);
+        border-color: #f4c5bb;
+      }
+
+      .badge-ink {
+        background: var(--color-ink);
+        color: var(--color-foam);
+      }
+
+      /* Tech Tags */
+      .tech-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-family: var(--font-code);
+        font-size: var(--text-sm);
+        color: var(--color-coffee);
+        background: var(--color-oat-milk);
+        border: 1px solid var(--color-cream);
+        border-radius: var(--radius-sm);
+        padding: var(--space-2) var(--space-3);
+        transition:
+          background var(--transition-fast),
+          border-color var(--transition-fast);
+      }
+
+      .tech-tag:hover {
+        background: var(--color-cream);
+        border-color: var(--color-latte);
+      }
+
+      /* =============================================
+         CODE BLOCKS
+         ============================================= */
+      .code-block {
+        background: var(--color-espresso);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: var(--space-6);
+      }
+
+      .code-block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-3) var(--space-5);
+        background: var(--color-dark-roast);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .code-block-dots {
+        display: flex;
+        gap: var(--space-2);
+      }
+
+      .code-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: var(--radius-full);
+      }
+
+      .code-dot-red {
+        background: #ff5f57;
+      }
+      .code-dot-yellow {
+        background: #ffbd2e;
+      }
+      .code-dot-green {
+        background: #28c840;
+      }
+
+      .code-block-lang {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: rgba(245, 239, 230, 0.4);
+      }
+
+      .code-block pre {
+        padding: var(--space-6);
+        overflow-x: auto;
+        margin: 0;
+      }
+
+      .code-block code {
+        font-family: var(--font-code);
+        font-size: var(--text-sm);
+        line-height: var(--lh-relaxed);
+        color: var(--color-oat-milk);
+      }
+
+      .code-kw {
+        color: #c9a882;
+      }
+      .code-fn {
+        color: #ddb892;
+        font-style: italic;
+      }
+      .code-str {
+        color: #e6ccb2;
+      }
+      .code-cmt {
+        color: rgba(245, 239, 230, 0.4);
+        font-style: italic;
+      }
+      .code-var {
+        color: #ede0d4;
+      }
+
+      /* inline code */
+      code {
+        font-family: var(--font-code);
+        font-size: 0.875em;
+        /* background: var(--color-oat-milk); */
+        color: var(--color-roasted);
+        padding: 1px 5px;
+        border-radius: var(--radius-sm);
+      }
+
+      /* =============================================
+         SPACING SHOWCASE
+         ============================================= */
+      .spacing-row {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+
+      .spacing-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+      }
+
+      .spacing-bar {
+        background: linear-gradient(
+          to right,
+          var(--color-caramel),
+          var(--color-biscuit)
+        );
+        height: 24px;
+        border-radius: var(--radius-sm);
+        flex-shrink: 0;
+      }
+
+      .spacing-label {
+        font-family: var(--font-code);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        white-space: nowrap;
+        min-width: 160px;
+      }
+
+      /* =============================================
+         ALERTS
+         ============================================= */
+      .alert {
+        display: flex;
+        gap: var(--space-4);
+        padding: var(--space-4) var(--space-5);
+        border-radius: var(--radius-md);
+        border-left: 4px solid;
+        margin-bottom: var(--space-4);
+      }
+
+      .alert-icon {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .alert-content {
+      }
+
+      .alert-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-sm);
+        font-weight: 700;
+        margin-bottom: var(--space-1);
+      }
+
+      .alert-body {
+        font-size: var(--text-sm);
+        line-height: var(--lh-normal);
+      }
+
+      .alert-info {
+        background: #eef2f7;
+        border-color: var(--color-ink);
+        color: var(--color-ink);
+      }
+
+      .alert-success {
+        background: #edf4ee;
+        border-color: var(--color-sage);
+        color: #3d5e41;
+      }
+
+      .alert-warning {
+        background: #fdf5e6;
+        border-color: var(--color-honey);
+        color: #8a5a07;
+      }
+
+      .alert-danger {
+        background: #fdf0ed;
+        border-color: var(--color-cinnamon);
+        color: #8a2718;
+      }
+
+      /* =============================================
+         AVATAR / PROFILE
+         ============================================= */
+      .avatar-row {
+        display: flex;
+        align-items: flex-end;
+        gap: var(--space-4);
+      }
+
+      .avatar {
+        border-radius: var(--radius-full);
+        background: linear-gradient(
+          135deg,
+          var(--color-caramel),
+          var(--color-roasted)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--color-foam);
+        flex-shrink: 0;
+        border: 3px solid var(--color-cream);
+        box-shadow: var(--shadow-md);
+      }
+
+      .avatar-xl {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+      }
+      .avatar-lg {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+      }
+      .avatar-md {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+      }
+      .avatar-sm {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+      }
+
+      /* =============================================
+         NAVIGATION PATTERN
+         ============================================= */
+      .nav-preview {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4) var(--space-6);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .nav-brand {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-h4);
+        color: var(--color-espresso);
+        letter-spacing: var(--ls-tight);
+        text-decoration: none;
+      }
+
+      .nav-brand em {
+        font-style: italic;
+        color: var(--color-roasted);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: var(--space-6);
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-size: var(--text-sm);
+        font-weight: 700;
+        letter-spacing: var(--ls-wide);
+        color: var(--color-text-muted);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-primary);
+      }
+
+      /* =============================================
+         HERO SECTION PREVIEW
+         ============================================= */
+      .hero-preview {
+        background: linear-gradient(
+          160deg,
+          var(--color-espresso) 0%,
+          var(--color-dark-roast) 60%,
+          var(--color-coffee) 100%
+        );
+        border-radius: var(--radius-xl);
+        padding: var(--space-16) var(--space-12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-preview::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 40% at 80% 50%,
+            rgba(176, 137, 104, 0.25) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 30% 30% at 20% 80%,
+            rgba(201, 168, 130, 0.15) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 640px;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--font-code);
+        font-size: var(--text-sm);
+        color: var(--color-latte);
+        letter-spacing: var(--ls-wider);
+        margin-bottom: var(--space-4);
+      }
+
+      .hero-h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 700;
+        line-height: var(--lh-tight);
+        letter-spacing: var(--ls-tight);
+        color: var(--color-foam);
+        margin-bottom: var(--space-5);
+      }
+
+      .hero-h1 em {
+        font-style: italic;
+        color: var(--color-biscuit);
+      }
+
+      .hero-sub {
+        font-size: var(--text-lg);
+        line-height: var(--lh-relaxed);
+        color: var(--color-cream);
+        max-width: 48ch;
+        margin-bottom: var(--space-8);
+      }
+
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+        align-items: center;
+      }
+
+      .btn-hero-primary {
+        background: var(--color-biscuit);
+        color: var(--color-espresso);
+        border: 2px solid var(--color-biscuit);
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        font-weight: 700;
+        letter-spacing: var(--ls-wide);
+        padding: var(--space-4) var(--space-8);
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        transition:
+          background var(--transition-base),
+          box-shadow var(--transition-base);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .btn-hero-primary:hover {
+        background: var(--color-foam);
+        box-shadow: 0 0 0 4px rgba(245, 239, 230, 0.2);
+      }
+
+      .btn-hero-outline {
+        background: transparent;
+        color: var(--color-foam);
+        border: 2px solid rgba(245, 239, 230, 0.35);
+        font-family: var(--font-body);
+        font-size: var(--text-base);
+        font-weight: 700;
+        letter-spacing: var(--ls-wide);
+        padding: var(--space-4) var(--space-8);
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        transition:
+          background var(--transition-base),
+          border-color var(--transition-base);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .btn-hero-outline:hover {
+        background: rgba(245, 239, 230, 0.1);
+        border-color: rgba(245, 239, 230, 0.6);
+      }
+
+      /* =============================================
+         UTILITY / MISC
+         ============================================= */
+      .sg-note {
+        display: flex;
+        gap: var(--space-3);
+        padding: var(--space-4);
+        background: var(--color-oat-milk);
+        border-radius: var(--radius-md);
+        border-left: 3px solid var(--color-caramel);
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: var(--lh-normal);
+        margin-bottom: var(--space-6);
+      }
+
+      .sg-note strong {
+        color: var(--color-text);
+      }
+
+      /* =============================================
+         RESPONSIVE
+         ============================================= */
+      @media (max-width: 900px) {
+        .sg-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .sg-nav {
+          position: static;
+          display: none;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .form-group.full-width {
+          grid-column: 1;
+        }
+
+        .hero-preview {
+          padding: var(--space-10) var(--space-8);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .sg-page {
+          padding: var(--space-6) var(--space-4);
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sg-page">
+      <!-- ── HEADER ───────────────────────────────── -->
+      <header class="sg-header">
+        <p class="sg-header-eyebrow">Design System · v1.0</p>
+        <h1>Style Guide for <em>Jessna Rodriguez</em></h1>
+        <p class="sg-header-sub">
+          A warm, coffee-roasted design system for a programmer's portfolio.
+          Grounded in espresso tones, cream-soft neutrals, and typography that
+          feels both intellectual and inviting.
+        </p>
+        <span class="sg-version-badge">last brewed: Feb 2026</span>
+      </header>
+
+      <div class="sg-layout">
+        <!-- ── SIDEBAR NAV ────────────────────────── -->
+        <aside>
+          <nav class="sg-nav">
+            <p class="sg-nav-title">Contents</p>
+            <ul>
+              <li><a href="#colors">Color Palette</a></li>
+              <li><a href="#typography">Typography</a></li>
+              <li><a href="#type-scale">Type Scale</a></li>
+              <li><a href="#buttons">Buttons & CTAs</a></li>
+              <li><a href="#forms">Form Elements</a></li>
+              <li><a href="#cards">Cards</a></li>
+              <li><a href="#badges">Badges & Tags</a></li>
+              <li><a href="#code">Code Blocks</a></li>
+              <li><a href="#alerts">Alerts</a></li>
+              <li><a href="#spacing">Spacing</a></li>
+              <li><a href="#nav-pattern">Navigation</a></li>
+              <li><a href="#hero">Hero Preview</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- ── MAIN CONTENT ───────────────────────── -->
+        <main>
+          <!-- ── COLORS ─────────────────────────── -->
+          <section id="colors" class="sg-section">
+            <p class="sg-section-label">01 — Foundation</p>
+            <h2 class="sg-section-title">Color Palette</h2>
+            <p class="sg-section-desc">
+              Every shade is pulled from the coffee spectrum — espresso dark to
+              morning foam — keeping warmth and contrast in careful balance.
+            </p>
+
+            <p class="color-group-label">Coffee Spectrum</p>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #1c0f0a"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Espresso</p>
+                  <p class="color-swatch-hex">#1C0F0A</p>
+                  <p class="color-swatch-role">Darkest text, hero bg</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #3b1e0e"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Dark Roast</p>
+                  <p class="color-swatch-hex">#3B1E0E</p>
+                  <p class="color-swatch-role">Deep surfaces</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #543926"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Coffee</p>
+                  <p class="color-swatch-hex">#543926</p>
+                  <p class="color-swatch-role">Primary text</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #7b4a2d"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Roasted</p>
+                  <p class="color-swatch-hex">#7B4A2D</p>
+                  <p class="color-swatch-role">Primary brand, CTAs</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #b08968"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Caramel</p>
+                  <p class="color-swatch-hex">#B08968</p>
+                  <p class="color-swatch-role">Muted text, icons</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #c9a882"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Latte</p>
+                  <p class="color-swatch-hex">#C9A882</p>
+                  <p class="color-swatch-role">Light text, borders</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #ddb892"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Biscuit</p>
+                  <p class="color-swatch-hex">#DDB892</p>
+                  <p class="color-swatch-role">Warm bg tint</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #e6ccb2"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Cream</p>
+                  <p class="color-swatch-hex">#E6CCB2</p>
+                  <p class="color-swatch-role">Borders, dividers</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #ede0d4"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Oat Milk</p>
+                  <p class="color-swatch-hex">#EDE0D4</p>
+                  <p class="color-swatch-role">Subtle fills</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #f5efe6"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Foam</p>
+                  <p class="color-swatch-hex">#F5EFE6</p>
+                  <p class="color-swatch-role">Page background</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #fefcfa; border-bottom: 1px solid #e6ccb2"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">White</p>
+                  <p class="color-swatch-hex">#FEFCFA</p>
+                  <p class="color-swatch-role">Card surfaces</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="color-group-label">Accent Colors</p>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #c84b31"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Cinnamon</p>
+                  <p class="color-swatch-hex">#C84B31</p>
+                  <p class="color-swatch-role">Error / danger</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #d4880b"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Honey</p>
+                  <p class="color-swatch-hex">#D4880B</p>
+                  <p class="color-swatch-role">Warning / highlight</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #5c7a61"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Sage</p>
+                  <p class="color-swatch-hex">#5C7A61</p>
+                  <p class="color-swatch-role">Success / positive</p>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div
+                  class="color-swatch-block"
+                  style="background: #2e3a4e"
+                ></div>
+                <div class="color-swatch-info">
+                  <p class="color-swatch-name">Ink</p>
+                  <p class="color-swatch-hex">#2E3A4E</p>
+                  <p class="color-swatch-role">Info / code bg</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── TYPOGRAPHY ────────────────────── -->
+          <section id="typography" class="sg-section">
+            <p class="sg-section-label">02 — Typography</p>
+            <h2 class="sg-section-title">Font Families</h2>
+            <p class="sg-section-desc">
+              Four typefaces cover every need: display elegance, editorial
+              headings, clean readable body copy, and monospace for code.
+            </p>
+
+            <!-- Playfair Display -->
+            <div class="font-specimen">
+              <div class="font-specimen-meta">
+                <span class="font-specimen-label">Display</span>
+                <span class="font-specimen-name">Playfair Display</span>
+                <span class="font-specimen-use"
+                  >Hero headlines, name treatments</span
+                >
+              </div>
+              <p class="font-display-specimen">
+                Building things with<br /><em>intention and craft.</em>
+              </p>
+            </div>
+
+            <!-- Libre Baskerville -->
+            <div class="font-specimen">
+              <div class="font-specimen-meta">
+                <span class="font-specimen-label">Headings</span>
+                <span class="font-specimen-name">Libre Baskerville</span>
+                <span class="font-specimen-use"
+                  >Section titles, card headings</span
+                >
+              </div>
+              <p class="font-heading-specimen">
+                A full-stack developer who writes code<br />the way baristas
+                pull espresso shots.
+              </p>
+            </div>
+
+            <!-- Lato -->
+            <div class="font-specimen">
+              <div class="font-specimen-meta">
+                <span class="font-specimen-label">Body</span>
+                <span class="font-specimen-name">Lato</span>
+                <span class="font-specimen-use"
+                  >Paragraphs, UI labels, navigation</span
+                >
+              </div>
+              <p class="font-body-specimen">
+                I'm a software engineer with a love for clean architecture,
+                thoughtful user experience, and the perfect cup of coffee. I
+                care deeply about the craft behind every line of code —
+                readable, purposeful, and built to last.
+              </p>
+              <p
+                class="font-body-specimen"
+                style="
+                  font-weight: 300;
+                  color: var(--color-text-muted);
+                  margin-top: 1rem;
+                "
+              >
+                <em
+                  >Light weight (300) — captions, supporting text,
+                  timestamps</em
+                >
+              </p>
+            </div>
+
+            <!-- Fira Code -->
+            <div class="font-specimen">
+              <div class="font-specimen-meta">
+                <span class="font-specimen-label">Monospace</span>
+                <span class="font-specimen-name">Fira Code</span>
+                <span class="font-specimen-use"
+                  >Code blocks, inline code, tech tags</span
+                >
+              </div>
+              <div class="font-code-specimen">
+                const brewCoffee = (beans, ratio = 1.618) => {<br />
+                &nbsp;&nbsp;const grounds = grind(beans, 'medium-fine');<br />
+                &nbsp;&nbsp;return pour(grounds, ratio); // golden ratio<br />
+                };
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── TYPE SCALE ──────────────────────── -->
+          <section id="type-scale" class="sg-section">
+            <p class="sg-section-label">03 — Typography</p>
+            <h2 class="sg-section-title">Type Scale</h2>
+            <p class="sg-section-desc">
+              A fluid scale using <code>clamp()</code> for responsive sizing.
+              Display and H1–H3 scale with the viewport; H4–body stay fixed.
+            </p>
+
+            <div class="sg-card">
+              <table class="type-scale">
+                <thead>
+                  <tr>
+                    <th>Token</th>
+                    <th>Size</th>
+                    <th>Family</th>
+                    <th>Preview</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="ts-name">--text-display</span></td>
+                    <td><span class="ts-size">clamp(44px→64px)</span></td>
+                    <td><span class="ts-size">Playfair Display</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-display"
+                        style="
+                          font-size: clamp(1.75rem, 3vw, 2.5rem);
+                          line-height: 1.2;
+                          color: var(--color-espresso);
+                          font-weight: 700;
+                        "
+                        >Jessna Rodriguez</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-h1</span></td>
+                    <td><span class="ts-size">clamp(32px→48px)</span></td>
+                    <td><span class="ts-size">Playfair Display</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-display"
+                        style="
+                          font-size: clamp(1.5rem, 2.5vw, 2rem);
+                          line-height: 1.2;
+                          color: var(--color-espresso);
+                          font-weight: 700;
+                        "
+                        >Full-Stack Developer</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-h2</span></td>
+                    <td><span class="ts-size">clamp(26px→36px)</span></td>
+                    <td><span class="ts-size">Libre Baskerville</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-heading"
+                        style="
+                          font-size: clamp(1.25rem, 2vw, 1.75rem);
+                          color: var(--color-coffee);
+                          font-weight: 700;
+                        "
+                        >Selected Projects</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-h3</span></td>
+                    <td><span class="ts-size">clamp(22px→28px)</span></td>
+                    <td><span class="ts-size">Libre Baskerville</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-heading"
+                        style="
+                          font-size: clamp(1.1rem, 1.5vw, 1.375rem);
+                          color: var(--color-coffee);
+                          font-weight: 700;
+                        "
+                        >About Me</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-h4</span></td>
+                    <td><span class="ts-size">20px / 1.25rem</span></td>
+                    <td><span class="ts-size">Libre Baskerville</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-heading"
+                        style="
+                          font-size: 1.1rem;
+                          color: var(--color-coffee);
+                          font-weight: 700;
+                        "
+                        >Coffee Tracker App</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-lg</span></td>
+                    <td><span class="ts-size">18px / 1.125rem</span></td>
+                    <td><span class="ts-size">Lato</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-body"
+                        style="font-size: 1.0625rem; color: var(--color-text)"
+                        >Lead paragraph / intro text</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-base</span></td>
+                    <td><span class="ts-size">16px / 1rem</span></td>
+                    <td><span class="ts-size">Lato</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-body"
+                        style="font-size: 1rem; color: var(--color-text)"
+                        >Body copy, general UI</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-sm</span></td>
+                    <td><span class="ts-size">14px / 0.875rem</span></td>
+                    <td><span class="ts-size">Lato</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-body"
+                        style="
+                          font-size: 0.875rem;
+                          color: var(--color-text-muted);
+                        "
+                        >Card metadata, labels</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="ts-name">--text-xs</span></td>
+                    <td><span class="ts-size">12px / 0.75rem</span></td>
+                    <td><span class="ts-size">Lato / Fira Code</span></td>
+                    <td>
+                      <span
+                        class="ts-preview-body"
+                        style="
+                          font-size: 0.75rem;
+                          text-transform: uppercase;
+                          letter-spacing: 0.1em;
+                          color: var(--color-text-muted);
+                          font-weight: 700;
+                        "
+                        >Section Label · Tag</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── BUTTONS ─────────────────────────── -->
+          <section id="buttons" class="sg-section">
+            <p class="sg-section-label">04 — Components</p>
+            <h2 class="sg-section-title">Buttons & CTAs</h2>
+            <p class="sg-section-desc">
+              All buttons use pill-shaped (full-radius) corners to mirror the
+              roundness of a coffee bean. Font is Lato Bold for authority.
+            </p>
+
+            <div class="sg-card">
+              <p
+                class="font-specimen-label"
+                style="margin-bottom: var(--space-5)"
+              >
+                Variants
+              </p>
+              <div class="btn-row">
+                <button class="btn btn-md btn-primary">View My Work</button>
+                <button class="btn btn-md btn-secondary">
+                  Download Résumé
+                </button>
+                <button class="btn btn-md btn-outline">Get In Touch</button>
+                <button class="btn btn-md btn-ghost">Learn More</button>
+                <button class="btn btn-md btn-danger">Delete</button>
+                <button class="btn btn-md btn-disabled" disabled>
+                  Unavailable
+                </button>
+              </div>
+
+              <p
+                class="font-specimen-label"
+                style="margin: var(--space-6) 0 var(--space-5)"
+              >
+                Sizes
+              </p>
+              <div class="btn-row">
+                <button class="btn btn-sm btn-primary">Small</button>
+                <button class="btn btn-md btn-primary">Medium</button>
+                <button class="btn btn-lg btn-primary">
+                  Large — View Projects
+                </button>
+              </div>
+
+              <p
+                class="font-specimen-label"
+                style="margin: var(--space-6) 0 var(--space-5)"
+              >
+                With Icons
+              </p>
+              <div class="btn-row">
+                <button class="btn btn-md btn-primary">→ View Projects</button>
+                <button class="btn btn-md btn-outline">↓ Download CV</button>
+                <button class="btn btn-md btn-ghost">← Go Back</button>
+              </div>
+
+              <p
+                class="font-specimen-label"
+                style="margin: var(--space-6) 0 var(--space-5)"
+              >
+                Text Links
+              </p>
+              <div style="display: flex; gap: var(--space-6); flex-wrap: wrap">
+                <a href="#" class="sg-link">Standard link — hover me</a>
+                <a href="#" class="sg-link-subtle">Subtle link — hover me</a>
+                <a
+                  href="#"
+                  class="sg-link"
+                  style="
+                    font-family: var(--font-code);
+                    font-size: var(--text-sm);
+                  "
+                  >github.com/jessna</a
+                >
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── FORMS ───────────────────────────── -->
+          <section id="forms" class="sg-section">
+            <p class="sg-section-label">05 — Components</p>
+            <h2 class="sg-section-title">Form Elements</h2>
+            <p class="sg-section-desc">
+              Warm borders that glow caramel on focus. Used for the contact form
+              and any future interactive elements.
+            </p>
+
+            <div class="sg-card">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="fn">First Name</label>
+                  <input type="text" id="fn" placeholder="Jessna" />
+                </div>
+                <div class="form-group">
+                  <label for="ln">Last Name</label>
+                  <input type="text" id="ln" placeholder="Rodriguez" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="hello@jessna.dev"
+                  />
+                  <p class="form-hint">I'll reply within 48 hours ☕</p>
+                </div>
+                <div class="form-group">
+                  <label for="subj">Subject</label>
+                  <input
+                    type="text"
+                    id="subj"
+                    class="input-success"
+                    value="Let's collaborate!"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="err-field">Error State</label>
+                  <input
+                    type="text"
+                    id="err-field"
+                    class="input-error"
+                    value="invalid@"
+                  />
+                  <p class="form-error-msg">
+                    Please enter a valid email address.
+                  </p>
+                </div>
+                <div class="form-group">
+                  <label for="role">How can I help?</label>
+                  <select id="role">
+                    <option>Freelance project</option>
+                    <option>Full-time role</option>
+                    <option>Speaking / mentoring</option>
+                    <option>Just saying hi!</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="msg">Message</label>
+                  <textarea
+                    id="msg"
+                    rows="4"
+                    placeholder="Tell me about your project or what you have in mind..."
+                  ></textarea>
+                </div>
+                <div class="form-group full-width">
+                  <button
+                    class="btn btn-lg btn-primary"
+                    style="align-self: flex-start"
+                  >
+                    Send Message →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── CARDS ───────────────────────────── -->
+          <section id="cards" class="sg-section">
+            <p class="sg-section-label">06 — Components</p>
+            <h2 class="sg-section-title">Project Cards</h2>
+            <p class="sg-section-desc">
+              Cards lift slightly on hover to invite exploration. Used
+              throughout the projects grid.
+            </p>
+
+            <div class="card-grid">
+              <article class="card">
+                <div class="card-image">☕</div>
+                <div class="card-body">
+                  <p class="card-tag">Full-Stack · React</p>
+                  <h3 class="card-title">Coffee Tracker</h3>
+                  <p class="card-desc">
+                    Log your daily brews, track caffeine intake, and discover
+                    patterns in your best coding sessions.
+                  </p>
+                  <a href="#" class="btn btn-sm btn-outline">View Project →</a>
+                </div>
+                <div class="card-footer">
+                  <span class="card-meta">React · Node · Postgres</span>
+                  <span class="badge badge-success">Live</span>
+                </div>
+              </article>
+
+              <article class="card">
+                <div
+                  class="card-image"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      var(--color-oat-milk),
+                      var(--color-biscuit)
+                    );
+                  "
+                >
+                  📚
+                </div>
+                <div class="card-body">
+                  <p class="card-tag">Frontend · Design</p>
+                  <h3 class="card-title">Portfolio v2</h3>
+                  <p class="card-desc">
+                    This very site — designed from scratch with a warm, cozy
+                    aesthetic and an obsession over micro-interactions.
+                  </p>
+                  <a href="#" class="btn btn-sm btn-outline">Case Study →</a>
+                </div>
+                <div class="card-footer">
+                  <span class="card-meta">React · Vite · CSS</span>
+                  <span class="badge badge-warning">In Progress</span>
+                </div>
+              </article>
+
+              <article class="card">
+                <div
+                  class="card-image"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      var(--color-cream),
+                      var(--color-latte)
+                    );
+                  "
+                >
+                  ⚙️
+                </div>
+                <div class="card-body">
+                  <p class="card-tag">Backend · API</p>
+                  <h3 class="card-title">REST API Boilerplate</h3>
+                  <p class="card-desc">
+                    Production-ready Express + TypeScript template with auth,
+                    rate limiting, and full test coverage.
+                  </p>
+                  <a href="#" class="btn btn-sm btn-outline"
+                    >View on GitHub →</a
+                  >
+                </div>
+                <div class="card-footer">
+                  <span class="card-meta">Node · TypeScript · Jest</span>
+                  <span class="badge badge-coffee">Open Source</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── BADGES ──────────────────────────── -->
+          <section id="badges" class="sg-section">
+            <p class="sg-section-label">07 — Components</p>
+            <h2 class="sg-section-title">Badges, Tags & Labels</h2>
+            <p class="sg-section-desc">
+              Status badges, tech skill tags, and section labels — three
+              distinct approaches for categorical information.
+            </p>
+
+            <div class="sg-card">
+              <p
+                class="font-specimen-label"
+                style="margin-bottom: var(--space-4)"
+              >
+                Status Badges
+              </p>
+              <div class="badges-row">
+                <span class="badge badge-primary">Available for Work</span>
+                <span class="badge badge-coffee">Featured</span>
+                <span class="badge badge-success">Live</span>
+                <span class="badge badge-warning">In Progress</span>
+                <span class="badge badge-danger">Deprecated</span>
+                <span class="badge badge-ink">Open Source</span>
+              </div>
+
+              <p
+                class="font-specimen-label"
+                style="margin: var(--space-6) 0 var(--space-4)"
+              >
+                Tech Stack Tags
+              </p>
+              <div class="badges-row">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">AWS</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">GraphQL</span>
+              </div>
+
+              <p
+                class="font-specimen-label"
+                style="margin: var(--space-6) 0 var(--space-4)"
+              >
+                Avatars
+              </p>
+              <div class="avatar-row">
+                <div class="avatar avatar-xl">JR</div>
+                <div class="avatar avatar-lg">JR</div>
+                <div class="avatar avatar-md">JR</div>
+                <div class="avatar avatar-sm">J</div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── CODE BLOCKS ────────────────────── -->
+          <section id="code" class="sg-section">
+            <p class="sg-section-label">08 — Components</p>
+            <h2 class="sg-section-title">Code Blocks</h2>
+            <p class="sg-section-desc">
+              Espresso-dark background with warm cream syntax tones. The window
+              chrome mirrors macOS for familiarity.
+            </p>
+
+            <div class="sg-note">
+              <strong>Note:</strong> The portfolio will use a proper syntax
+              highlighter (Prism.js) in production. This shows the visual style
+              with a coffee-warm dark theme using only warm neutrals from the
+              palette.
+            </div>
+
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots">
+                  <div class="code-dot code-dot-red"></div>
+                  <div class="code-dot code-dot-yellow"></div>
+                  <div class="code-dot code-dot-green"></div>
+                </div>
+                <span class="code-block-lang">portfolio.tsx</span>
+              </div>
+              <pre><code><span class="code-kw">import</span> <span class="code-var">React</span> <span class="code-kw">from</span> <span class="code-str">'react'</span>;
+<span class="code-kw">import</span> <span class="code-var">{ ProjectCard }</span> <span class="code-kw">from</span> <span class="code-str">'./components'</span>;
+
+<span class="code-cmt">// A developer who cares about the craft</span>
+<span class="code-kw">const</span> <span class="code-fn">Portfolio</span> = () => {
+  <span class="code-kw">const</span> <span class="code-var">projects</span> = useFetch(<span class="code-str">'/api/projects'</span>);
+
+  <span class="code-kw">return</span> (
+    &lt;<span class="code-fn">main</span> className=<span class="code-str">"portfolio"</span>&gt;
+      &lt;<span class="code-fn">Hero</span> name=<span class="code-str">"Jessna Rodriguez"</span> /&gt;
+      {projects.<span class="code-fn">map</span>(<span class="code-var">p</span> => &lt;<span class="code-fn">ProjectCard</span> key=<span class="code-var">{p.id}</span> <span class="code-var">{...p}</span> /&gt;)}
+    &lt;/<span class="code-fn">main</span>&gt;
+  );
+};</code></pre>
+            </div>
+
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--color-text-muted);
+                margin-top: var(--space-4);
+              "
+            >
+              Inline code looks like this: use <code>const</code> and
+              <code>let</code> instead of <code>var</code>.
+            </p>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── ALERTS ──────────────────────────── -->
+          <section id="alerts" class="sg-section">
+            <p class="sg-section-label">09 — Components</p>
+            <h2 class="sg-section-title">Alerts & Feedback</h2>
+            <p class="sg-section-desc">
+              Four semantic states — each using an accent color that stays in
+              harmony with the warm neutrals.
+            </p>
+
+            <div class="alert alert-info">
+              <span class="alert-icon">ℹ</span>
+              <div class="alert-content">
+                <p class="alert-title">Currently open to new opportunities</p>
+                <p class="alert-body">
+                  I'm selectively taking on freelance projects and exploring
+                  full-time roles starting Spring 2026.
+                </p>
+              </div>
+            </div>
+            <div class="alert alert-success">
+              <span class="alert-icon">✓</span>
+              <div class="alert-content">
+                <p class="alert-title">Message sent successfully!</p>
+                <p class="alert-body">
+                  Thanks for reaching out — I'll get back to you within 48
+                  hours.
+                </p>
+              </div>
+            </div>
+            <div class="alert alert-warning">
+              <span class="alert-icon">⚠</span>
+              <div class="alert-content">
+                <p class="alert-title">Project under active development</p>
+                <p class="alert-body">
+                  This case study is being updated with new screenshots and a
+                  full write-up.
+                </p>
+              </div>
+            </div>
+            <div class="alert alert-danger">
+              <span class="alert-icon">✕</span>
+              <div class="alert-content">
+                <p class="alert-title">Form submission failed</p>
+                <p class="alert-body">
+                  Something went wrong on our end. Please try again or email
+                  directly.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── SPACING ─────────────────────────── -->
+          <section id="spacing" class="sg-section">
+            <p class="sg-section-label">10 — Foundation</p>
+            <h2 class="sg-section-title">Spacing Scale</h2>
+            <p class="sg-section-desc">
+              A base-4 scale (4px increments) gives consistent rhythm across the
+              entire layout. All spacing tokens map to CSS custom properties.
+            </p>
+
+            <div class="sg-card">
+              <div class="spacing-row">
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-1 · 4px</span>
+                  <div class="spacing-bar" style="width: 4px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-2 · 8px</span>
+                  <div class="spacing-bar" style="width: 8px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-3 · 12px</span>
+                  <div class="spacing-bar" style="width: 12px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-4 · 16px</span>
+                  <div class="spacing-bar" style="width: 16px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-6 · 24px</span>
+                  <div class="spacing-bar" style="width: 24px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-8 · 32px</span>
+                  <div class="spacing-bar" style="width: 32px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-10 · 40px</span>
+                  <div class="spacing-bar" style="width: 40px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-12 · 48px</span>
+                  <div class="spacing-bar" style="width: 48px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-16 · 64px</span>
+                  <div class="spacing-bar" style="width: 64px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-20 · 80px</span>
+                  <div class="spacing-bar" style="width: 80px"></div>
+                </div>
+                <div class="spacing-item">
+                  <span class="spacing-label">--space-24 · 96px</span>
+                  <div class="spacing-bar" style="width: 96px"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── NAVIGATION ─────────────────────── -->
+          <section id="nav-pattern" class="sg-section">
+            <p class="sg-section-label">11 — Patterns</p>
+            <h2 class="sg-section-title">Navigation</h2>
+            <p class="sg-section-desc">
+              Minimal top nav — brand name on the left in Playfair Display,
+              links in Lato Bold, a single CTA button anchoring the right.
+            </p>
+
+            <nav class="nav-preview">
+              <a class="nav-brand" href="#">Jessna <em>Rodriguez</em></a>
+              <ul class="nav-links">
+                <li><a href="#" class="active">Work</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Writing</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+              <button class="btn btn-sm btn-primary">Hire Me</button>
+            </nav>
+          </section>
+
+          <hr class="sg-divider" />
+
+          <!-- ── HERO PREVIEW ───────────────────── -->
+          <section id="hero" class="sg-section">
+            <p class="sg-section-label">12 — Patterns</p>
+            <h2 class="sg-section-title">Hero Section Preview</h2>
+            <p class="sg-section-desc">
+              The portfolio's opening statement — dark espresso background with
+              a warm radial light source and two CTA buttons.
+            </p>
+
+            <div class="hero-preview">
+              <div class="hero-content">
+                <p class="hero-eyebrow">
+                  // software engineer · coffee enthusiast
+                </p>
+                <h1 class="hero-h1">
+                  Hi, I'm Jessna.<br />
+                  I build things with<br />
+                  <em>intention & craft.</em>
+                </h1>
+                <p class="hero-sub">
+                  Full-stack developer specializing in React and Node.js. I
+                  write code the way a good barista pulls espresso — precise,
+                  intentional, and made to be savored.
+                </p>
+                <div class="hero-ctas">
+                  <a href="#" class="btn-hero-primary">View My Work →</a>
+                  <a href="#" class="btn-hero-outline">Download Résumé</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

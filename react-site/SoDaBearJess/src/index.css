@@ -1,113 +1,178 @@
-/* Blue Green color scheme */
-body,
-.theme-blue-green {
-  --dark-primary-color: #22577a;
-  --primary-color: #38a3a5;
-  --dark-secondary-color: #57cc99;
-  --secondary-color: #80ed99;
-  --accent-color: #c7f9cc;
-  --text-color: #ffffff;
-  --background-color: #242424;
-}
-/* Purple color scheme */
-.theme-purple {
-  --background-color: #231942;
-  --accent-color: #5e548e;
-  --primary-color: #9f86c0;
-  --secondary-color: #be95c4;
-  --text-color: #e0b1cb;
-}
-/* Cottagecore color scheme */
-.theme-cottagecore {
-  --primary-color: #edafb8;
-  --background-color: #f7e1d7;
-  --accent-color: #dedbd2;
-  --secondary-color: #b0c4b1;
-  --dark-secondary-color: #4a5759;
-  --text-color: #242424;
-}
-
-.theme-coffee {
-  --primary-color: #b08968;
-  /* --primary-color: #d3a373; */
-  --background-color: #ddb892;
-  --accent-color: #e6ccb2;
-  --secondary-color: #ede0d4;
-  /* --text-color: #7f5539; */
-  --text-color: #543926;
-}
-
 :root {
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* — Color: Coffee Spectrum — */
+  --color-espresso: #1c0f0a;
+  --color-dark-roast: #3b1e0e;
+  --color-coffee: #543926;
+  --color-roasted: #7b4a2d;
+  --color-caramel: #b08968;
+  --color-latte: #c9a882;
+  --color-biscuit: #ddb892;
+  --color-cream: #e6ccb2;
+  --color-oat-milk: #ede0d4;
+  --color-foam: #f5efe6;
+  --color-white: #fefcfa;
+
+  /* — Color: Semantic — */
+  --color-bg: var(--color-foam);
+  --color-surface: var(--color-white);
+  --color-border: var(--color-cream);
+  --color-text: var(--color-coffee);
+  --color-text-muted: var(--color-caramel);
+  --color-text-light: var(--color-latte);
+  --color-primary: var(--color-roasted);
+  --color-primary-hover: var(--color-coffee);
+
+  /* — Color: Accent — */
+  --color-cinnamon: #c84b31;
+  --color-honey: #d4880b;
+  --color-sage: #5c7a61;
+  --color-ink: #2e3a4e;
+
+  /* — Typography — */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Lato", system-ui, sans-serif;
+  --font-code: "Fira Code", "Courier New", monospace;
+
+  /* — Type Scale — */
+  --text-display: clamp(2.75rem, 5vw, 4rem);
+  --text-h1: clamp(2rem, 4vw, 3rem);
+  --text-h2: clamp(1.625rem, 3vw, 2.25rem);
+  --text-h3: clamp(1.375rem, 2.5vw, 1.75rem);
+  --text-h4: 1.25rem;
+  --text-h5: 1.0625rem;
+  --text-h6: 0.8125rem;
+  --text-lg: 1.125rem;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+
+  /* — Line Height — */
+  --lh-tight: 1.2;
+  --lh-snug: 1.4;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.8;
+
+  /* — Letter Spacing — */
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+  --ls-wider: 0.1em;
+  --ls-widest: 0.15em;
+
+  /* — Spacing — */
+  --space-1: 0.25rem; /*  4px */
+  --space-2: 0.5rem; /*  8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+
+  /* — Radius — */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* — Shadow — */
+  --shadow-sm: 0 1px 3px rgba(84, 57, 38, 0.12);
+  --shadow-md: 0 4px 12px rgba(84, 57, 38, 0.14);
+  --shadow-lg: 0 8px 28px rgba(84, 57, 38, 0.18);
+  --shadow-xl: 0 16px 48px rgba(84, 57, 38, 0.22);
+
+  /* — Transition — */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* =============================================
+RESET & BASE
+============================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-@font-face {
-  font-family: "Dreaming Out Loud";
-  src: url("./assets/dreaming-outloud-pro-regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
+img {
+  display: block;
+  max-width: 100%;
 }
+a {
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+
+/* =============================================
+BASE SECTIONS & LAYOUT
+============================================= */
 
 /* Screen Breakpoints: 1440, 1920, 768, 375 */
 #root {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  border: 1px dotted white;
+  padding: var(--space-8) var(--space-6);
 }
 
-body {
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  transition:
+    background var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-fast);
+}
+
+/* Flex and sizes affect Polaroid Layout */
+/* body {
   color: var(--text-color);
-  background-color: var(--background-color);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Bowlby One SC", cursive;
-}
-
-p {
-  /* font-family: "Libre Baskerville", serif; */
-  font-family: "Dreaming Out Loud", cursive;
-  font-size: 2rem;
-}
-
-body {
+  background-color: #333;
   margin: 0;
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: "Libre Baskerville", serif;
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
+/* Polaroid Frames code */
 .polaroid-frame {
   border: 1px solid var(--secondary-color);
   background-color: #ffffff;
@@ -142,36 +207,6 @@ button {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-p {
-  font-size: 1.2rem;
-}
-
-.font-dm-serif-display {
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
-}
-
-.font-libre-baskerville {
-  font-family: "Libre Baskerville", serif;
-  font-weight: 400;
-}
-
-.font-fugaz-one {
-  font-family: "Fugaz One", cursive;
-  font-weight: 400;
-}
-
-.font-farsan {
-  font-family: "Farsan", cursive;
-  font-weight: 400;
-  font-size: 1.5rem;
-}
-
-.font-bowlby-one-sc {
-  font-family: "Bowlby One SC", cursive;
-  font-weight: 400;
 }
 
 @media screen and (max-width: 1281px) {

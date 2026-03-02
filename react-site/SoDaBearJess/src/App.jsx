@@ -56,19 +56,7 @@ function App() {
           Some included elements: Contact info, bio and photo, embedded source
           code if possible. Education and experience/awards, and ofc resume.
         </p>
-        {/* <h1 className="font-fugaz-one">Heading</h1> */}
-
-        <h1
-          className="font-dm-serif-display"
-          style={{ color: "var(--secondary-color)" }}
-        >
-          raspberry
-        </h1>
-        <p className="font-farsan">
-          Some included elements: Contact info, bio and photo, embedded source
-          code if possible. Education and experience/awards, and ofc resume.
-        </p>
-        <div className="polaroid-container">
+        {/* <div className="polaroid-container">
           <div className="polaroid-frame rotate-right">
             <div className="polaroid-image">
               <img
@@ -109,7 +97,7 @@ function App() {
             </div>
             <p className="polaroid-text">Polaroid Text</p>
           </div>
-        </div>
+        </div> */}
         <button>Click Here</button>
         <div
           style={{
