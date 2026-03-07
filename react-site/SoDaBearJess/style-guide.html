@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ember Coffee Co. — Brand Style Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+
+    /* =============================================
+       CSS VARIABLES — Ember Coffee Co. Brand Tokens
+    ============================================= */
+    :root {
+        /* Backgrounds & Surfaces — roast spectrum */
+        --bg:            #0F0A06;   /* deep dark roast — page base */
+        --surface-1:     #1C1209;   /* espresso grounds */
+        --surface-2:     #2A1B0E;   /* French press */
+        --surface-3:     #3A2515;   /* medium roast */
+        --roast:         #6B3D1E;   /* warm roast brown */
+        --roast-light:   #8A5230;   /* brighter roast */
+
+        /* Caramel — primary accent */
+        --caramel:       #C97B2C;   /* rich caramel drizzle */
+        --caramel-light: #DBAA62;   /* latte honey */
+        --caramel-dark:  #9A5C18;   /* pressed caramel */
+        --caramel-dim:   rgba(201,123,44,0.12);
+        --caramel-border:rgba(201,123,44,0.22);
+
+        /* Latte highlight */
+        --latte:         #E8C485;   /* steamed milk highlight */
+        --latte-dim:     rgba(232,196,133,0.15);
+
+        /* Text */
+        --cream:         #EEE0C4;   /* warm parchment — primary text */
+        --cream-bright:  #F8F0DC;   /* brightest cream */
+        --muted:         #7A5C3E;   /* muted roast brown */
+        --muted-bright:  #A07850;   /* brighter muted */
+
+        /* Borders */
+        --border:        rgba(201,123,44,0.22);
+        --border-sub:    rgba(201,123,44,0.09);
+
+        /* Typography */
+        --font-display:  'DM Serif Display', serif;
+        --font-body:     'DM Sans', sans-serif;
+        --font-mono:     'Space Mono', monospace;
+
+        /* Radii — softer, rounder than xPest */
+        --radius:        6px;
+        --radius-md:     12px;
+        --radius-lg:     20px;
+        --radius-pill:   999px;
+
+        --max-w:         1380px;
+        --ease:          all 0.28s ease;
+    }
+
+    /* =============================================
+       BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        background: var(--bg);
+        color: var(--cream);
+        font-family: var(--font-body);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    a { color: var(--caramel); text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* =============================================
+       GUIDE LAYOUT HELPERS
+    ============================================= */
+    .guide-section {
+        padding: 5rem 3rem;
+        position: relative;
+    }
+    .guide-section + .guide-section {
+        border-top: 1px solid var(--border-sub);
+    }
+    .guide-section--surface   { background: var(--surface-1); }
+    .guide-section--surface-2 { background: var(--surface-2); }
+    .guide-section--caramel   { background: var(--caramel); }
+    .guide-section--roast     { background: var(--roast); }
+    .guide-section--linen     {
+        background-image:
+            linear-gradient(var(--border-sub) 1px, transparent 1px),
+            linear-gradient(90deg, var(--border-sub) 1px, transparent 1px);
+        background-size: 28px 28px;
+    }
+
+    .inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .guide-label {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: var(--caramel);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .guide-label::before {
+        content: '';
+        display: block;
+        width: 24px; height: 2px;
+        background: var(--caramel);
+        flex-shrink: 0;
+    }
+
+    .guide-title {
+        font-family: var(--font-display);
+        font-size: 2.8rem;
+        font-weight: 400;
+        color: var(--cream-bright);
+        line-height: 1.1;
+        margin-bottom: 3rem;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    .flex-row { display: flex; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+    .flex-row--center { align-items: center; }
+
+    .spec {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        margin-top: 0.4rem;
+    }
+
+    /* =============================================
+       BACKGROUND TEXTURES
+    ============================================= */
+    /* Linen crosshatch — subtle grid */
+    .linen-bg {
+        background-color: var(--bg);
+        background-image:
+            linear-gradient(var(--border-sub) 1px, transparent 1px),
+            linear-gradient(90deg, var(--border-sub) 1px, transparent 1px);
+        background-size: 28px 28px;
+    }
+
+    /* Bean scatter — staggered ellipse dots */
+    .bean-bg {
+        background-color: var(--surface-1);
+        background-image:
+            radial-gradient(ellipse 8px 5px at 14px 10px, rgba(201,123,44,0.07) 100%, transparent 100%),
+            radial-gradient(ellipse 8px 5px at 42px 34px, rgba(201,123,44,0.07) 100%, transparent 100%),
+            radial-gradient(ellipse 5px 8px at 56px 10px, rgba(201,123,44,0.05) 100%, transparent 100%);
+        background-size: 70px 44px;
+    }
+
+    /* Dot grid — warm dots */
+    .dot-bg {
+        background-color: var(--surface-2);
+        background-image: radial-gradient(circle, rgba(201,123,44,0.14) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    /* Roast radial — ambient depth gradient */
+    .roast-radial {
+        background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--surface-3) 0%, var(--bg) 100%);
+    }
+
+    /* =============================================
+       GUIDE HEADER
+    ============================================= */
+    .sg-header {
+        background: var(--bg);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 5rem 3rem 10rem;
+        position: relative;
+        overflow: hidden;
+    }
+    /* Linen texture on header */
+    .sg-header::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image:
+            linear-gradient(rgba(201,123,44,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(201,123,44,0.035) 1px, transparent 1px);
+        background-size: 32px 32px;
+        pointer-events: none;
+    }
+    /* Warm radial glow behind content */
+    .sg-header::after {
+        content: '';
+        position: absolute;
+        top: 30%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px; height: 400px;
+        background: radial-gradient(ellipse, rgba(201,123,44,0.07) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .sg-header-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+    }
+    .sg-overline {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted-bright);
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .sg-overline::before,
+    .sg-overline::after {
+        content: '';
+        display: block;
+        width: 32px; height: 1px;
+        background: var(--muted);
+    }
+    .sg-wordmark {
+        font-family: var(--font-display);
+        font-size: clamp(3.5rem, 8vw, 8rem);
+        font-weight: 400;
+        color: var(--cream-bright);
+        line-height: 1;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.5rem;
+    }
+    .sg-wordmark em {
+        font-style: italic;
+        color: var(--caramel-light);
+    }
+    .sg-sub-wordmark {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 3rem;
+    }
+    .sg-header-desc {
+        font-size: 1.05rem;
+        color: var(--muted-bright);
+        max-width: 540px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+    }
+    /* Token pills */
+    .sg-token-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+    .sg-token {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        color: var(--muted-bright);
+        background: var(--surface-1);
+        border: 1px solid var(--border-sub);
+        padding: 0.4rem 0.85rem;
+        border-radius: var(--radius-pill);
+    }
+    .sg-token .tok-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    /* Soft wave at bottom of header */
+    .sg-header-wave {
+        position: absolute;
+        bottom: -1px; left: 0; right: 0;
+        line-height: 0;
+    }
+    .sg-header-wave svg { display: block; width: 100%; }
+
+    /* =============================================
+       STEAM ANIMATIONS
+    ============================================= */
+    /* Steam wisp base */
+    .steam-cup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .steam-wisps {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 10px;
+        height: 80px;
+        position: relative;
+    }
+    .wisp {
+        width: 6px;
+        height: 64px;
+        background: linear-gradient(to top, rgba(238,224,196,0.55) 0%, rgba(238,224,196,0.1) 65%, transparent 100%);
+        border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%;
+        filter: blur(3.5px);
+        animation: wisp-rise 3.2s ease-in-out infinite;
+        transform-origin: bottom center;
+        position: relative;
+    }
+    .wisp-a { animation-delay: 0s;    width: 5px; height: 58px; }
+    .wisp-b { animation-delay: 0.9s;  width: 7px; height: 72px; filter: blur(4px); }
+    .wisp-c { animation-delay: 1.8s;  width: 5px; height: 56px; }
+
+    @keyframes wisp-rise {
+        0%   { opacity: 0; transform: translateX(0)   scaleX(1)   translateY(0); }
+        12%  { opacity: 0.7; }
+        38%  { opacity: 0.55; transform: translateX(7px)  scaleX(1.4)  translateY(-18px); }
+        65%  { opacity: 0.25; transform: translateX(-5px) scaleX(0.85) translateY(-38px); }
+        100% { opacity: 0;    transform: translateX(3px)  scaleX(1.15) translateY(-58px); }
+    }
+
+    /* Cup emoji / icon base */
+    .steam-cup-icon {
+        font-size: 2.5rem;
+        line-height: 1;
+    }
+
+    /* Thin elegant single wisp */
+    .wisp-single {
+        width: 4px;
+        height: 90px;
+        background: linear-gradient(to top, rgba(238,224,196,0.5) 0%, rgba(238,224,196,0.08) 70%, transparent 100%);
+        border-radius: 50%;
+        filter: blur(3px);
+        animation: wisp-elegant 4s ease-in-out infinite;
+    }
+    @keyframes wisp-elegant {
+        0%   { opacity: 0; transform: translateX(0) scaleX(1)   translateY(0)    rotate(0deg); }
+        10%  { opacity: 0.8; }
+        40%  { opacity: 0.5; transform: translateX(10px) scaleX(1.6) translateY(-25px) rotate(3deg); }
+        70%  { opacity: 0.2; transform: translateX(-7px) scaleX(0.8) translateY(-55px) rotate(-2deg); }
+        100% { opacity: 0;   transform: translateX(4px)  scaleX(1.2) translateY(-80px) rotate(1deg); }
+    }
+
+    /* Ambient steam — very subtle, for section backgrounds */
+    .ambient-steam {
+        position: absolute;
+        pointer-events: none;
+    }
+    .ambient-wisp {
+        position: absolute;
+        width: 40px; height: 120px;
+        background: radial-gradient(ellipse, rgba(238,224,196,0.07) 0%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(8px);
+        animation: ambient-drift 8s ease-in-out infinite;
+    }
+    @keyframes ambient-drift {
+        0%,100% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+        25%      { opacity: 1; }
+        50%      { transform: translateY(-60px) translateX(12px) scale(1.3); opacity: 0.6; }
+        75%      { transform: translateY(-100px) translateX(-8px) scale(0.8); opacity: 0.2; }
+    }
+
+    /* =============================================
+       SOFT WAVE DIVIDERS
+    ============================================= */
+    .wave-divider { line-height: 0; display: block; overflow: hidden; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* Wave demo wrapper for style guide */
+    .wave-demo {
+        background: var(--surface-2);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--border-sub);
+    }
+    .wave-demo-top {
+        height: 80px;
+        background: var(--surface-1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+    }
+    .wave-demo-bottom {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+    }
+    .wave-label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+    }
+    .wave-name {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--caramel);
+    }
+    .wave-desc {
+        font-size: 0.78rem;
+        color: var(--muted);
+    }
+
+    /* =============================================
+       COLOR PALETTE DISPLAY
+    ============================================= */
+    .color-swatch {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.04);
+    }
+    .swatch-block {
+        height: 100px;
+    }
+    .swatch-info {
+        padding: 0.75rem 1rem;
+        background: var(--surface-2);
+    }
+    .swatch-name {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cream);
+        margin-bottom: 0.2rem;
+    }
+    .swatch-token {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        color: var(--muted);
+    }
+    .swatch-hex {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        color: var(--muted-bright);
+    }
+
+    /* =============================================
+       TYPOGRAPHY DISPLAY
+    ============================================= */
+    .type-specimen {
+        padding: 2rem;
+        background: var(--surface-1);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-md);
+        margin-bottom: 1rem;
+    }
+    .type-specimen .ts-sample {
+        color: var(--cream-bright);
+        margin-bottom: 0.5rem;
+        line-height: 1.1;
+    }
+    .type-specimen .ts-meta {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* =============================================
+       BUTTON COMPONENTS
+    ============================================= */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.7rem;
+        border-radius: var(--radius-md);
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 0.92rem;
+        cursor: pointer;
+        border: none;
+        transition: var(--ease);
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+    /* Primary — caramel */
+    .btn-primary {
+        background: var(--caramel);
+        color: #0F0A06;
+    }
+    .btn-primary:hover {
+        background: var(--caramel-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(201,123,44,0.35);
+    }
+    /* Dark / espresso */
+    .btn-dark {
+        background: var(--surface-3);
+        color: var(--cream);
+        border: 1px solid var(--border);
+    }
+    .btn-dark:hover {
+        background: var(--roast);
+        border-color: var(--caramel);
+        transform: translateY(-2px);
+    }
+    /* Outline */
+    .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--border);
+        color: var(--cream);
+    }
+    .btn-outline:hover {
+        border-color: var(--caramel);
+        color: var(--caramel-light);
+    }
+    /* Ghost */
+    .btn-ghost {
+        background: rgba(201,123,44,0.1);
+        color: var(--caramel-light);
+        border: 1px solid var(--caramel-border);
+    }
+    .btn-ghost:hover {
+        background: rgba(201,123,44,0.2);
+    }
+    /* Cream / light */
+    .btn-cream {
+        background: var(--cream-bright);
+        color: var(--surface-1);
+        font-weight: 600;
+    }
+    .btn-cream:hover {
+        background: #fff;
+        transform: translateY(-2px);
+    }
+    /* Latte — soft warm */
+    .btn-latte {
+        background: var(--latte);
+        color: var(--surface-1);
+    }
+    .btn-latte:hover {
+        background: var(--caramel-light);
+        transform: translateY(-2px);
+    }
+    /* Sizes */
+    .btn-sm  { padding: 0.5rem 1.1rem; font-size: 0.8rem; border-radius: var(--radius); }
+    .btn-lg  { padding: 1rem 2.2rem; font-size: 1rem; }
+    .btn-xl  { padding: 1.2rem 2.8rem; font-size: 1.1rem; border-radius: var(--radius-lg); }
+    .btn-pill { border-radius: var(--radius-pill); }
+    .btn-block { width: 100%; justify-content: center; }
+    /* Pulse animation for primary CTA */
+    .btn-pulse {
+        animation: btn-pulse 2.8s ease infinite;
+    }
+    @keyframes btn-pulse {
+        0%,100% { box-shadow: 0 0 0 0 rgba(201,123,44,0.4); }
+        50%      { box-shadow: 0 0 0 10px rgba(201,123,44,0); }
+    }
+
+    /* =============================================
+       CARD COMPONENTS
+    ============================================= */
+    /* Base card */
+    .card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        transition: var(--ease);
+        position: relative;
+        overflow: hidden;
+    }
+    .card:hover {
+        border-color: var(--border);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Menu / product card */
+    .menu-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: var(--ease);
+    }
+    .menu-card:hover {
+        border-color: var(--border);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .mc-img {
+        height: 160px;
+        background: var(--roast);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
+    .mc-img::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 40%, rgba(15,10,6,0.6) 100%);
+    }
+    .mc-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .mc-tag {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--caramel);
+        margin-bottom: 0.5rem;
+    }
+    .mc-title {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        color: var(--cream-bright);
+        margin-bottom: 0.4rem;
+        line-height: 1.2;
+    }
+    .mc-desc { font-size: 0.84rem; color: var(--muted-bright); line-height: 1.55; margin-bottom: 1rem; }
+    .mc-footer { display: flex; align-items: center; justify-content: space-between; }
+    .mc-price { font-family: var(--font-display); font-size: 1.3rem; color: var(--caramel-light); }
+    .mc-order { font-size: 0.8rem; font-weight: 500; color: var(--caramel); letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.3rem; transition: var(--ease); }
+    .mc-order:hover { color: var(--caramel-light); gap: 0.5rem; }
+
+    /* Stat card */
+    .stat-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, var(--caramel), var(--latte));
+    }
+    .stat-card-num {
+        font-family: var(--font-display);
+        font-size: 3.5rem;
+        color: var(--caramel-light);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+    }
+    .stat-card-label { font-size: 0.85rem; color: var(--muted-bright); }
+
+    /* Testimonial card */
+    .testi-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: var(--ease);
+    }
+    .testi-card:hover { border-color: var(--border); transform: translateY(-3px); }
+    .testi-card::before {
+        content: '"';
+        position: absolute;
+        top: -1rem; left: 1.5rem;
+        font-family: var(--font-display);
+        font-size: 10rem;
+        color: rgba(201,123,44,0.06);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+        font-style: italic;
+    }
+    .tc-stars { color: var(--caramel); font-size: 0.85rem; margin-bottom: 0.75rem; letter-spacing: 0.06em; }
+    .tc-quote { font-size: 0.9rem; color: var(--muted-bright); line-height: 1.65; margin-bottom: 1.2rem; font-style: italic; position: relative; z-index: 1; }
+    .tc-author { display: flex; align-items: center; gap: 0.75rem; }
+    .tc-avatar {
+        width: 36px; height: 36px;
+        background: var(--roast);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1rem; font-weight: 400;
+        color: var(--caramel-light);
+        flex-shrink: 0;
+    }
+    .tc-name { font-size: 0.85rem; font-weight: 500; color: var(--cream); }
+    .tc-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* Featured testimonial */
+    .testi-featured {
+        background: var(--surface-1);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 3rem 3.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+    .testi-featured::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, var(--caramel), var(--latte), var(--caramel-dark));
+    }
+    .tf-quote { font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--cream); line-height: 1.55; margin-bottom: 1.5rem; }
+    .tf-author { display: flex; align-items: center; gap: 1rem; }
+    .tf-avatar { width: 46px; height: 46px; background: var(--roast); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.2rem; color: var(--caramel-light); flex-shrink: 0; }
+    .tf-name { font-weight: 500; font-size: 0.92rem; color: var(--cream-bright); }
+    .tf-role { font-size: 0.78rem; color: var(--muted); }
+    .tf-stars { margin-left: auto; color: var(--caramel); font-size: 0.9rem; letter-spacing: 0.05em; }
+
+    /* Origin card — roastery info */
+    .origin-card {
+        background: var(--surface-3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition: var(--ease);
+    }
+    .origin-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.3); }
+    .origin-flag { font-size: 2rem; }
+    .origin-region {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--caramel);
+    }
+    .origin-name { font-family: var(--font-display); font-size: 1.5rem; color: var(--cream-bright); line-height: 1.1; }
+    .origin-notes { font-size: 0.82rem; color: var(--muted-bright); line-height: 1.5; font-style: italic; }
+    .origin-detail { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .origin-pill {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--caramel-dim);
+        border: 1px solid var(--caramel-border);
+        color: var(--caramel-light);
+        padding: 0.25rem 0.65rem;
+        border-radius: var(--radius-pill);
+    }
+
+    /* =============================================
+       BENTO GRID
+    ============================================= */
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 260px 200px 160px;
+        gap: 12px;
+    }
+    .bento-card {
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .bento-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,0.35); }
+    /* Featured (2×2) */
+    .bento-featured {
+        grid-column: span 2;
+        grid-row: span 2;
+        background: var(--roast);
+        padding: 2.5rem;
+    }
+    .bento-featured::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, rgba(201,123,44,0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    /* Latte art BG */
+    .bento-featured::after {
+        content: '☕';
+        position: absolute;
+        right: -10%;
+        bottom: -5%;
+        font-size: 14rem;
+        opacity: 0.05;
+        pointer-events: none;
+        user-select: none;
+        line-height: 1;
+    }
+    .bf-tag {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--caramel-light);
+        margin-bottom: 0.75rem;
+    }
+    .bf-title {
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        color: var(--cream-bright);
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
+    }
+    .bf-title em { font-style: italic; color: var(--caramel-light); }
+    .bf-desc { font-size: 0.9rem; color: rgba(238,224,196,0.65); line-height: 1.65; flex: 1; max-width: 320px; }
+    .bf-link { margin-top: 1.5rem; font-size: 0.82rem; font-weight: 500; color: var(--caramel-light); display: flex; align-items: center; gap: 0.4rem; letter-spacing: 0.04em; }
+    /* Standard bento cards */
+    .bento-caramel { background: var(--caramel); color: #0F0A06; }
+    .bento-dark    { background: var(--surface-1); border: 1px solid var(--border-sub); }
+    .bento-surface { background: var(--surface-2); border: 1px solid var(--border-sub); }
+    .bento-wide    { grid-column: span 2; flex-direction: row; align-items: center; gap: 1.5rem; }
+    .bento-wide .bw-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .bento-wide .bw-body { flex: 1; }
+
+    .bc-icon  { font-size: 2rem; margin-bottom: 0.75rem; }
+    .bc-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--cream-bright); margin-bottom: 0.4rem; line-height: 1.1; }
+    .bento-caramel .bc-title { color: #0F0A06; }
+    .bc-desc  { font-size: 0.82rem; color: var(--muted-bright); line-height: 1.5; }
+    .bento-caramel .bc-desc { color: rgba(15,10,6,0.65); }
+
+    /* =============================================
+       OVERLAPPING / DYNAMIC SECTIONS
+    ============================================= */
+    .overlap-demo {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border-sub);
+    }
+    .overlap-sec-1 {
+        background: var(--caramel);
+        padding: 3rem 2.5rem 6rem;
+        position: relative;
+        z-index: 1;
+    }
+    .overlap-sec-2 {
+        background: var(--surface-1);
+        padding: 3.5rem 2.5rem 3rem;
+        margin-top: -3rem;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid var(--border-sub);
+    }
+    .overlap-sec-3 {
+        background: var(--bg);
+        padding: 3rem 2.5rem 3rem;
+        margin-top: -2.5rem;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: relative;
+        z-index: 3;
+        border-top: 1px solid var(--border-sub);
+    }
+    .overlap-label {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        opacity: 0.6;
+    }
+    .overlap-sec-1 .overlap-label { color: rgba(15,10,6,0.7); }
+    .overlap-sec-2 .overlap-label { color: var(--caramel); }
+    .overlap-sec-3 .overlap-label { color: var(--caramel); }
+    .overlap-heading {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        line-height: 1.1;
+    }
+    .overlap-sec-1 .overlap-heading { color: #0F0A06; }
+
+    /* Floating overlap card */
+    .overlap-float {
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--surface-1);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+        min-width: 200px;
+        z-index: 10;
+    }
+    .of-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--caramel); margin-bottom: 0.4rem; }
+    .of-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--cream-bright); line-height: 1; }
+    .of-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* =============================================
+       BADGES & TAGS
+    ============================================= */
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: var(--radius-pill);
+        font-weight: 700;
+    }
+    .badge-caramel { background: var(--caramel-dim); border: 1px solid var(--caramel-border); color: var(--caramel-light); }
+    .badge-dark    { background: var(--surface-3); border: 1px solid var(--border-sub); color: var(--muted-bright); }
+    .badge-cream   { background: rgba(238,224,196,0.12); border: 1px solid rgba(238,224,196,0.2); color: var(--cream); }
+    .badge-latte   { background: var(--latte-dim); border: 1px solid rgba(232,196,133,0.25); color: var(--latte); }
+    .badge-roast   { background: rgba(107,61,30,0.3); border: 1px solid rgba(107,61,30,0.5); color: var(--roast-light); }
+    .badge-new     { background: var(--caramel); color: #0F0A06; }
+    /* Roast level tag — specialty coffee specific */
+    .roast-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.45rem 1rem;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid;
+    }
+    .roast-tag .rt-pips { display: flex; gap: 3px; }
+    .roast-tag .rt-pip { width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: 0.3; }
+    .roast-tag .rt-pip.active { opacity: 1; }
+    .roast-light-tag { color: var(--latte); border-color: rgba(232,196,133,0.25); background: var(--latte-dim); }
+    .roast-medium-tag { color: var(--caramel-light); border-color: var(--caramel-border); background: var(--caramel-dim); }
+    .roast-dark-tag { color: var(--roast-light); border-color: rgba(107,61,30,0.4); background: rgba(107,61,30,0.15); }
+
+    /* =============================================
+       FORM ELEMENTS
+    ============================================= */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 1.2rem;
+    }
+    .form-group label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--muted-bright);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-family: var(--font-mono);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        background: var(--surface-2);
+        border: 1.5px solid var(--border-sub);
+        color: var(--cream);
+        padding: 0.75rem 1rem;
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        border-radius: var(--radius-md);
+        outline: none;
+        transition: border-color 0.22s, box-shadow 0.22s;
+        width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: var(--caramel);
+        box-shadow: 0 0 0 3px rgba(201,123,44,0.12);
+    }
+    .form-group input.input-error { border-color: #B84040; box-shadow: 0 0 0 3px rgba(184,64,64,0.1); }
+    .form-group input.input-success { border-color: #5A9E6B; box-shadow: 0 0 0 3px rgba(90,158,107,0.1); }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-group textarea { resize: none; }
+    .form-hint {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+    }
+    .form-error-msg { font-size: 0.75rem; color: #C07070; margin-top: 0.2rem; }
+
+    /* Checkboxes & radios — styled */
+    .check-item {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--cream);
+        margin-bottom: 0.6rem;
+    }
+    .check-box {
+        width: 18px; height: 18px;
+        background: var(--surface-2);
+        border: 1.5px solid var(--border);
+        border-radius: 4px;
+        flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        transition: var(--ease);
+    }
+    .check-box.checked {
+        background: var(--caramel);
+        border-color: var(--caramel);
+    }
+    .check-box.checked::after { content: '✓'; font-size: 0.65rem; font-weight: 700; color: #0F0A06; }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    .nav-demo {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border-sub);
+        margin-bottom: 1.5rem;
+    }
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem 2rem;
+    }
+    .nav-bar--transparent { background: transparent; border-bottom: 1px solid transparent; }
+    .nav-bar--solid { background: rgba(15,10,6,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border-sub); }
+    .nav-logo-text { font-family: var(--font-display); font-size: 1.35rem; color: var(--cream-bright); letter-spacing: -0.01em; }
+    .nav-logo-text em { font-style: italic; color: var(--caramel-light); }
+    .nav-links-demo { display: flex; gap: 0.25rem; margin-left: auto; }
+    .nav-links-demo a { padding: 0.4rem 0.85rem; font-size: 0.84rem; color: var(--muted-bright); border-radius: var(--radius); transition: var(--ease); }
+    .nav-links-demo a:hover { color: var(--cream); }
+    .nav-cta-demo { padding: 0.5rem 1.2rem; background: var(--caramel); color: #0F0A06; font-weight: 500; font-size: 0.82rem; border-radius: var(--radius-md); transition: var(--ease); white-space: nowrap; }
+
+    /* =============================================
+       MARQUEE / TICKER
+    ============================================= */
+    .marquee-outer {
+        overflow: hidden;
+        background: var(--caramel);
+        padding: 0;
+    }
+    .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: mq-fwd 22s linear infinite;
+    }
+    .marquee-track.rev { animation: mq-rev 28s linear infinite; }
+    @keyframes mq-fwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes mq-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .marquee-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.85rem 2.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #0F0A06;
+        white-space: nowrap;
+    }
+    .marquee-item .mi-sep {
+        width: 5px; height: 5px;
+        background: rgba(15,10,6,0.4);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+    .marquee-outer.dark { background: var(--surface-1); border-top: 1px solid var(--border-sub); border-bottom: 1px solid var(--border-sub); }
+    .marquee-outer.dark .marquee-item { color: var(--muted-bright); }
+    .marquee-outer.dark .marquee-item .mi-sep { background: var(--caramel); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); border-radius: 0; }
+
+    /* =============================================
+       ANIMATION TOKENS REFERENCE
+    ============================================= */
+    .anim-demo {
+        background: var(--surface-2);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        min-height: 160px;
+        text-align: center;
+    }
+    .anim-demo-label {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+    /* Hover lift */
+    .anim-hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .anim-hover-lift:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
+    /* Glow pulse */
+    .anim-glow { animation: glow-pulse 3s ease infinite; }
+    @keyframes glow-pulse {
+        0%,100% { box-shadow: 0 0 0 0 rgba(201,123,44,0); }
+        50%      { box-shadow: 0 0 0 12px rgba(201,123,44,0.12); }
+    }
+    /* Float */
+    .anim-float { animation: float 4s ease-in-out infinite; }
+    @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50%      { transform: translateY(-8px); }
+    }
+    /* Shimmer — for skeleton loading */
+    .anim-shimmer {
+        background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 50%, var(--surface-2) 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.8s ease infinite;
+        border-radius: var(--radius);
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    /* Ripple — on click */
+    .anim-ripple-wrap { position: relative; overflow: hidden; }
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(201,123,44,0.25);
+        animation: ripple-out 0.6s linear;
+        pointer-events: none;
+        transform: scale(0);
+    }
+    @keyframes ripple-out { to { transform: scale(4); opacity: 0; } }
+    /* Pour — reveals content downward like a pour-over */
+    @keyframes pour-in {
+        from { clip-path: inset(0 0 100% 0); opacity: 0; }
+        to   { clip-path: inset(0 0 0% 0);   opacity: 1; }
+    }
+    .anim-pour { animation: pour-in 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     STYLE GUIDE HEADER — Full viewport with steam animation
+============================================================ -->
+<header class="sg-header">
+    <div class="sg-header-inner">
+        <div class="sg-overline">Brand Style Guide · v1.0 · 2026</div>
+        <div class="sg-wordmark">Ember <em>Coffee</em> Co.</div>
+        <div class="sg-sub-wordmark">Specialty Roastery &amp; Café</div>
+
+        <!-- Steam animation demo above cup -->
+        <div style="display:flex; justify-content:center; margin-bottom:1rem;">
+            <div class="steam-cup">
+                <div class="steam-wisps">
+                    <div class="wisp wisp-a"></div>
+                    <div class="wisp wisp-b"></div>
+                    <div class="wisp wisp-c"></div>
+                </div>
+                <div class="steam-cup-icon">☕</div>
+            </div>
+        </div>
+
+        <p class="sg-header-desc">A warm, editorial design system built for specialty coffee — layered textures, soft wave dividers, steam animations, and a roast-spectrum palette from deep espresso to golden caramel.</p>
+
+        <div class="sg-token-row">
+            <div class="sg-token"><span class="tok-dot" style="background:#C97B2C;"></span>Caramel</div>
+            <div class="sg-token"><span class="tok-dot" style="background:#0F0A06; border:1px solid #3A2515;"></span>Espresso</div>
+            <div class="sg-token"><span class="tok-dot" style="background:#EEE0C4;"></span>Parchment</div>
+            <div class="sg-token"><span class="tok-dot" style="background:#E8C485;"></span>Latte</div>
+            <div class="sg-token" style="font-family:var(--font-mono);">DM Serif Display</div>
+            <div class="sg-token" style="font-family:var(--font-mono);">DM Sans</div>
+            <div class="sg-token" style="font-family:var(--font-mono);">Space Mono</div>
+        </div>
+    </div>
+
+    <!-- Soft wave transition at bottom of header -->
+    <div class="sg-header-wave">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;">
+            <path d="M0,40 C320,70 520,10 720,40 C920,70 1120,10 1440,40 L1440,80 L0,80 Z" fill="#1C1209"/>
+        </svg>
+    </div>
+</header>
+
+<!-- ============================================================
+     01 — COLOR TOKENS
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">01 · Color Tokens</div>
+        <div class="guide-title">Roast Spectrum &amp; Accents</div>
+
+        <!-- Background / Surface stack -->
+        <div class="guide-label" style="margin-bottom:1rem;">Backgrounds &amp; Surfaces</div>
+        <div class="grid-4" style="margin-bottom:3rem;">
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#0F0A06;"></div>
+                <div class="swatch-info"><div class="swatch-name">Deep Roast</div><div class="swatch-token">--bg</div><div class="swatch-hex">#0F0A06</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#1C1209;"></div>
+                <div class="swatch-info"><div class="swatch-name">Espresso</div><div class="swatch-token">--surface-1</div><div class="swatch-hex">#1C1209</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#2A1B0E;"></div>
+                <div class="swatch-info"><div class="swatch-name">French Press</div><div class="swatch-token">--surface-2</div><div class="swatch-hex">#2A1B0E</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#3A2515;"></div>
+                <div class="swatch-info"><div class="swatch-name">Medium Roast</div><div class="swatch-token">--surface-3</div><div class="swatch-hex">#3A2515</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#6B3D1E;"></div>
+                <div class="swatch-info"><div class="swatch-name">Roast</div><div class="swatch-token">--roast</div><div class="swatch-hex">#6B3D1E</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#8A5230;"></div>
+                <div class="swatch-info"><div class="swatch-name">Roast Light</div><div class="swatch-token">--roast-light</div><div class="swatch-hex">#8A5230</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#7A5C3E;"></div>
+                <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-token">--muted</div><div class="swatch-hex">#7A5C3E</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#A07850;"></div>
+                <div class="swatch-info"><div class="swatch-name">Muted Bright</div><div class="swatch-token">--muted-bright</div><div class="swatch-hex">#A07850</div></div>
+            </div>
+        </div>
+
+        <!-- Accent / Text -->
+        <div class="guide-label" style="margin-bottom:1rem;">Caramel Accent &amp; Text</div>
+        <div class="grid-4">
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#C97B2C;"></div>
+                <div class="swatch-info"><div class="swatch-name">Caramel</div><div class="swatch-token">--caramel</div><div class="swatch-hex">#C97B2C</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#DBAA62;"></div>
+                <div class="swatch-info"><div class="swatch-name">Caramel Light</div><div class="swatch-token">--caramel-light</div><div class="swatch-hex">#DBAA62</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#9A5C18;"></div>
+                <div class="swatch-info"><div class="swatch-name">Caramel Dark</div><div class="swatch-token">--caramel-dark</div><div class="swatch-hex">#9A5C18</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#E8C485;"></div>
+                <div class="swatch-info"><div class="swatch-name">Latte</div><div class="swatch-token">--latte</div><div class="swatch-hex">#E8C485</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#EEE0C4;"></div>
+                <div class="swatch-info"><div class="swatch-name">Parchment</div><div class="swatch-token">--cream</div><div class="swatch-hex">#EEE0C4</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:#F8F0DC;"></div>
+                <div class="swatch-info"><div class="swatch-name">Cream Bright</div><div class="swatch-token">--cream-bright</div><div class="swatch-hex">#F8F0DC</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:rgba(201,123,44,0.12); border:1px dashed rgba(201,123,44,0.3);"></div>
+                <div class="swatch-info"><div class="swatch-name">Caramel Dim</div><div class="swatch-token">--caramel-dim</div><div class="swatch-hex">rgba(201,123,44,0.12)</div></div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-block" style="background:rgba(201,123,44,0.22); border:1px dashed rgba(201,123,44,0.4);"></div>
+                <div class="swatch-info"><div class="swatch-name">Caramel Border</div><div class="swatch-token">--caramel-border</div><div class="swatch-hex">rgba(201,123,44,0.22)</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     02 — TYPOGRAPHY
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">02 · Typography</div>
+        <div class="guide-title">Type Scale</div>
+
+        <!-- Display / Serif -->
+        <div class="guide-label" style="margin-bottom:1.5rem;">DM Serif Display — Headlines</div>
+        <div class="type-specimen" style="margin-bottom:1rem;">
+            <div class="ts-sample" style="font-family:'DM Serif Display',serif; font-size:5rem; line-height:.95; color:var(--cream-bright);">From Bean<br><em style="color:var(--caramel-light); font-style:italic;">to Cup.</em></div>
+            <div class="ts-meta"><span>5rem / 80px</span><span>DM Serif Display</span><span>Weight 400</span><span>Hero Headline</span></div>
+        </div>
+        <div class="grid-2" style="margin-bottom:3rem; gap:1rem;">
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'DM Serif Display',serif; font-size:3rem; line-height:1;">Single Origin<br><em style="font-style:italic; color:var(--caramel-light);">Ethiopia</em></div>
+                <div class="ts-meta"><span>3rem</span><span>H2 — Section Heading</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'DM Serif Display',serif; font-size:2rem;">Our Roasting Process</div>
+                <div class="ts-meta"><span>2rem</span><span>H3 — Card Title</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'DM Serif Display',serif; font-size:1.4rem;">Seasonal Offerings</div>
+                <div class="ts-meta"><span>1.4rem</span><span>H4 — Sub-heading</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'DM Serif Display',serif; font-style:italic; font-size:1.2rem; color:var(--muted-bright);">"The finest cup we've had."</div>
+                <div class="ts-meta"><span>1.2rem italic</span><span>Pull Quote</span></div>
+            </div>
+        </div>
+
+        <!-- Body / DM Sans -->
+        <div class="guide-label" style="margin-bottom:1.5rem;">DM Sans — Body Text</div>
+        <div class="grid-2" style="margin-bottom:3rem; gap:1rem;">
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-size:1.05rem; font-weight:300; color:var(--muted-bright); line-height:1.7;">Each batch is roasted in small quantities, honoring the producer's intention and the terroir of origin — a slow, deliberate craft that shows in every cup.</div>
+                <div class="ts-meta"><span>1.05rem · weight 300</span><span>Body — Light</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-size:0.95rem; font-weight:400; color:var(--cream); line-height:1.65;">Tasting notes of dark cherry, baker's chocolate, and a long, clean finish. This single-origin Yirgacheffe is sourced directly from the Layo Teraga washing station.</div>
+                <div class="ts-meta"><span>0.95rem · weight 400</span><span>Body — Regular</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-size:0.88rem; font-weight:500; color:var(--muted-bright);">Whole bean · 250g · Light–Medium roast · Best within 4 weeks of roast date</div>
+                <div class="ts-meta"><span>0.88rem · weight 500</span><span>Detail / Caption</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-size:0.8rem; font-weight:600; color:var(--caramel-light); text-transform:uppercase; letter-spacing:.08em;">Limited Edition · While Supplies Last</div>
+                <div class="ts-meta"><span>0.8rem · weight 600 · uppercase</span><span>Label</span></div>
+            </div>
+        </div>
+
+        <!-- Space Mono -->
+        <div class="guide-label" style="margin-bottom:1.5rem;">Space Mono — Labels &amp; Monospace</div>
+        <div class="grid-3" style="gap:1rem;">
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'Space Mono',monospace; font-size:0.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--caramel);">Single Origin · Ethiopia</div>
+                <div class="ts-meta"><span>0.7rem · mono label</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:.16em; color:var(--muted-bright);">Roasted: 2026-02-14 · Batch #0042</div>
+                <div class="ts-meta"><span>0.65rem · metadata</span></div>
+            </div>
+            <div class="type-specimen">
+                <div class="ts-sample" style="font-family:'Space Mono',monospace; font-size:1.2rem; color:var(--cream-bright);">$24.00</div>
+                <div class="ts-meta"><span>1.2rem · pricing / data</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     03 — BACKGROUND TEXTURES
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">03 · Background Textures</div>
+        <div class="guide-title">Patterns &amp; Surfaces</div>
+        <div class="grid-2" style="gap:1.5rem;">
+
+            <!-- Linen crosshatch -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Linen Crosshatch</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Subtle grid — evokes worn paper, cafe menus. Use as section background texture.</div>
+                <div style="height:180px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-sub);" class="linen-bg">
+                    <div style="height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.62rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Linear-gradient grid · 28×28px</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">background-size: 28px 28px · rgba(201,123,44,0.09)</div>
+            </div>
+
+            <!-- Bean scatter -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Bean Scatter</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Staggered ellipse dots simulating scattered coffee beans. Subtle, thematic.</div>
+                <div style="height:180px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-sub);" class="bean-bg">
+                    <div style="height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.62rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Radial-gradient ellipses · 70×44px</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">background-size: 70px 44px · 3 offset radial ellipses</div>
+            </div>
+
+            <!-- Dot grid -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Warm Dot Grid</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Classic dot grid in warm caramel. Use for contact sections, neutral layouts.</div>
+                <div style="height:180px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-sub);" class="dot-bg">
+                    <div style="height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.62rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Radial-gradient circles · 24×24px</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">background-size: 24px 24px · rgba(201,123,44,0.14)</div>
+            </div>
+
+            <!-- Roast radial -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Roast Radial</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Ambient radial gradient — depth from center. Use for hero sections, CTAs.</div>
+                <div style="height:180px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-sub);" class="roast-radial">
+                    <div style="height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.62rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase;">Radial gradient · --surface-3 → --bg</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">radial-gradient(ellipse 80% 60% at 50% 50%, ...)</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     04 — SOFT WAVE DIVIDERS
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">04 · Soft Wave Dividers</div>
+        <div class="guide-title">Section Transitions</div>
+        <p style="color:var(--muted-bright); font-size:.95rem; max-width:560px; margin-bottom:3rem; line-height:1.65;">Unlike sharp or gnawed edges, Ember uses smooth cubic-bezier waves. Each style creates a different mood — from barely-there ripples to bold rolling swells.</p>
+
+        <div class="grid-2" style="gap:2rem;">
+
+            <!-- Wave 1: Gentle single -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Wave 01 — Gentle Single</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">A single slow arc. Barely noticeable, creates elegant flow. Best for light transitions.</div>
+                <div class="wave-demo">
+                    <div class="wave-demo-top">Section above</div>
+                    <div class="wave-divider" style="background:#2A1B0E;">
+                        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
+                            <path d="M0,30 C480,55 960,5 1440,30 L1440,60 L0,60 Z" fill="#1C1209"/>
+                        </svg>
+                    </div>
+                    <div class="wave-demo-bottom" style="background:#1C1209;">Section below</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">C480,55 960,5 1440,30 — single cubic bezier · amplitude 25px</div>
+            </div>
+
+            <!-- Wave 2: Double roll -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Wave 02 — Double Roll</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Two gentle S-curves — a more visible, flowing transition. Ideal for hero bottoms.</div>
+                <div class="wave-demo">
+                    <div class="wave-demo-top">Section above</div>
+                    <div class="wave-divider" style="background:#2A1B0E;">
+                        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
+                            <path d="M0,30 C200,5 400,55 600,30 C800,5 1000,55 1200,30 C1300,18 1380,42 1440,30 L1440,60 L0,60 Z" fill="#1C1209"/>
+                        </svg>
+                    </div>
+                    <div class="wave-demo-bottom" style="background:#1C1209;">Section below</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">Two cubic bezier S-curves · amplitude 25px · gentle frequency</div>
+            </div>
+
+            <!-- Wave 3: Deep asymmetric pour -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Wave 03 — Asymmetric Pour</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">A strong diagonal-feeling wave — like a slow coffee pour. Creates visual tension.</div>
+                <div class="wave-demo">
+                    <div class="wave-demo-top" style="background:var(--caramel);">
+                        <span style="color:rgba(15,10,6,0.5);">Section above (caramel)</span>
+                    </div>
+                    <div class="wave-divider" style="background:var(--caramel);">
+                        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;">
+                            <path d="M0,60 C480,10 960,70 1440,20 L1440,80 L0,80 Z" fill="#1C1209"/>
+                        </svg>
+                    </div>
+                    <div class="wave-demo-bottom" style="background:#1C1209;">Section below (dark)</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">Single deep bezier · 50px amplitude · asymmetric tilt</div>
+            </div>
+
+            <!-- Wave 4: Triple ripple -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Wave 04 — Triple Ripple</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Three compact waves — like ripples on a latte. Decorative, layered depth.</div>
+                <div class="wave-demo">
+                    <div class="wave-demo-top">Section above</div>
+                    <div class="wave-divider" style="background:#2A1B0E;">
+                        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style="height:70px;">
+                            <path d="M0,40 C120,18 240,58 360,40 C480,22 600,58 720,40 C840,22 960,58 1080,40 C1200,22 1320,58 1440,40 L1440,70 L0,70 Z" fill="#1C1209"/>
+                        </svg>
+                    </div>
+                    <div class="wave-demo-bottom" style="background:#1C1209;">Section below</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">Four cubic bezier ripples · 20px amplitude · 360px period</div>
+            </div>
+
+            <!-- Wave 5: Latte art swirl -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Wave 05 — Latte Art Swirl</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">An organic, uneven wave — hand-poured quality. Good for testimonial / story sections.</div>
+                <div class="wave-demo">
+                    <div class="wave-demo-top">Section above</div>
+                    <div class="wave-divider" style="background:#2A1B0E;">
+                        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style="height:70px;">
+                            <path d="M0,50 C150,25 280,60 450,35 C580,15 720,62 900,38 C1020,22 1160,55 1300,32 C1360,22 1410,45 1440,35 L1440,70 L0,70 Z" fill="#1C1209"/>
+                        </svg>
+                    </div>
+                    <div class="wave-demo-bottom" style="background:#1C1209;">Section below</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">Irregular cubic bezier — varying amplitudes and periods</div>
+            </div>
+
+            <!-- Wave 6: Inverted (waves point down) -->
+            <div>
+                <div class="wave-label-row">
+                    <div class="wave-name">Wave 06 — Inverted Rise</div>
+                </div>
+                <div class="wave-desc" style="margin-bottom:.75rem;">Waves point upward from bottom — great for the top of a section to "receive" content.</div>
+                <div class="wave-demo">
+                    <div class="wave-demo-top" style="background:#1C1209;">Section above (dark)</div>
+                    <div class="wave-divider" style="background:#2A1B0E;">
+                        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
+                            <path d="M0,0 L1440,0 C960,40 480,0 0,35 Z" fill="#1C1209"/>
+                        </svg>
+                    </div>
+                    <div class="wave-demo-bottom" style="background:#2A1B0E;">Section below</div>
+                </div>
+                <div class="spec" style="margin-top:.5rem;">Path closes at top · section-top placement · single arc</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     05 — STEAM ANIMATIONS
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">05 · Steam Animations</div>
+        <div class="guide-title">Steam &amp; Vapor Effects</div>
+
+        <div class="grid-3" style="gap:2rem;">
+
+            <!-- Triple wisp -->
+            <div style="background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:2.5rem; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                <div>
+                    <div class="wave-name" style="text-align:center; margin-bottom:.4rem;">Triple Wisp</div>
+                    <div class="wave-desc" style="text-align:center; font-size:.78rem;">Standard 3-wisp rising steam. Staggered delays: 0s, 0.9s, 1.8s.</div>
+                </div>
+                <div class="steam-cup" style="margin-top:1rem;">
+                    <div class="steam-wisps">
+                        <div class="wisp wisp-a"></div>
+                        <div class="wisp wisp-b"></div>
+                        <div class="wisp wisp-c"></div>
+                    </div>
+                    <div class="steam-cup-icon">☕</div>
+                </div>
+                <div class="spec" style="text-align:center;">@keyframes wisp-rise · 3.2s ease-in-out infinite</div>
+            </div>
+
+            <!-- Single elegant wisp -->
+            <div style="background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:2.5rem; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                <div>
+                    <div class="wave-name" style="text-align:center; margin-bottom:.4rem;">Single Elegant</div>
+                    <div class="wave-desc" style="text-align:center; font-size:.78rem;">One thin, swaying wisp. More refined, minimal. Used for tea or pour-over.</div>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:center; gap:0; margin-top:1rem;">
+                    <div style="height:90px; display:flex; align-items:flex-end; justify-content:center;">
+                        <div class="wisp-single"></div>
+                    </div>
+                    <div style="font-size:2.5rem; line-height:1;">🍵</div>
+                </div>
+                <div class="spec" style="text-align:center;">@keyframes wisp-elegant · 4s ease-in-out infinite</div>
+            </div>
+
+            <!-- Ambient background steam -->
+            <div style="background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:2.5rem; display:flex; flex-direction:column; align-items:center; gap:1.5rem; position:relative; overflow:hidden;">
+                <!-- Ambient wisps in background -->
+                <div class="ambient-steam" style="left:10%; bottom:20%; width:60px; height:140px;">
+                    <div class="ambient-wisp" style="animation-delay:0s;"></div>
+                </div>
+                <div class="ambient-steam" style="right:15%; bottom:15%; width:50px; height:120px;">
+                    <div class="ambient-wisp" style="animation-delay:3s; width:30px; height:90px;"></div>
+                </div>
+                <div style="position:relative; z-index:1;">
+                    <div class="wave-name" style="text-align:center; margin-bottom:.4rem;">Ambient Background</div>
+                    <div class="wave-desc" style="text-align:center; font-size:.78rem;">Very soft radial blur wisps drifting upward. Used as a subtle section atmosphere.</div>
+                </div>
+                <div style="font-size:3rem; position:relative; z-index:1; margin-top:1rem;">🏠</div>
+                <div class="spec" style="text-align:center; position:relative; z-index:1;">@keyframes ambient-drift · 8s ease-in-out infinite · blur(8px)</div>
+            </div>
+
+            <!-- Steam color variants -->
+            <div style="background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:2rem;">
+                <div class="wave-name" style="margin-bottom:1rem;">Color Variants</div>
+                <div style="display:flex; gap:2rem; align-items:flex-end; justify-content:center; flex-wrap:wrap;">
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                        <div style="height:64px; width:6px; background:linear-gradient(to top, rgba(238,224,196,0.55),transparent); border-radius:50%; filter:blur(3px); animation:wisp-rise 3.2s ease-in-out infinite;"></div>
+                        <div class="spec">Parchment</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                        <div style="height:64px; width:6px; background:linear-gradient(to top, rgba(201,123,44,0.45),transparent); border-radius:50%; filter:blur(3px); animation:wisp-rise 3.2s ease-in-out infinite; animation-delay:.5s;"></div>
+                        <div class="spec">Caramel</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                        <div style="height:64px; width:6px; background:linear-gradient(to top, rgba(255,255,255,0.3),transparent); border-radius:50%; filter:blur(3px); animation:wisp-rise 3.2s ease-in-out infinite; animation-delay:1s;"></div>
+                        <div class="spec">White</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage guide -->
+            <div style="grid-column:span 2; background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:2rem;">
+                <div class="wave-name" style="margin-bottom:1rem;">Usage Notes</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <div style="font-size:.8rem; font-weight:500; color:var(--cream); margin-bottom:.4rem;">When to use steam</div>
+                        <div style="font-size:.82rem; color:var(--muted-bright); line-height:1.55;">Hero sections above coffee product imagery · Product card icon areas · Ambient texture on warm-colored CTAs · Loading states (ambient)</div>
+                    </div>
+                    <div>
+                        <div style="font-size:.8rem; font-weight:500; color:var(--cream); margin-bottom:.4rem;">Performance tips</div>
+                        <div style="font-size:.82rem; color:var(--muted-bright); line-height:1.55;">Use <code style="font-family:var(--font-mono); color:var(--caramel); font-size:.78rem;">will-change: transform, opacity</code> on wisps. Keep to max 3 simultaneous wisp animations per viewport. Use <code style="font-family:var(--font-mono); color:var(--caramel); font-size:.78rem;">filter: blur()</code> only on small elements.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     06 — BUTTONS
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">06 · Buttons</div>
+        <div class="guide-title">Interactive Controls</div>
+
+        <div class="guide-label" style="margin-bottom:1rem;">Style Variants</div>
+        <div class="flex-row flex-row--center" style="margin-bottom:3rem; gap:1rem; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary">Order Now</a>
+                <div class="spec">btn-primary · caramel</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-dark">Learn More</a>
+                <div class="spec">btn-dark · surface-3</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-outline">Explore Menu</a>
+                <div class="spec">btn-outline</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-ghost">View Origin</a>
+                <div class="spec">btn-ghost</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-cream">Get Started</a>
+                <div class="spec">btn-cream</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-latte">Seasonal Menu</a>
+                <div class="spec">btn-latte</div>
+            </div>
+        </div>
+
+        <div class="guide-label" style="margin-bottom:1rem;">Sizes</div>
+        <div class="flex-row flex-row--center" style="margin-bottom:3rem; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary btn-sm">Small</a>
+                <div class="spec">btn-sm · 0.8rem</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary">Default</a>
+                <div class="spec">default · 0.92rem</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary btn-lg">Large</a>
+                <div class="spec">btn-lg · 1rem</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary btn-xl">Extra Large</a>
+                <div class="spec">btn-xl · 1.1rem · rounded-lg</div>
+            </div>
+        </div>
+
+        <div class="guide-label" style="margin-bottom:1rem;">Modifiers</div>
+        <div class="flex-row flex-row--center" style="margin-bottom:1.5rem; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary btn-pill">Pill Shape</a>
+                <div class="spec">btn-pill · radius-pill</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary btn-pulse">Pulse CTA</a>
+                <div class="spec">btn-pulse · animated ring</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <a class="btn btn-primary">☕ With Icon</a>
+                <div class="spec">inline emoji icon</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem; width:260px;">
+                <a class="btn btn-primary btn-block">Block Button</a>
+                <div class="spec">btn-block · full width</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Soft wave between sections -->
+<div class="wave-divider" style="background:var(--bg);">
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;">
+        <path d="M0,25 C360,48 720,2 1080,25 C1200,35 1340,18 1440,25 L1440,50 L0,50 Z" fill="#1C1209"/>
+    </svg>
+</div>
+
+<!-- ============================================================
+     07 — CARD COMPONENTS
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">07 · Card Components</div>
+        <div class="guide-title">Content Containers</div>
+
+        <!-- Menu / Product cards -->
+        <div class="guide-label" style="margin-bottom:1rem;">Menu / Product Cards</div>
+        <div class="grid-3" style="margin-bottom:3rem;">
+            <div class="menu-card">
+                <div class="mc-img">☕</div>
+                <div class="mc-body">
+                    <div class="mc-tag">Single Origin · Ethiopia</div>
+                    <div class="mc-title">Yirgacheffe Natural</div>
+                    <p class="mc-desc">Dark cherry, baker's chocolate, bergamot. A clean, bright finish with exceptional clarity.</p>
+                    <div class="mc-footer">
+                        <div class="mc-price">$22.00</div>
+                        <a class="mc-order" href="#">Order → </a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="mc-img" style="background:var(--surface-3);">🧊</div>
+                <div class="mc-body">
+                    <div class="mc-tag">Cold Brew · 16oz</div>
+                    <div class="mc-title">Midnight Blend Cold Brew</div>
+                    <p class="mc-desc">18-hour cold steep. Deep chocolate, brown sugar, long finish. Served over ice or straight.</p>
+                    <div class="mc-footer">
+                        <div class="mc-price">$7.50</div>
+                        <a class="mc-order" href="#">Order → </a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="mc-img" style="background:var(--caramel-dark);">🥐</div>
+                <div class="mc-body">
+                    <div class="mc-tag">Pastry · Daily Fresh</div>
+                    <div class="mc-title">Cardamom Croissant</div>
+                    <p class="mc-desc">House-laminated, infused with Nordic cardamom and finished with pearl sugar. Baked daily at 6am.</p>
+                    <div class="mc-footer">
+                        <div class="mc-price">$5.50</div>
+                        <a class="mc-order" href="#">Order → </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="guide-label" style="margin-bottom:1rem;">Stat Cards</div>
+        <div class="grid-4" style="margin-bottom:3rem;">
+            <div class="stat-card"><div class="stat-card-num">12</div><div class="stat-card-label">Origins Sourced</div></div>
+            <div class="stat-card"><div class="stat-card-num">4</div><div class="stat-card-label">Roast Profiles</div></div>
+            <div class="stat-card"><div class="stat-card-num">98%</div><div class="stat-card-label">Direct Trade</div></div>
+            <div class="stat-card"><div class="stat-card-num">2019</div><div class="stat-card-label">Year Founded</div></div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="guide-label" style="margin-bottom:1rem;">Testimonials</div>
+        <div style="margin-bottom:1.5rem;">
+            <div class="testi-featured">
+                <p class="tf-quote">"The Yirgacheffe changed the way I think about light roast. I'd written it off entirely — then I had this one, and I understand now. It's honest, precise, and completely alive in the cup."</p>
+                <div class="tf-author">
+                    <div class="tf-avatar">ML</div>
+                    <div>
+                        <div class="tf-name">Marisol L.</div>
+                        <div class="tf-role">Regular customer · Boise, ID</div>
+                    </div>
+                    <div class="tf-stars">★★★★★</div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="testi-card">
+                <div class="tc-stars">★★★★★</div>
+                <p class="tc-quote">"Best pour-over I've had outside of Tokyo. They take their time, and it shows."</p>
+                <div class="tc-author"><div class="tc-avatar">JK</div><div><div class="tc-name">James K.</div><div class="tc-role">Coffee writer</div></div></div>
+            </div>
+            <div class="testi-card">
+                <div class="tc-stars">★★★★★</div>
+                <p class="tc-quote">"The subscription has genuinely changed my mornings. Always fresh, always interesting."</p>
+                <div class="tc-author"><div class="tc-avatar">AP</div><div><div class="tc-name">Ana P.</div><div class="tc-role">Subscriber since 2022</div></div></div>
+            </div>
+        </div>
+
+        <!-- Origin card -->
+        <div class="guide-label" style="margin-top:3rem; margin-bottom:1rem;">Origin / Roastery Cards</div>
+        <div class="grid-3">
+            <div class="origin-card">
+                <div class="origin-flag">🇪🇹</div>
+                <div>
+                    <div class="origin-region">East Africa · Ethiopia</div>
+                    <div class="origin-name">Yirgacheffe<br>Layo Teraga</div>
+                </div>
+                <div class="origin-notes">"Bergamot, lemon curd, jasmine — a floral brightness unlike anything from other regions."</div>
+                <div class="origin-detail">
+                    <span class="origin-pill">Washed</span>
+                    <span class="origin-pill">Light Roast</span>
+                    <span class="origin-pill">1850m</span>
+                </div>
+            </div>
+            <div class="origin-card">
+                <div class="origin-flag">🇨🇴</div>
+                <div>
+                    <div class="origin-region">South America · Colombia</div>
+                    <div class="origin-name">Huila<br>El Paraíso</div>
+                </div>
+                <div class="origin-notes">"Brown sugar, red apple, walnut. A reliable sweetness that works across every brew method."</div>
+                <div class="origin-detail">
+                    <span class="origin-pill">Natural</span>
+                    <span class="origin-pill">Medium Roast</span>
+                    <span class="origin-pill">1700m</span>
+                </div>
+            </div>
+            <div class="origin-card">
+                <div class="origin-flag">🇮🇩</div>
+                <div>
+                    <div class="origin-region">Southeast Asia · Indonesia</div>
+                    <div class="origin-name">Sumatra<br>Mandheling</div>
+                </div>
+                <div class="origin-notes">"Dark chocolate, cedar, pipe tobacco. Our darkest roast — bold, earthy, and deeply satisfying."</div>
+                <div class="origin-detail">
+                    <span class="origin-pill">Wet-hulled</span>
+                    <span class="origin-pill">Dark Roast</span>
+                    <span class="origin-pill">1400m</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Soft wave -->
+<div class="wave-divider" style="background:var(--surface-1);">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
+        <path d="M0,30 C200,5 400,55 600,30 C800,5 1000,55 1200,30 C1300,18 1380,42 1440,30 L1440,60 L0,60 Z" fill="#0F0A06"/>
+    </svg>
+</div>
+
+<!-- ============================================================
+     08 — BENTO GRID
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">08 · Bento Grid</div>
+        <div class="guide-title">Editorial Card Layout</div>
+        <p style="color:var(--muted-bright); font-size:.95rem; max-width:560px; margin-bottom:2rem; line-height:1.65;">An editorial bento grid pairs well with menu sections, story sections, or a "why us" breakdown. Varying card heights create visual tension and encourage exploration.</p>
+
+        <div class="bento-grid">
+            <!-- Featured (2×2) -->
+            <div class="bento-card bento-featured">
+                <div class="bf-tag">☕ Signature Collection</div>
+                <div class="bf-title">Single<br>Origin<br><em>Excellence</em></div>
+                <p class="bf-desc">Every coffee we roast begins with a relationship — a farmer, a lot, a story. We source direct so you taste the difference.</p>
+                <a class="bf-link" href="#">Explore All Origins ›</a>
+            </div>
+            <!-- Espresso — caramel -->
+            <div class="bento-card bento-caramel">
+                <div class="bc-icon">⚡</div>
+                <div class="bc-title">Espresso Bar</div>
+                <p class="bc-desc">Dialed in daily. Our house espresso changes with the season — always vibrant, never bitter.</p>
+            </div>
+            <!-- Cold brew — dark -->
+            <div class="bento-card bento-dark">
+                <div class="bc-icon">🧊</div>
+                <div class="bc-title">Cold Brew</div>
+                <p class="bc-desc">18-hour steep. Ready by 7am. Our smoothest, most approachable cup.</p>
+            </div>
+            <!-- Pastries -->
+            <div class="bento-card bento-surface">
+                <div class="bc-icon">🥐</div>
+                <div class="bc-title">Daily Pastries</div>
+                <p class="bc-desc">Baked fresh each morning in-house. Cardamom croissant. Tahini babka. Seasonal galette.</p>
+            </div>
+            <!-- Wholesale — amber wide -->
+            <div class="bento-card bento-surface bento-wide" style="border:1px solid var(--border);">
+                <div class="bw-icon">📦</div>
+                <div class="bw-body">
+                    <div class="bc-title">Wholesale &amp; Subscription</div>
+                    <p class="bc-desc">Cafés, restaurants, and offices — we roast for your rhythm. Flexible volumes, direct relationship.</p>
+                </div>
+            </div>
+            <!-- Pour over -->
+            <div class="bento-card bento-dark" style="background:var(--caramel-dark);">
+                <div class="bc-icon">🫖</div>
+                <div class="bc-title" style="color:var(--cream-bright);">Pour-Over Bar</div>
+                <p class="bc-desc" style="color:rgba(238,224,196,0.7);">Slow, deliberate, and worth the wait. V60 and Chemex available all day.</p>
+            </div>
+            <!-- Brewing gear -->
+            <div class="bento-card bento-surface bento-wide">
+                <div class="bw-icon">⚗️</div>
+                <div class="bw-body">
+                    <div class="bc-title">Brewing Equipment</div>
+                    <p class="bc-desc">Grinders, kettles, drippers, and scales — everything you need to brew like a professional at home.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     09 — OVERLAPPING / DYNAMIC SECTIONS
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">09 · Overlapping Sections</div>
+        <div class="guide-title">Dynamic Depth &amp; Layering</div>
+        <p style="color:var(--muted-bright); font-size:.95rem; max-width:560px; margin-bottom:2.5rem; line-height:1.65;">Sections can "stack" on top of each other using negative <code style="font-family:var(--font-mono); color:var(--caramel); font-size:.85rem;">margin-top</code> and <code style="font-family:var(--font-mono); color:var(--caramel); font-size:.85rem;">border-radius</code> on the upper corners. Combine with floating cards for added depth.</p>
+
+        <!-- Demo -->
+        <div class="overlap-demo" style="margin-bottom:3rem; max-width:760px;">
+            <div class="overlap-sec-1" style="position:relative;">
+                <div class="overlap-label">Caramel Section · z-index 1</div>
+                <div class="overlap-heading" style="color:#0F0A06;">From the Roastery</div>
+                <p style="color:rgba(15,10,6,0.6); font-size:.9rem; margin-top:.5rem; max-width:400px;">Roasted in small batches every Tuesday and Friday — never more than 5 days old when it ships.</p>
+                <!-- Floating stat card -->
+                <div class="overlap-float">
+                    <div class="of-label">Roast Freshness</div>
+                    <div class="of-num">≤5 days</div>
+                    <div class="of-sub">from roast to your door</div>
+                </div>
+            </div>
+            <div class="overlap-sec-2">
+                <div class="overlap-label">Dark Section · z-index 2 · margin-top: -3rem · border-radius top</div>
+                <div class="overlap-heading" style="color:var(--cream-bright);">How We Source</div>
+                <p style="color:var(--muted); font-size:.9rem; margin-top:.5rem; max-width:480px;">Every origin in our lineup is direct trade — we visit farms, cup on-site, and build long-term relationships with producers.</p>
+            </div>
+            <div class="overlap-sec-3">
+                <div class="overlap-label">Deepest Section · z-index 3 · margin-top: -2.5rem · border-radius top</div>
+                <div class="overlap-heading" style="color:var(--cream-bright);">The Result in Your Cup</div>
+                <p style="color:var(--muted); font-size:.9rem; margin-top:.5rem; max-width:480px;">A cleaner, more traceable coffee — where every note you taste has a name, a place, and a person behind it.</p>
+            </div>
+        </div>
+
+        <!-- Code reference -->
+        <div style="background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:1.75rem;">
+            <div class="wave-name" style="margin-bottom:1rem;">How the overlap works</div>
+            <div class="grid-2" style="gap:2rem;">
+                <div>
+                    <div style="font-size:.8rem; font-weight:500; color:var(--cream); margin-bottom:.5rem;">Section stacking CSS</div>
+                    <pre style="font-family:var(--font-mono); font-size:.72rem; color:var(--muted-bright); line-height:1.7; background:var(--bg); padding:1rem; border-radius:var(--radius-md); overflow:auto;">.sec-2 {
+  margin-top: -3rem;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  z-index: 2;
+}
+.sec-3 {
+  margin-top: -2.5rem;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  z-index: 3;
+}</pre>
+                </div>
+                <div>
+                    <div style="font-size:.8rem; font-weight:500; color:var(--cream); margin-bottom:.5rem;">Floating card CSS</div>
+                    <pre style="font-family:var(--font-mono); font-size:.72rem; color:var(--muted-bright); line-height:1.7; background:var(--bg); padding:1rem; border-radius:var(--radius-md); overflow:auto;">.float-card {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  box-shadow: 0 16px 48px
+    rgba(0,0,0,0.4);
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     10 — BADGES & TAGS
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">10 · Badges &amp; Tags</div>
+        <div class="guide-title">Labels &amp; Indicators</div>
+
+        <!-- Standard badges -->
+        <div class="guide-label" style="margin-bottom:1rem;">Standard Badges</div>
+        <div class="flex-row flex-row--center" style="margin-bottom:2.5rem; gap:.75rem; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <span class="badge badge-caramel">Single Origin</span>
+                <div class="spec">badge-caramel</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <span class="badge badge-dark">Direct Trade</span>
+                <div class="spec">badge-dark</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <span class="badge badge-cream">Organic</span>
+                <div class="spec">badge-cream</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <span class="badge badge-latte">Seasonal</span>
+                <div class="spec">badge-latte</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <span class="badge badge-roast">Limited</span>
+                <div class="spec">badge-roast</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <span class="badge badge-new">New</span>
+                <div class="spec">badge-new</div>
+            </div>
+        </div>
+
+        <!-- Roast level tags -->
+        <div class="guide-label" style="margin-bottom:1rem;">Roast Level Tags</div>
+        <div class="flex-row flex-row--center" style="gap:1rem; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <div class="roast-tag roast-light-tag">
+                    <span>Light</span>
+                    <span class="rt-pips">
+                        <span class="rt-pip active"></span>
+                        <span class="rt-pip"></span>
+                        <span class="rt-pip"></span>
+                        <span class="rt-pip"></span>
+                    </span>
+                </div>
+                <div class="spec">Light Roast</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <div class="roast-tag roast-medium-tag">
+                    <span>Medium</span>
+                    <span class="rt-pips">
+                        <span class="rt-pip active"></span>
+                        <span class="rt-pip active"></span>
+                        <span class="rt-pip"></span>
+                        <span class="rt-pip"></span>
+                    </span>
+                </div>
+                <div class="spec">Medium Roast</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:.5rem;">
+                <div class="roast-tag roast-dark-tag">
+                    <span>Dark</span>
+                    <span class="rt-pips">
+                        <span class="rt-pip active"></span>
+                        <span class="rt-pip active"></span>
+                        <span class="rt-pip active"></span>
+                        <span class="rt-pip active"></span>
+                    </span>
+                </div>
+                <div class="spec">Dark Roast</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Soft wave -->
+<div class="wave-divider" style="background:var(--bg);">
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;">
+        <path d="M0,25 C150,45 300,5 500,25 C700,45 900,5 1100,25 C1250,38 1360,15 1440,25 L1440,50 L0,50 Z" fill="#1C1209"/>
+    </svg>
+</div>
+
+<!-- ============================================================
+     11 — FORM ELEMENTS
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">11 · Form Elements</div>
+        <div class="guide-title">Input Components</div>
+
+        <div class="grid-2" style="gap:3rem;">
+            <div>
+                <div class="guide-label" style="margin-bottom:1.5rem;">Input States</div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Maria Santos">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="maria@example.com">
+                    <div class="form-hint">We'll send your order confirmation here.</div>
+                </div>
+                <div class="form-group">
+                    <label>Email — Error State</label>
+                    <input type="email" value="not-valid" class="input-error">
+                    <div class="form-error-msg">Please enter a valid email address.</div>
+                </div>
+                <div class="form-group">
+                    <label>Email — Success State</label>
+                    <input type="email" value="confirmed@example.com" class="input-success">
+                </div>
+                <div class="form-group">
+                    <label>Roast Preference</label>
+                    <select>
+                        <option value="">Select roast level...</option>
+                        <option>Light — Bright &amp; Fruity</option>
+                        <option>Medium — Balanced &amp; Sweet</option>
+                        <option>Dark — Bold &amp; Full-Bodied</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions</label>
+                    <textarea rows="3" placeholder="Grind preference, brewing method, gifting notes..."></textarea>
+                </div>
+            </div>
+            <div>
+                <div class="guide-label" style="margin-bottom:1.5rem;">Checkboxes &amp; Preferences</div>
+                <div style="background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:1.75rem;">
+                    <div style="font-size:.85rem; font-weight:500; color:var(--cream); margin-bottom:1rem;">Brewing Methods You Use</div>
+                    <div class="check-item">
+                        <div class="check-box checked"></div>
+                        <span>Pour-Over (V60, Chemex)</span>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box checked"></div>
+                        <span>Espresso Machine</span>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <span>French Press</span>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <span>Cold Brew</span>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-box"></div>
+                        <span>AeroPress</span>
+                    </div>
+                </div>
+                <div style="margin-top:1.5rem; background:var(--surface-2); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:1.75rem;">
+                    <div style="font-size:.85rem; font-weight:500; color:var(--cream); margin-bottom:1rem;">Newsletter Preferences</div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Maria">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="maria@example.com">
+                    </div>
+                    <a class="btn btn-primary btn-block" style="margin-top:.5rem;">Subscribe to Roast Notes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     12 — NAVIGATION
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">12 · Navigation</div>
+        <div class="guide-title">Nav Bar States</div>
+
+        <!-- Transparent -->
+        <div class="guide-label" style="margin-bottom:.75rem;">Default — Transparent (over hero)</div>
+        <div class="nav-demo">
+            <div style="height:80px; background: var(--roast); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:.62rem; color:rgba(238,224,196,.4); letter-spacing:.1em; text-transform:uppercase; position:relative;">
+                Hero background
+                <div class="nav-bar nav-bar--transparent" style="position:absolute; top:0; left:0; right:0;">
+                    <div class="nav-logo-text">Ember <em>Coffee</em></div>
+                    <div class="nav-links-demo">
+                        <a>Menu</a><a>Origins</a><a>Brew Guide</a><a>About</a>
+                    </div>
+                    <div class="nav-cta-demo">Order Online</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrolled -->
+        <div class="guide-label" style="margin-top:2rem; margin-bottom:.75rem;">Scrolled — Frosted Espresso</div>
+        <div class="nav-demo">
+            <div class="nav-bar nav-bar--solid">
+                <div class="nav-logo-text">Ember <em>Coffee</em></div>
+                <div class="nav-links-demo">
+                    <a>Menu</a><a>Origins</a><a>Brew Guide</a><a>About</a>
+                </div>
+                <div class="nav-cta-demo">Order Online</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     13 — MARQUEE / TICKER
+============================================================ -->
+<section class="guide-section guide-section--surface">
+    <div class="inner">
+        <div class="guide-label">13 · Marquee Strips</div>
+        <div class="guide-title">Scrolling Tickers</div>
+    </div>
+
+    <!-- Caramel marquee -->
+    <div class="marquee-outer" style="margin-bottom:1rem;">
+        <div class="marquee-track">
+            <span class="marquee-item">Single Origin<span class="mi-sep"></span></span>
+            <span class="marquee-item">Direct Trade<span class="mi-sep"></span></span>
+            <span class="marquee-item">Small Batch Roasted<span class="mi-sep"></span></span>
+            <span class="marquee-item">Ethiopia · Colombia · Indonesia<span class="mi-sep"></span></span>
+            <span class="marquee-item">Fresh Within 5 Days<span class="mi-sep"></span></span>
+            <span class="marquee-item">Specialty Grade Only<span class="mi-sep"></span></span>
+            <span class="marquee-item">Single Origin<span class="mi-sep"></span></span>
+            <span class="marquee-item">Direct Trade<span class="mi-sep"></span></span>
+            <span class="marquee-item">Small Batch Roasted<span class="mi-sep"></span></span>
+            <span class="marquee-item">Ethiopia · Colombia · Indonesia<span class="mi-sep"></span></span>
+            <span class="marquee-item">Fresh Within 5 Days<span class="mi-sep"></span></span>
+            <span class="marquee-item">Specialty Grade Only<span class="mi-sep"></span></span>
+        </div>
+    </div>
+
+    <!-- Dark marquee (reverse) -->
+    <div class="marquee-outer dark">
+        <div class="marquee-track rev">
+            <span class="marquee-item">Pour-Over<span class="mi-sep"></span></span>
+            <span class="marquee-item">Espresso Bar<span class="mi-sep"></span></span>
+            <span class="marquee-item">Cold Brew<span class="mi-sep"></span></span>
+            <span class="marquee-item">Daily Pastries<span class="mi-sep"></span></span>
+            <span class="marquee-item">Roast Notes Newsletter<span class="mi-sep"></span></span>
+            <span class="marquee-item">Wholesale Programs<span class="mi-sep"></span></span>
+            <span class="marquee-item">Pour-Over<span class="mi-sep"></span></span>
+            <span class="marquee-item">Espresso Bar<span class="mi-sep"></span></span>
+            <span class="marquee-item">Cold Brew<span class="mi-sep"></span></span>
+            <span class="marquee-item">Daily Pastries<span class="mi-sep"></span></span>
+            <span class="marquee-item">Roast Notes Newsletter<span class="mi-sep"></span></span>
+            <span class="marquee-item">Wholesale Programs<span class="mi-sep"></span></span>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     14 — ANIMATIONS REFERENCE
+============================================================ -->
+<section class="guide-section">
+    <div class="inner">
+        <div class="guide-label">14 · Animation Tokens</div>
+        <div class="guide-title">Motion &amp; Transitions</div>
+
+        <div class="grid-3" style="gap:1.5rem;">
+
+            <div class="anim-demo anim-hover-lift" style="cursor:pointer;">
+                <div style="font-size:2rem;">☕</div>
+                <div class="wave-name">Hover Lift</div>
+                <div class="anim-demo-label">translateY(-6px) + shadow · 0.25s ease</div>
+                <div class="anim-demo-label">Hover over this card</div>
+            </div>
+
+            <div class="anim-demo anim-glow">
+                <div style="font-size:2rem;">✨</div>
+                <div class="wave-name">Glow Pulse</div>
+                <div class="anim-demo-label">box-shadow caramel ring · 3s infinite</div>
+            </div>
+
+            <div class="anim-demo" style="overflow:visible;">
+                <div style="font-size:2.5rem;" class="anim-float">☕</div>
+                <div class="wave-name">Float</div>
+                <div class="anim-demo-label">translateY(-8px) · 4s ease-in-out infinite</div>
+            </div>
+
+            <div class="anim-demo">
+                <div class="anim-shimmer" style="width:100%; height:12px; margin-bottom:.5rem;"></div>
+                <div class="anim-shimmer" style="width:75%; height:12px; margin-bottom:.5rem;"></div>
+                <div class="anim-shimmer" style="width:55%; height:12px;"></div>
+                <div class="anim-demo-label" style="margin-top:.75rem;">Shimmer Skeleton</div>
+                <div class="anim-demo-label">1.8s · loading state</div>
+            </div>
+
+            <div class="anim-demo">
+                <div class="steam-wisps" style="height:60px; display:flex; justify-content:center;">
+                    <div class="wisp wisp-a"></div>
+                    <div class="wisp wisp-b"></div>
+                    <div class="wisp wisp-c"></div>
+                </div>
+                <div class="wave-name">Wisp Rise</div>
+                <div class="anim-demo-label">3 wisps · staggered 0.9s · 3.2s ease-in-out</div>
+            </div>
+
+            <div class="anim-demo" style="cursor:pointer;" onclick="createRipple(event, this)">
+                <div style="font-size:2rem;">👆</div>
+                <div class="wave-name">Click Ripple</div>
+                <div class="anim-demo-label">Click this card to see the ripple effect</div>
+            </div>
+
+        </div>
+
+        <!-- Easing reference -->
+        <div style="margin-top:3rem; background:var(--surface-1); border:1px solid var(--border-sub); border-radius:var(--radius-lg); padding:2rem;">
+            <div class="wave-name" style="margin-bottom:1rem;">Easing Reference</div>
+            <div class="grid-3" style="gap:1rem;">
+                <div>
+                    <div style="font-size:.8rem; color:var(--cream); margin-bottom:.4rem;">Standard</div>
+                    <div class="spec">--ease: all 0.28s ease</div>
+                    <div style="font-size:.78rem; color:var(--muted-bright); margin-top:.3rem;">Default for hover transitions, color changes</div>
+                </div>
+                <div>
+                    <div style="font-size:.8rem; color:var(--cream); margin-bottom:.4rem;">Entrance</div>
+                    <div class="spec">cubic-bezier(0.16, 1, 0.3, 1)</div>
+                    <div style="font-size:.78rem; color:var(--muted-bright); margin-top:.3rem;">Fast-in, slow-out. Feels physical and grounded.</div>
+                </div>
+                <div>
+                    <div style="font-size:.8rem; color:var(--cream); margin-bottom:.4rem;">Bounce soft</div>
+                    <div class="spec">cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+                    <div style="font-size:.78rem; color:var(--muted-bright); margin-top:.3rem;">Slight overshoot. Good for button active states.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final soft wave + footer -->
+<div class="wave-divider" style="background:var(--bg);">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
+        <path d="M0,40 C480,10 960,55 1440,25 L1440,60 L0,60 Z" fill="#1C1209"/>
+    </svg>
+</div>
+
+<div style="background:var(--surface-1); padding:3rem; text-align:center;">
+    <div style="font-family:var(--font-display); font-size:2rem; color:var(--cream-bright); margin-bottom:.5rem;">Ember <em style="font-style:italic; color:var(--caramel-light);">Coffee</em> Co.</div>
+    <div style="font-family:var(--font-mono); font-size:.65rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);">Brand Style Guide · v1.0 · 2026</div>
+    <div style="margin-top:1.5rem; font-size:.82rem; color:var(--muted); max-width:480px; margin-left:auto; margin-right:auto; line-height:1.65;">This document is a living system — components, colors, and patterns evolve with the brand. All values are defined as CSS custom properties and can be overridden at any cascade level.</div>
+</div>
+
+<script>
+    /* Ripple effect demo */
+    function createRipple(e, el) {
+        const rect = el.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.cssText = `width:${size}px; height:${size}px; left:${e.clientX-rect.left-size/2}px; top:${e.clientY-rect.top-size/2}px;`;
+        el.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+    }
+</script>
+
+</body>
+</html>

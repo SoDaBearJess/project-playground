@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier Remote Services — Trustee Administration & Paralegal Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   CSS VARIABLES
+   ============================================= */
+:root {
+    --purple:        #584D99;
+    --purple-dark:   #3E3570;
+    --purple-mid:    #6E63B3;
+    --lavender:      #9F6FBF;
+    --lavender-light:#C4A8D9;
+    --teal:          #249E9A;
+    --teal-dark:     #1A7370;
+    --teal-light:    #4DBCB8;
+    --stone:         #DAD6CA;
+    --stone-light:   #EFEDE7;
+    --bg:            #FFFFFF;
+    --surface-1:     #F8F7FC;
+    --surface-2:     #EEEcF8;
+    --surface-dark:  #2E2757;
+    --surface-teal:  #E8F7F7;
+    --text:          #1C1830;
+    --text-muted:    #6B6582;
+    --text-light:    #A09BB8;
+    --on-dark:       #E8E6F4;
+    --font-display:  'Libre Baskerville', Georgia, serif;
+    --font-body:     'Inter', system-ui, sans-serif;
+    --font-mono:     'Space Mono', monospace;
+    --max-w:  1160px;
+    --radius:    6px;
+    --radius-lg: 14px;
+    --radius-xl: 24px;
+    --shadow-sm:  0 1px 4px rgba(88,77,153,.08);
+    --shadow-md:  0 4px 20px rgba(88,77,153,.12);
+    --shadow-lg:  0 12px 40px rgba(88,77,153,.18);
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--purple); text-decoration: none; }
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background .35s ease, box-shadow .35s ease, padding .35s ease;
+}
+.nav.scrolled {
+    background: rgba(255,255,255,.93);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(218,214,202,.6), var(--shadow-sm);
+    padding: .85rem 2rem;
+}
+.nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+.nav-logo {
+    width: 40px; height: 40px;
+    border-radius: 7px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.nav-logo img { width: 100%; height: 100%; object-fit: cover; }
+.nav-brand-text {
+    font-family: var(--font-display);
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+    line-height: 1.25;
+}
+.nav-brand-text span {
+    display: block;
+    font-family: var(--font-body);
+    font-size: .62rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: .01em;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+}
+.nav-links a {
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color .2s;
+}
+.nav-links a:hover { color: var(--purple); }
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .6rem 1.3rem;
+    background: var(--purple);
+    color: #fff;
+    border-radius: var(--radius);
+    font-size: .85rem;
+    font-weight: 600;
+    transition: background .2s, transform .2s, box-shadow .2s;
+    border: none;
+    cursor: pointer;
+}
+.nav-cta:hover {
+    background: var(--purple-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(88,77,153,.28);
+    color: #fff;
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 8rem 2rem 5rem;
+}
+/* Subtle dot grid */
+.hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(88,77,153,.07) 1px, transparent 1px);
+    background-size: 26px 26px;
+    pointer-events: none;
+    z-index: 0;
+}
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.hero-content {}
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    background: var(--surface-teal);
+    border: 1px solid rgba(36,158,154,.25);
+    padding: .4rem .9rem;
+    border-radius: 100px;
+    margin-bottom: 1.8rem;
+}
+.hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .45; transform: scale(.65); }
+}
+.hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.06;
+    color: var(--purple-dark);
+    letter-spacing: -.02em;
+    margin-bottom: 1.5rem;
+}
+.hero-h1 em {
+    font-style: italic;
+    color: var(--teal);
+}
+.hero-sub {
+    font-size: clamp(.95rem, 1.5vw, 1.1rem);
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+}
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .85rem 1.9rem;
+    background: var(--purple);
+    color: #fff;
+    border-radius: var(--radius);
+    font-size: .92rem;
+    font-weight: 600;
+    border: 2px solid var(--purple);
+    cursor: pointer;
+    transition: all .22s ease;
+}
+.btn-primary:hover {
+    background: var(--purple-dark);
+    border-color: var(--purple-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(88,77,153,.3);
+    color: #fff;
+}
+.btn-primary::after { content: '→'; transition: transform .2s; }
+.btn-primary:hover::after { transform: translateX(4px); }
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .85rem 1.9rem;
+    background: transparent;
+    color: var(--purple);
+    border-radius: var(--radius);
+    font-size: .92rem;
+    font-weight: 600;
+    border: 2px solid var(--purple);
+    cursor: pointer;
+    transition: all .22s ease;
+}
+.btn-outline:hover {
+    background: var(--purple);
+    color: #fff;
+    transform: translateY(-2px);
+}
+.btn-teal {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .85rem 1.9rem;
+    background: var(--teal);
+    color: #fff;
+    border-radius: var(--radius);
+    font-size: .92rem;
+    font-weight: 600;
+    border: 2px solid var(--teal);
+    cursor: pointer;
+    transition: all .22s ease;
+}
+.btn-teal:hover {
+    background: var(--teal-dark);
+    border-color: var(--teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(36,158,154,.3);
+    color: #fff;
+}
+
+/* Hero trust signals */
+.hero-trust {
+    display: flex;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+}
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.trust-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .85rem;
+    flex-shrink: 0;
+}
+
+/* Hero art — geometric diagonal composition */
+.hero-art {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 500px;
+    margin-left: auto;
+}
+/* Main diagonal split square */
+.hero-split {
+    position: absolute;
+    inset: 8%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+.hero-split-top {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--purple);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.hero-split-bottom {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--teal);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+/* Big initials inside the split */
+.hero-split-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.hero-split-logo img {
+    width: 60%;
+    opacity: 1;
+    border-radius: 4px;
+}
+/* Orbiting dashed ring */
+.hero-orbit {
+    position: absolute;
+    inset: 2%;
+    border-radius: var(--radius-xl);
+    border: 1.5px dashed rgba(88,77,153,.2);
+    animation: spin-slow 18s linear infinite;
+    pointer-events: none;
+}
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Floating mini cards */
+.hero-float {
+    position: absolute;
+    background: var(--bg);
+    border: 1px solid var(--stone-light);
+    border-radius: var(--radius-lg);
+    padding: .9rem 1.2rem;
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+}
+.hf-label {
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: .2rem;
+}
+.hf-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--purple);
+    line-height: 1;
+}
+.hf-value.teal { color: var(--teal); }
+.hf-sub {
+    font-size: .7rem;
+    color: var(--text-muted);
+    margin-top: .2rem;
+}
+.hero-float-1 {
+    top: 6%;
+    right: 0;
+    min-width: 150px;
+}
+.hero-float-2 {
+    bottom: 10%;
+    left: -2%;
+    min-width: 165px;
+}
+.hero-float-3 {
+    top: 46%;
+    right: -3%;
+    padding: .7rem 1rem;
+    min-width: 130px;
+}
+/* Live indicator dot */
+.live-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    margin-right: .35rem;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* =============================================
+   DIAGONAL DIVIDER
+   ============================================= */
+.diag-down {
+    height: 80px;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -1px;
+}
+.diag-down svg { display: block; width: 100%; height: 100%; }
+
+.diag-up {
+    height: 80px;
+    overflow: hidden;
+    line-height: 0;
+    margin-bottom: -1px;
+}
+.diag-up svg { display: block; width: 100%; height: 100%; }
+
+/* =============================================
+   SECTION LABELS / SHARED COMPONENTS
+   ============================================= */
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+.sl-line {
+    display: block;
+    width: 28px; height: 1.5px;
+    background: var(--teal);
+    flex-shrink: 0;
+}
+.section-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--purple-dark);
+    margin-bottom: .75rem;
+}
+.section-h2 em { font-style: italic; color: var(--teal); }
+.section-h2.white { color: #fff; }
+.section-h2.white em { color: var(--teal-light); }
+.section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 560px;
+}
+.section-sub.white { color: rgba(232,230,244,.7); max-width: 520px; }
+
+/* =============================================
+   VALUE PROPS (why remote)
+   ============================================= */
+.value-section {
+    background: var(--surface-1);
+    padding: 6rem 2rem;
+}
+.value-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+.value-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 4rem;
+}
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.value-card {
+    background: var(--bg);
+    border: 1px solid var(--stone-light);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    transition: all .25s ease;
+    box-shadow: var(--shadow-sm);
+}
+.value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--lavender-light);
+}
+.vc-accent {
+    width: 36px; height: 4px;
+    border-radius: 2px;
+    margin-bottom: 1.4rem;
+}
+.vc-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+.vc-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .55rem;
+}
+.vc-desc {
+    font-size: .88rem;
+    color: var(--text-muted);
+    line-height: 1.72;
+}
+.value-stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--stone-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 3rem;
+}
+.vs-cell {
+    background: var(--bg);
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+}
+.vs-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--purple);
+    line-height: 1;
+    margin-bottom: .3rem;
+}
+.vs-num.teal { color: var(--teal); }
+.vs-label {
+    font-size: .78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+/* =============================================
+   SERVICES BENTO
+   ============================================= */
+.services-section {
+    background: var(--bg);
+    padding: 6rem 2rem;
+}
+.services-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+.services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+.bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+}
+.bc {
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+.bc-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: var(--surface-dark);
+    color: var(--on-dark);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.bc-featured::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(36,158,154,.15);
+    pointer-events: none;
+}
+.bc-featured::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 40px;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: rgba(159,111,191,.12);
+    pointer-events: none;
+}
+.bc-eyebrow {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: .4rem;
+    position: relative; z-index: 1;
+}
+.bc-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index: 1;
+}
+.bc-title.dark { color: var(--text); }
+.bc-desc {
+    font-size: .85rem;
+    line-height: 1.65;
+    margin-top: .5rem;
+    position: relative; z-index: 1;
+}
+.bc-desc.muted { color: var(--text-muted); }
+.bc-desc.faded { opacity: .65; }
+
+.bc-surface1 {
+    background: var(--surface-1);
+    border: 1px solid var(--stone-light);
+}
+.bc-surface2 {
+    background: var(--surface-2);
+    border: 1px solid var(--lavender-light);
+}
+.bc-teal {
+    background: var(--surface-teal);
+    border: 1px solid rgba(36,158,154,.2);
+}
+.bc-white {
+    background: var(--bg);
+    border: 1px solid var(--stone-light);
+    box-shadow: var(--shadow-sm);
+}
+.bc-stone {
+    background: var(--stone-light);
+    border: 1px solid var(--stone);
+}
+
+.bc-icon {
+    font-size: 1.8rem;
+    margin-bottom: .8rem;
+    display: block;
+}
+.bc-label {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: .35rem;
+}
+.bc-label.teal-text { color: var(--teal-dark); }
+.bc-num {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--purple);
+    line-height: 1;
+}
+.bc-num.teal { color: var(--teal); }
+.bc-num.white { color: #fff; }
+.bc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--purple);
+    margin-top: 1rem;
+    transition: gap .2s;
+    position: relative; z-index: 1;
+}
+.bc-link:hover { gap: .6rem; }
+.bc-link::after { content: '→'; }
+.bc-link.teal-text { color: var(--teal-dark); }
+.bc-link.white-text { color: var(--teal-light); }
+
+/* =============================================
+   REMOTE ADVANTAGE — OVERLAPPING PANELS
+   ============================================= */
+.advantage-section {
+    background: var(--surface-1);
+    padding: 7rem 2rem 0;
+}
+.advantage-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+.advantage-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+.advantage-header .section-sub { margin: 0 auto; }
+
+.advantage-panels {
+    position: relative;
+}
+.adv-panel {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: 5rem 3.5rem;
+    position: relative;
+}
+.adv-panel-1 {
+    background: var(--surface-dark);
+    color: var(--on-dark);
+    z-index: 1;
+}
+/* Decorative circle in dark panel */
+.adv-panel-1::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(36,158,154,.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+.adv-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+.adv-panel-text {}
+.adv-panel-points {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.adv-point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.adv-point-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius);
+    background: rgba(36,158,154,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: .1rem;
+}
+.adv-point-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: .25rem;
+    color: var(--on-dark);
+}
+.adv-point-desc {
+    font-size: .87rem;
+    opacity: .68;
+    line-height: 1.65;
+}
+
+.adv-panel-2 {
+    background: var(--surface-2);
+    margin-top: -3.5rem;
+    z-index: 2;
+    position: relative;
+    padding-top: 6.5rem;
+}
+.adv-panel-2-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.adv-mini-card {
+    background: var(--bg);
+    border: 1px solid var(--stone-light);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    box-shadow: var(--shadow-sm);
+    transition: all .25s ease;
+}
+.adv-mini-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--lavender-light);
+}
+.adv-mini-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .75rem;
+}
+.adv-mini-icon { font-size: 1.4rem; }
+.adv-mini-tag {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    background: var(--surface-teal);
+    padding: .25rem .6rem;
+    border-radius: 100px;
+    border: 1px solid rgba(36,158,154,.2);
+}
+.adv-mini-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .4rem;
+}
+.adv-mini-desc {
+    font-size: .83rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+/* Floating bridge card between panels */
+.adv-float {
+    position: absolute;
+    right: 3.5rem;
+    top: -2.5rem;
+    background: var(--bg);
+    border: 1px solid var(--stone-light);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.6rem;
+    box-shadow: var(--shadow-md);
+    z-index: 20;
+    min-width: 190px;
+}
+
+/* =============================================
+   ANGLED STAT BAND
+   ============================================= */
+.stat-band {
+    background: var(--purple);
+    padding: 4.5rem 2rem;
+    clip-path: polygon(0 18%, 100% 0%, 100% 82%, 0% 100%);
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+.stat-band::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(36,158,154,.12);
+    pointer-events: none;
+}
+.stat-band::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(159,111,191,.15);
+    pointer-events: none;
+}
+.stat-band-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+    position: relative; z-index: 1;
+}
+.sb-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: .3rem;
+}
+.sb-num .sb-accent { color: var(--teal-light); }
+.sb-label {
+    font-size: .78rem;
+    color: rgba(232,230,244,.65);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+}
+
+/* =============================================
+   HOW IT WORKS — PROCESS
+   ============================================= */
+.process-section {
+    background: var(--bg);
+    padding: 7rem 2rem;
+}
+.process-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+.process-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+.process-header .section-sub { margin: .75rem auto 0; }
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+}
+/* Connecting line between steps */
+.process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    left: calc(12.5% + 1.5rem);
+    right: calc(12.5% + 1.5rem);
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--purple) 0%, var(--teal) 100%);
+    z-index: 0;
+}
+.process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+}
+.step-badge {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+.step-badge.purple { background: var(--purple); box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--purple); }
+.step-badge.teal { background: var(--teal); box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--teal); }
+.step-badge.lavender { background: var(--lavender); box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--lavender); }
+.step-badge.dark { background: var(--surface-dark); box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--surface-dark); }
+
+.step-icon {
+    font-size: 1.4rem;
+    margin-bottom: .75rem;
+}
+.step-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .5rem;
+}
+.step-desc {
+    font-size: .85rem;
+    color: var(--text-muted);
+    line-height: 1.68;
+}
+
+/* =============================================
+   TESTIMONIALS
+   ============================================= */
+.testi-section {
+    background-color: var(--stone-light);
+    background-image:
+        repeating-linear-gradient(90deg, rgba(88,77,153,.035) 0, rgba(88,77,153,.035) 1px, transparent 1px, transparent 8px),
+        repeating-linear-gradient(0deg, rgba(88,77,153,.035) 0, rgba(88,77,153,.035) 1px, transparent 1px, transparent 8px);
+    padding: 7rem 2rem;
+}
+.testi-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+.testi-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+}
+.testi-pull {
+    background: var(--surface-dark);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    color: var(--on-dark);
+    position: relative;
+    overflow: hidden;
+}
+.testi-pull::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(36,158,154,.14);
+    pointer-events: none;
+}
+.pull-mark {
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: .75;
+    color: var(--teal);
+    font-style: italic;
+    display: block;
+    margin-bottom: .8rem;
+    position: relative; z-index: 1;
+}
+.pull-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-style: italic;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+}
+.pull-author {
+    position: relative; z-index: 1;
+}
+.pull-name { font-size: .88rem; font-weight: 600; }
+.pull-role { font-size: .78rem; opacity: .6; margin-top: .15rem; }
+
+.testi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+.tc {
+    background: var(--bg);
+    border: 1px solid var(--stone);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    transition: all .25s ease;
+}
+.tc:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--lavender-light);
+}
+.tc.offset { margin-top: 1.5rem; }
+.tc-stars {
+    font-size: .8rem;
+    color: var(--teal);
+    letter-spacing: .1em;
+    margin-bottom: .75rem;
+}
+.tc-quote {
+    font-family: var(--font-display);
+    font-size: .9rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.72;
+    margin-bottom: 1.1rem;
+}
+.tc-author {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+}
+.tc-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: .75rem;
+    flex-shrink: 0;
+}
+.tc-name { font-size: .84rem; font-weight: 600; color: var(--text); }
+.tc-role { font-size: .75rem; color: var(--text-muted); }
+.tc-mark {
+    position: absolute;
+    top: 1.2rem; right: 1.4rem;
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--surface-2);
+    font-style: italic;
+    pointer-events: none;
+}
+
+/* =============================================
+   SPLIT CTA + CONTACT
+   ============================================= */
+.contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 680px;
+}
+.contact-left {
+    background: var(--surface-dark);
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.contact-left::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(36,158,154,.18) 0%, transparent 65%);
+    pointer-events: none;
+}
+.contact-left::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: rgba(159,111,191,.12);
+    pointer-events: none;
+}
+.contact-eyebrow {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    position: relative; z-index: 1;
+}
+.contact-eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--teal-light); }
+.contact-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    position: relative; z-index: 1;
+}
+.contact-h2 em { font-style: italic; color: var(--teal-light); }
+.contact-body {
+    font-size: .95rem;
+    color: rgba(232,230,244,.65);
+    line-height: 1.75;
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+    position: relative; z-index: 1;
+}
+.contact-phone {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--teal-light);
+    margin-bottom: .4rem;
+    position: relative; z-index: 1;
+}
+.contact-phone-note {
+    font-size: .8rem;
+    color: rgba(232,230,244,.5);
+    position: relative; z-index: 1;
+}
+.contact-perks {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    position: relative; z-index: 1;
+}
+.contact-perk {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .85rem;
+    color: rgba(232,230,244,.75);
+}
+.contact-perk::before {
+    content: '✓';
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: rgba(36,158,154,.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    color: var(--teal-light);
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 20px;
+}
+
+.contact-right {
+    background: var(--bg);
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.contact-form-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+    margin-bottom: .4rem;
+}
+.contact-form-sub {
+    font-size: .88rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+.form-group { margin-bottom: 1.2rem; }
+.form-label {
+    display: block;
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: .4rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: .75rem 1rem;
+    border: 1.5px solid var(--stone);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: .88rem;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(88,77,153,.1);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-light); }
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-note {
+    font-size: .75rem;
+    color: var(--text-light);
+    margin-top: .3rem;
+}
+.form-submit {
+    width: 100%;
+    padding: .9rem 1.5rem;
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    transition: all .22s ease;
+    margin-top: .5rem;
+}
+.form-submit::after { content: '→'; transition: transform .2s; }
+.form-submit:hover {
+    background: var(--purple-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(88,77,153,.3);
+}
+.form-submit:hover::after { transform: translateX(4px); }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+    background: var(--surface-dark);
+    padding: 5rem 2rem 2.5rem;
+    color: var(--on-dark);
+}
+.footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+.footer-brand {
+    display: flex;
+    align-items: flex-start;
+    gap: .8rem;
+    margin-bottom: 1.2rem;
+}
+.footer-logo {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.footer-logo img { width: 100%; height: 100%; object-fit: cover; }
+.footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.footer-tagline {
+    font-size: .84rem;
+    opacity: .55;
+    line-height: 1.7;
+    max-width: 260px;
+    margin-bottom: 1.5rem;
+}
+.footer-contact-info {
+    font-size: .85rem;
+    opacity: .7;
+    line-height: 1.9;
+}
+.footer-contact-info strong {
+    color: var(--teal-light);
+    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1rem;
+}
+.footer-col-title {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1.1rem;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: .55rem; }
+.footer-links a {
+    font-size: .85rem;
+    color: rgba(232,230,244,.55);
+    transition: color .2s;
+}
+.footer-links a:hover { color: var(--on-dark); }
+.footer-bar {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.footer-copy { font-size: .78rem; opacity: .38; }
+.footer-badge {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .75rem;
+    opacity: .45;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-art { display: none; }
+    .hero-actions { justify-content: center; }
+    .hero-trust { justify-content: center; }
+    .hero-sub { margin: 0 auto 2.5rem; }
+    .value-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .value-grid { grid-template-columns: 1fr 1fr; }
+    .bento { grid-template-columns: 1fr 1fr; }
+    .bc-featured { grid-column: span 2; }
+    .adv-panel-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .adv-panel-2-inner { grid-template-columns: 1fr 1fr; }
+    .adv-float { display: none; }
+    .stat-band-inner { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .process-steps::before { display: none; }
+    .testi-header { grid-template-columns: 1fr; }
+    .contact-section { grid-template-columns: 1fr; }
+    .contact-left, .contact-right { padding: 4rem 2.5rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-cta { font-size: .8rem; padding: .5rem 1rem; }
+    .value-grid { grid-template-columns: 1fr; }
+    .value-stat-row { grid-template-columns: 1fr 1fr; }
+    .bento { grid-template-columns: 1fr; }
+    .bc-featured { grid-column: span 1; }
+    .adv-panel-2-inner { grid-template-columns: 1fr; }
+    .stat-band { clip-path: none; padding: 4rem 2rem; }
+    .stat-band-inner { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .tc.offset { margin-top: 0; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+    .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- =============================================
+     NAVIGATION
+     ============================================= -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-brand">
+            <div class="nav-logo"><img src="NewPRSInitialsLogo-larger.png" alt="PRS Logo"></div>
+            <div class="nav-brand-text">
+                Premier Remote Services
+                <span>Trustee Administration & Paralegal Support</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reviews">Testimonials</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">(717) 467-4466</a>
+    </div>
+</nav>
+
+<!-- =============================================
+     HERO
+     ============================================= -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Serving Bankruptcy Trustees Nationwide</div>
+            <h1 class="hero-h1">
+                The Support<br>
+                Your Practice<br>
+                Has Been <em>Missing.</em>
+            </h1>
+            <p class="hero-sub">
+                Premier Remote Services provides full-service trustee administration
+                and paralegal support to bankruptcy trustees and creditors' counsel
+                across the U.S. — available on-demand, with zero overhead and
+                no long-term commitment.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Book a Free Consultation</a>
+                <a href="#services" class="btn-outline">See Our Services</a>
+            </div>
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <div class="trust-icon">⚖️</div>
+                    341(a) Ready
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🗂️</div>
+                    TFR &amp; TDR Compliant
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🔒</div>
+                    Fully Remote &amp; Secure
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero geometric art -->
+        <div class="hero-art" aria-hidden="true">
+            <div class="hero-orbit"></div>
+            <div class="hero-split">
+                <div class="hero-split-top"></div>
+                <div class="hero-split-bottom"></div>
+                <div class="hero-split-logo">
+                    <img src="NewPRSInitialsLogo-larger.png" alt="">
+                </div>
+            </div>
+            <!-- Floating cards -->
+            <div class="hero-float hero-float-1">
+                <div class="hf-label">Experience</div>
+                <div class="hf-value">15+</div>
+                <div class="hf-sub">Years in trustee administration</div>
+            </div>
+            <div class="hero-float hero-float-2">
+                <div class="hf-label">Availability</div>
+                <div class="hf-value teal">On-Demand</div>
+                <div class="hf-sub"><span class="live-dot"></span>No retainer required</div>
+            </div>
+            <div class="hero-float hero-float-3">
+                <div class="hf-label">Consultation</div>
+                <div class="hf-value" style="font-size:1.1rem; color:var(--teal);">No Charge</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- diagonal: white → surface-1 -->
+<div class="diag-down">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,0 1440,50 1440,80 0,80" fill="var(--surface-1)"/>
+    </svg>
+</div>
+
+<!-- =============================================
+     VALUE PROPS
+     ============================================= -->
+<section class="value-section" id="about">
+    <div class="value-inner">
+        <div class="value-header">
+            <div>
+                <div class="section-label"><span class="sl-line"></span>The Remote Advantage</div>
+                <h2 class="section-h2">Your Cases,<br>Our <em>Expertise.</em></h2>
+            </div>
+            <div>
+                <p class="section-sub">
+                    Our clients tell us the same thing, without exception: hiring Premier Remote
+                    Services is something they wish they'd done years earlier. No desk to fill.
+                    No benefits to pay. No downtime. Just precise, experienced support —
+                    exactly when you need it.
+                </p>
+            </div>
+        </div>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="vc-accent" style="background:var(--purple);"></div>
+                <span class="vc-icon">💼</span>
+                <div class="vc-title">Zero Overhead</div>
+                <p class="vc-desc">No salary, no benefits, no desk. You pay for the work, not the seat. Scale up when your caseload demands it — step back when it doesn't.</p>
+            </div>
+            <div class="value-card">
+                <div class="vc-accent" style="background:var(--teal);"></div>
+                <span class="vc-icon">⚡</span>
+                <div class="vc-title">On-Demand, On-Call</div>
+                <p class="vc-desc">Whether you need a second look at your TIR, a full motion drafted, or end-to-end case support, we're here when you call — no retainer required.</p>
+            </div>
+            <div class="value-card">
+                <div class="vc-accent" style="background:var(--lavender);"></div>
+                <span class="vc-icon">🖥️</span>
+                <div class="vc-title">Fluent in Your Software</div>
+                <p class="vc-desc">We work daily with each of the major case management software programs. Onboarding takes minutes, not months. We integrate into your workflow seamlessly.</p>
+            </div>
+            <div class="value-card">
+                <div class="vc-accent" style="background:var(--teal);"></div>
+                <span class="vc-icon">🇺🇸</span>
+                <div class="vc-title">Nationwide Coverage</div>
+                <p class="vc-desc">From Pennsylvania to California, we support bankruptcy trustees and creditors' counsel across every federal district — fully remote, always compliant.</p>
+            </div>
+            <div class="value-card">
+                <div class="vc-accent" style="background:var(--purple);"></div>
+                <span class="vc-icon">📋</span>
+                <div class="vc-title">U.S. Trustee Handbook Compliant</div>
+                <p class="vc-desc">Every TFR, TDR, and report we prepare follows U.S. Trustee Handbook parameters to the letter. Accuracy isn't a perk — it's the standard.</p>
+            </div>
+            <div class="value-card">
+                <div class="vc-accent" style="background:var(--lavender);"></div>
+                <span class="vc-icon">🔍</span>
+                <div class="vc-title">A Second Set of Eyes</div>
+                <p class="vc-desc">We love TIRs and are happy to take a fresh look. Audits and field exams don't catch us off guard — because we catch issues before they reach that stage.</p>
+            </div>
+        </div>
+
+        <div class="value-stat-row">
+            <div class="vs-cell">
+                <div class="vs-num">15<span style="font-size:.5em; color:var(--text-muted);">+</span></div>
+                <div class="vs-label">Years Experience</div>
+            </div>
+            <div class="vs-cell">
+                <div class="vs-num teal">500<span style="font-size:.5em; color:var(--text-muted);">+</span></div>
+                <div class="vs-label">Cases Supported</div>
+            </div>
+            <div class="vs-cell">
+                <div class="vs-num">6</div>
+                <div class="vs-label">Core Services</div>
+            </div>
+            <div class="vs-cell">
+                <div class="vs-num teal">$0</div>
+                <div class="vs-label">Consultation Fee</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- diagonal: surface-1 → white -->
+<div class="diag-down" style="background:var(--surface-1);">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,30 1440,0 1440,80 0,80" fill="var(--bg)"/>
+    </svg>
+</div>
+
+<!-- =============================================
+     SERVICES BENTO
+     ============================================= -->
+<section class="services-section" id="services">
+    <div class="services-inner">
+        <div class="services-header">
+            <div>
+                <div class="section-label"><span class="sl-line"></span>What We Do</div>
+                <h2 class="section-h2">Everything Your<br>Trustee Practice <em>Needs.</em></h2>
+            </div>
+            <p style="font-size:.92rem; color:var(--text-muted); max-width:360px; line-height:1.7;">
+                From the first creditor notice to the final distribution report, we handle the
+                administrative work that keeps your cases moving forward.
+            </p>
+        </div>
+
+        <div class="bento">
+            <!-- Featured 2×2 -->
+            <div class="bc bc-featured">
+                <div class="bc-eyebrow">Core Service</div>
+                <div class="bc-title">Full-Service Trustee Administration</div>
+                <div class="bc-desc bc-desc.faded">End-to-end case management support so you can focus on what only you can do.</div>
+                <a href="#contact" class="bc-link white-text" style="margin-top:1.2rem;">Get started</a>
+            </div>
+
+            <!-- 341(a) -->
+            <div class="bc bc-surface2">
+                <span class="bc-icon">⚖️</span>
+                <div class="bc-label">Service 01</div>
+                <div class="bc-title bc-title.dark" style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:.4rem;">341(a) Review &amp; Preparation</div>
+                <p class="bc-desc bc-desc.muted" style="color:var(--text-muted);">Full review of schedules and documents before your Meeting of Creditors. Nothing slips through.</p>
+                <a href="#contact" class="bc-link">Learn more</a>
+            </div>
+
+            <!-- Motions -->
+            <div class="bc bc-teal">
+                <span class="bc-icon">📝</span>
+                <div class="bc-label bc-label.teal-text" style="color:var(--teal-dark);">Service 02</div>
+                <div class="bc-title" style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:.4rem;">Complete Motions Practice</div>
+                <p class="bc-desc" style="color:var(--text-muted);">Drafting, formatting, and e-filing of Notice of Sale, Compromise Motions, Adversary Complaints, and more.</p>
+                <a href="#contact" class="bc-link" style="color:var(--teal-dark);">Learn more</a>
+            </div>
+
+            <!-- Claims -->
+            <div class="bc bc-white">
+                <span class="bc-icon">📊</span>
+                <div class="bc-label">Service 03</div>
+                <div class="bc-title" style="font-family:var(--font-display); font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:.4rem;">Claims Review &amp; Analysis</div>
+                <p class="bc-desc" style="color:var(--text-muted);">Full review of filed proofs of claim and distribution analysis. Requests to file POCs prepared and submitted.</p>
+            </div>
+
+            <!-- Mailing -->
+            <div class="bc bc-stone">
+                <span class="bc-icon">📬</span>
+                <div class="bc-label">Service 04</div>
+                <div class="bc-title" style="font-family:var(--font-display); font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:.4rem;">Mailing &amp; Noticing</div>
+                <p class="bc-desc" style="color:var(--text-muted);">In-house mailing and noticing services at competitive prices. Every notice, on time, every time.</p>
+            </div>
+
+            <!-- TFR/TDR -->
+            <div class="bc bc-surface1" style="background:var(--surface-dark); border-color:rgba(255,255,255,.1);">
+                <div class="bc-label" style="color:var(--teal-light);">Service 05 &amp; 06</div>
+                <div class="bc-num white" style="font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:.4rem;">TFR · TDR<br>TIR · Audits</div>
+                <p class="bc-desc" style="color:rgba(232,230,244,.55); font-size:.83rem; line-height:1.65;">Prepared per U.S. Trustee Handbook parameters. Audit and field exam support included.</p>
+                <a href="#contact" class="bc-link" style="color:var(--teal-light);">Get started</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- diagonal: white → surface-1 -->
+<div class="diag-down">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,50 1440,0 1440,80 0,80" fill="var(--surface-1)"/>
+    </svg>
+</div>
+
+<!-- =============================================
+     REMOTE ADVANTAGE — OVERLAPPING PANELS
+     ============================================= -->
+<section class="advantage-section" id="about-us">
+    <div class="advantage-inner">
+        <div class="advantage-header">
+            <div class="section-label" style="justify-content:center;"><span class="sl-line"></span>Who We Are<span class="sl-line"></span></div>
+            <h2 class="section-h2" style="text-align:center;">You Focus on the Courtroom.<br>We'll <em>Handle the Rest.</em></h2>
+            <p class="section-sub" style="margin:.75rem auto 0; text-align:center;">
+                Premier Remote Services was built by legal professionals who understood what
+                trustees actually needed — not another employee, but a reliable expert
+                available exactly when the case demands it.
+            </p>
+        </div>
+
+        <div class="advantage-panels">
+            <!-- Panel 1: Dark — the pitch -->
+            <div class="adv-panel adv-panel-1">
+                <div class="adv-panel-grid">
+                    <div class="adv-panel-text">
+                        <div class="section-label" style="color:var(--teal-light);">
+                            <span class="sl-line" style="background:var(--teal-light);"></span>Our Approach
+                        </div>
+                        <h3 style="font-family:var(--font-display); font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; color:#fff; line-height:1.15; margin-bottom:1rem;">
+                            Built for the Way<br>Modern Trustees Work
+                        </h3>
+                        <p style="font-size:.92rem; color:rgba(232,230,244,.65); line-height:1.75; max-width:400px; margin-bottom:2rem;">
+                            We've worked inside trustee practices. We know the pressure of a
+                            341(a) calendar stacked deep, a TIR deadline looming, and a skeleton
+                            staff stretched thin. Premier Remote was built specifically to fill
+                            that gap — with experience, discretion, and speed.
+                        </p>
+                        <a href="#contact" class="btn-teal" style="display:inline-flex;">Book a Free Consultation</a>
+                    </div>
+                    <div class="adv-panel-points">
+                        <div class="adv-point">
+                            <div class="adv-point-icon">⚡</div>
+                            <div>
+                                <div class="adv-point-title">Instant Availability</div>
+                                <p class="adv-point-desc">No onboarding runway. We integrate with your existing workflow and software from day one.</p>
+                            </div>
+                        </div>
+                        <div class="adv-point">
+                            <div class="adv-point-icon">🛡️</div>
+                            <div>
+                                <div class="adv-point-title">Confidentiality You Can Rely On</div>
+                                <p class="adv-point-desc">We handle sensitive case data with the same care and discretion your practice demands.</p>
+                            </div>
+                        </div>
+                        <div class="adv-point">
+                            <div class="adv-point-icon">📐</div>
+                            <div>
+                                <div class="adv-point-title">Precision by Default</div>
+                                <p class="adv-point-desc">Every TFR, motion, and report is prepared to U.S. Trustee Handbook standards — the first time.</p>
+                            </div>
+                        </div>
+                        <div class="adv-point">
+                            <div class="adv-point-icon">🤝</div>
+                            <div>
+                                <div class="adv-point-title">True Partnership</div>
+                                <p class="adv-point-desc">We become an extension of your team — not a vendor relationship, but a working partnership built on trust.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Light — mini service cards -->
+            <div class="adv-panel adv-panel-2" style="position:relative;">
+                <!-- Floating bridge card -->
+                <div class="adv-float">
+                    <div class="hf-label">Case Turnaround</div>
+                    <div class="hf-value teal">Fast</div>
+                    <div class="hf-sub"><span class="live-dot"></span>No backlog, no delays</div>
+                </div>
+
+                <div style="margin-bottom:2rem;">
+                    <div class="section-label"><span class="sl-line"></span>Trusted for the Details</div>
+                    <h3 style="font-family:var(--font-display); font-size:clamp(1.4rem,2.5vw,2rem); font-weight:700; color:var(--purple-dark);">
+                        The Work That Keeps<br>Your Cases Moving
+                    </h3>
+                </div>
+
+                <div class="adv-panel-2-inner">
+                    <div class="adv-mini-card">
+                        <div class="adv-mini-top">
+                            <span class="adv-mini-icon">⚖️</span>
+                            <span class="adv-mini-tag">High Priority</span>
+                        </div>
+                        <div class="adv-mini-title">341(a) Preparation</div>
+                        <p class="adv-mini-desc">Thorough schedule and document review before every Meeting of Creditors.</p>
+                    </div>
+                    <div class="adv-mini-card">
+                        <div class="adv-mini-top">
+                            <span class="adv-mini-icon">📋</span>
+                            <span class="adv-mini-tag">Legal Drafting</span>
+                        </div>
+                        <div class="adv-mini-title">Motions &amp; Pleadings</div>
+                        <p class="adv-mini-desc">Drafted, formatted, and e-filed — every type, every district.</p>
+                    </div>
+                    <div class="adv-mini-card">
+                        <div class="adv-mini-top">
+                            <span class="adv-mini-icon">📊</span>
+                            <span class="adv-mini-tag">Reporting</span>
+                        </div>
+                        <div class="adv-mini-title">TFR, TDR &amp; TIR</div>
+                        <p class="adv-mini-desc">Handbook-compliant final and interim reports, prepared accurately and on time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     ANGLED STAT BAND
+     ============================================= -->
+<div class="stat-band">
+    <div class="stat-band-inner">
+        <div>
+            <div class="sb-num">15<span class="sb-accent">+</span></div>
+            <div class="sb-label">Years of Experience</div>
+        </div>
+        <div>
+            <div class="sb-num">500<span class="sb-accent">+</span></div>
+            <div class="sb-label">Cases Supported</div>
+        </div>
+        <div>
+            <div class="sb-num"><span class="sb-accent">$</span>0</div>
+            <div class="sb-label">Consultation Fee</div>
+        </div>
+        <div>
+            <div class="sb-num">100<span class="sb-accent">%</span></div>
+            <div class="sb-label">Remote Capable</div>
+        </div>
+    </div>
+</div>
+
+<!-- =============================================
+     HOW IT WORKS
+     ============================================= -->
+<section class="process-section" id="how-it-works">
+    <div class="process-inner">
+        <div class="process-header">
+            <div class="section-label" style="justify-content:center;"><span class="sl-line"></span>Getting Started<span class="sl-line"></span></div>
+            <h2 class="section-h2" style="text-align:center;">Simple to Start,<br><em>Seamless</em> to Work With.</h2>
+            <p class="section-sub" style="margin:.75rem auto 0; text-align:center;">
+                We designed our onboarding to be frictionless. From your first call to your first
+                completed filing, you'll wonder why you waited.
+            </p>
+        </div>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-badge purple">01</div>
+                <div class="step-icon">📞</div>
+                <div class="step-title">Book a Free Call</div>
+                <p class="step-desc">Schedule a no-charge consultation. Tell us about your practice, your caseload, and what's taking up too much of your time.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-badge teal">02</div>
+                <div class="step-icon">🔎</div>
+                <div class="step-title">We Assess Your Needs</div>
+                <p class="step-desc">We identify the highest-impact areas where remote support will save you time, reduce risk, and improve accuracy immediately.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-badge lavender">03</div>
+                <div class="step-icon">🔗</div>
+                <div class="step-title">We Plug Into Your Workflow</div>
+                <p class="step-desc">We're fluent in your software. Access is granted, preferences are noted, and we're operational within days — not weeks.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-badge dark">04</div>
+                <div class="step-icon">✅</div>
+                <div class="step-title">You Focus on Your Practice</div>
+                <p class="step-desc">We handle the filings, reports, notices, and reviews. You show up for what only you can do — advising, deciding, and closing cases.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- diagonal: white → stone-light -->
+<div class="diag-down">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,0 1440,60 1440,80 0,80" fill="var(--stone-light)"/>
+    </svg>
+</div>
+
+<!-- =============================================
+     TESTIMONIALS
+     ============================================= -->
+<section class="testi-section" id="reviews">
+    <div class="testi-inner">
+        <div class="testi-header">
+            <div>
+                <div class="section-label"><span class="sl-line"></span>What Trustees Say</div>
+                <h2 class="section-h2">Trusted by the<br>People Who <em>Depend</em><br>on Accuracy.</h2>
+                <p class="section-sub" style="margin-top:.75rem;">
+                    Our clients don't just recommend us — they tell us they can't imagine running
+                    their practice without us.
+                </p>
+            </div>
+            <div class="testi-pull">
+                <span class="pull-mark">"</span>
+                <p class="pull-text">"This is something I wish I had done in my practice years earlier. No overhead, no benefits — Premier Remote is there only when I need them, and they're always ready to deliver."</p>
+                <div class="pull-author">
+                    <div class="pull-name">James M.</div>
+                    <div class="pull-role">Chapter 7 Trustee — Eastern District of Pennsylvania</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testi-grid">
+            <div class="tc">
+                <span class="tc-mark">"</span>
+                <div class="tc-stars">★★★★★</div>
+                <p class="tc-quote">"I was skeptical about remote support at first, but Premier Remote exceeded every expectation. Their TIR review caught two errors I'd have missed. That alone was worth every penny."</p>
+                <div class="tc-author">
+                    <div class="tc-avatar">SR</div>
+                    <div>
+                        <div class="tc-name">Sandra R.</div>
+                        <div class="tc-role">Bankruptcy Trustee, District of New Jersey</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tc tc-offset" style="margin-top:1.5rem;">
+                <span class="tc-mark">"</span>
+                <div class="tc-stars">★★★★★</div>
+                <p class="tc-quote">"The 341(a) prep work is thorough, fast, and exactly what I need before every meeting. It's like having a senior paralegal on staff — without the cost of one."</p>
+                <div class="tc-author">
+                    <div class="tc-avatar">DK</div>
+                    <div>
+                        <div class="tc-name">David K.</div>
+                        <div class="tc-role">Chapter 13 Trustee, Western District of PA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tc">
+                <span class="tc-mark">"</span>
+                <div class="tc-stars">★★★★★</div>
+                <p class="tc-quote">"We were downsizing our in-house staff and needed a solution fast. Premier Remote stepped in immediately. Their motions practice work is polished, accurate, and always on time."</p>
+                <div class="tc-author">
+                    <div class="tc-avatar">ML</div>
+                    <div>
+                        <div class="tc-name">Michelle L.</div>
+                        <div class="tc-role">Creditors' Counsel, Philadelphia, PA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tc tc-offset" style="margin-top:1.5rem;">
+                <span class="tc-mark">"</span>
+                <div class="tc-stars">★★★★★</div>
+                <p class="tc-quote">"Our field exam last year went smoothly largely because of their TIR support. They flagged a reporting inconsistency six weeks before the examiner arrived. That's the level of care you get here."</p>
+                <div class="tc-author">
+                    <div class="tc-avatar">TC</div>
+                    <div>
+                        <div class="tc-name">Thomas C.</div>
+                        <div class="tc-role">Panel Trustee, Middle District of PA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- diagonal: stone-light → surface-dark (contact) -->
+<div class="diag-down" style="background:var(--stone-light);">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <polygon points="0,40 1440,0 1440,80 0,80" fill="var(--surface-dark)"/>
+    </svg>
+</div>
+
+<!-- =============================================
+     SPLIT CTA + CONTACT
+     ============================================= -->
+<section class="contact-section" id="contact">
+    <div class="contact-left">
+        <div class="contact-eyebrow">Free Consultation — No Obligation</div>
+        <h2 class="contact-h2">
+            Ready to Stop<br>
+            Doing <em>Everything</em><br>
+            Yourself?
+        </h2>
+        <p class="contact-body">
+            There's no overhead, no risk, and no charge to talk. Just tell us where
+            your practice needs support and we'll show you exactly how we can help.
+        </p>
+        <div class="contact-phone">(717) 467-4466</div>
+        <div class="contact-phone-note">Call anytime — we'll get back to you promptly.</div>
+        <div class="contact-perks">
+            <div class="contact-perk">No charge for the consultation</div>
+            <div class="contact-perk">No long-term commitment required</div>
+            <div class="contact-perk">Nationwide remote support</div>
+            <div class="contact-perk">Fluent in all major case management platforms</div>
+            <div class="contact-perk">U.S. Trustee Handbook compliant on every deliverable</div>
+        </div>
+    </div>
+    <div class="contact-right">
+        <div class="contact-form-title">Request a Consultation</div>
+        <p class="contact-form-sub">Fill out the form and we'll be in touch — no charge, no commitment.</p>
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input class="form-input" type="text" placeholder="First name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input class="form-input" type="text" placeholder="Last name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input class="form-input" type="email" placeholder="your@firm.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input class="form-input" type="tel" placeholder="(000) 000-0000">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Role</label>
+                <select class="form-select">
+                    <option value="">Select your role...</option>
+                    <option>Chapter 7 Trustee</option>
+                    <option>Chapter 11 Trustee</option>
+                    <option>Chapter 13 Trustee</option>
+                    <option>Creditors' Counsel</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Area of Interest</label>
+                <select class="form-select">
+                    <option value="">Select a service...</option>
+                    <option>341(a) Review & Preparation</option>
+                    <option>Motions Practice</option>
+                    <option>Claims Review & Analysis</option>
+                    <option>Mailing & Noticing Services</option>
+                    <option>TFR / TDR Reporting</option>
+                    <option>TIR & Audit Support</option>
+                    <option>General / Multiple Areas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Anything else we should know?</label>
+                <textarea class="form-textarea" placeholder="Tell us about your practice, volume, or specific needs..."></textarea>
+                <span class="form-note">We read every message and respond promptly.</span>
+            </div>
+            <button type="submit" class="form-submit">Send Consultation Request</button>
+        </form>
+    </div>
+</section>
+
+<!-- =============================================
+     FOOTER
+     ============================================= -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">
+                    <div class="footer-logo"><img src="NewPRSInitialsLogo-larger.png" alt="PRS Logo"></div>
+                    <div class="footer-brand-name">Premier Remote Services</div>
+                </div>
+                <p class="footer-tagline">Professional trustee administration and paralegal support for bankruptcy trustees and creditors' counsel across the U.S.</p>
+                <div class="footer-contact-info">
+                    <strong>(717) 467-4466</strong><br>
+                    Pennsylvania · Serving All Federal Districts
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Services</div>
+                <ul class="footer-links">
+                    <li><a href="#services">341(a) Review & Prep</a></li>
+                    <li><a href="#services">Motions Practice</a></li>
+                    <li><a href="#services">Claims Analysis</a></li>
+                    <li><a href="#services">Mailing & Noticing</a></li>
+                    <li><a href="#services">TFR / TDR Reporting</a></li>
+                    <li><a href="#services">TIR & Audit Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#reviews">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Get in Touch</div>
+                <p style="font-size:.85rem; opacity:.55; line-height:1.7; margin-bottom:1.2rem;">
+                    No charge for the consultation.<br>
+                    Just give us a call or fill out<br>
+                    the form and we'll be in touch.
+                </p>
+                <a href="#contact" style="display:inline-flex; align-items:center; gap:.4rem; padding:.65rem 1.3rem; background:var(--teal); color:#fff; border-radius:var(--radius); font-size:.85rem; font-weight:600; transition:all .2s;">
+                    Book a Consultation
+                </a>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <div class="footer-copy">© 2026 Premier Remote Services LLC. All rights reserved.</div>
+            <div class="footer-copy">Designed with precision · Built for trustees</div>
+        </div>
+    </div>
+</footer>
+
+<!-- =============================================
+     NAV SCROLL BEHAVIOR
+     ============================================= -->
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+</script>
+
+</body>
+</html>
