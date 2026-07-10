@@ -22,9 +22,9 @@ jobs:
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          protocol: ftps
+          # protocol: ftps
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./react-site/SoDaBearJess/dist/ # ./build/ for CRA — trailing slash matters
-          server-dir: public_html/ # trailing slash matters
+          server-dir: /home/sodabearjess/public_html/ # trailing slash matters
