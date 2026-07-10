@@ -1,1412 +1,2127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jess Rodriguez — Full-Stack Developer · Served Fresh Daily</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-/* ==========================================================
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jess Rodriguez — Full-Stack Developer · Served Fresh Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ==========================================================
    EMBER TOKENS — pulled straight from the brand style guide
 ========================================================== */
-:root {
-    --bg:            #0F0A06;
-    --surface-1:     #1C1209;
-    --surface-2:     #2A1B0E;
-    --surface-3:     #3A2515;
-    --roast:         #6B3D1E;
-    --roast-light:   #8A5230;
+      :root {
+        --bg: #0f0a06;
+        --surface-1: #1c1209;
+        --surface-2: #2a1b0e;
+        --surface-3: #3a2515;
+        --roast: #6b3d1e;
+        --roast-light: #8a5230;
 
-    --caramel:       #C97B2C;
-    --caramel-light: #DBAA62;
-    --caramel-dark:  #9A5C18;
-    --caramel-dim:   rgba(201,123,44,0.12);
-    --caramel-border:rgba(201,123,44,0.22);
+        --caramel: #c97b2c;
+        --caramel-light: #dbaa62;
+        --caramel-dark: #9a5c18;
+        --caramel-dim: rgba(201, 123, 44, 0.12);
+        --caramel-border: rgba(201, 123, 44, 0.22);
 
-    --latte:         #E8C485;
-    --latte-dim:     rgba(232,196,133,0.15);
+        --latte: #e8c485;
+        --latte-dim: rgba(232, 196, 133, 0.15);
 
-    --cream:         #EEE0C4;
-    --cream-bright:  #F8F0DC;
-    --parchment:     #F2EBD9;
-    --muted:         #7A5C3E;
-    --muted-bright:  #A07850;
+        --cream: #eee0c4;
+        --cream-bright: #f8f0dc;
+        --parchment: #f2ebd9;
+        --muted: #7a5c3e;
+        --muted-bright: #a07850;
 
-    --border:        rgba(201,123,44,0.22);
-    --border-sub:    rgba(201,123,44,0.09);
+        --border: rgba(201, 123, 44, 0.22);
+        --border-sub: rgba(201, 123, 44, 0.09);
 
-    --font-display:  'DM Serif Display', serif;
-    --font-body:     'DM Sans', sans-serif;
-    --font-mono:     'Space Mono', monospace;
+        --font-display: "DM Serif Display", serif;
+        --font-body: "DM Sans", sans-serif;
+        --font-mono: "Space Mono", monospace;
 
-    --radius:        6px;
-    --radius-md:     12px;
-    --radius-lg:     20px;
-    --radius-pill:   999px;
+        --radius: 6px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --radius-pill: 999px;
 
-    --max-w:         1180px;
-    --ease:          all 0.28s ease;
-    --ease-enter:    cubic-bezier(0.16, 1, 0.3, 1);
-}
+        --max-w: 1180px;
+        --ease: all 0.28s ease;
+        --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-    background: var(--bg);
-    color: var(--cream);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-a { color: var(--caramel); text-decoration: none; }
-.inner { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--cream);
+        font-family: var(--font-body);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      a {
+        color: var(--caramel);
+        text-decoration: none;
+      }
+      .inner {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    COFFEE-LEVEL SCROLL BAR — the page fills like a cup
 ========================================================== */
-#cup-level {
-    position: fixed;
-    top: 0; left: 0;
-    height: 4px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--caramel-dark), var(--caramel), var(--latte));
-    z-index: 200;
-    transition: width 0.1s linear;
-}
+      #cup-level {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 0%;
+        background: linear-gradient(
+          90deg,
+          var(--caramel-dark),
+          var(--caramel),
+          var(--latte)
+        );
+        z-index: 200;
+        transition: width 0.1s linear;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    SECTION LABELS
 ========================================================== */
-.sec-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--caramel);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-}
-.sec-label::before {
-    content: '';
-    width: 26px; height: 2px;
-    background: var(--caramel);
-    flex-shrink: 0;
-}
-.sec-h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
-    line-height: 1.05;
-    color: var(--cream-bright);
-    margin-bottom: 1rem;
-}
-.sec-h2 em { font-style: italic; color: var(--caramel-light); }
-.sec-sub { color: var(--muted-bright); font-size: 0.98rem; max-width: 560px; line-height: 1.7; }
+      .sec-label {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--caramel);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .sec-label::before {
+        content: "";
+        width: 26px;
+        height: 2px;
+        background: var(--caramel);
+        flex-shrink: 0;
+      }
+      .sec-h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+        line-height: 1.05;
+        color: var(--cream-bright);
+        margin-bottom: 1rem;
+      }
+      .sec-h2 em {
+        font-style: italic;
+        color: var(--caramel-light);
+      }
+      .sec-sub {
+        color: var(--muted-bright);
+        font-size: 0.98rem;
+        max-width: 560px;
+        line-height: 1.7;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    POUR-IN SCROLL REVEAL (from guide animation tokens)
 ========================================================== */
-/* hidden state is opacity-only: a fully clipped element never
+      /* hidden state is opacity-only: a fully clipped element never
    intersects, so the observer would never fire */
-.pour { opacity: 0; }
-.pour.on { animation: pour-in 0.8s var(--ease-enter) forwards; }
-@keyframes pour-in {
-    from { clip-path: inset(0 0 100% 0); opacity: 0; }
-    to   { clip-path: inset(0 0 -20% 0); opacity: 1; }
-}
+      .pour {
+        opacity: 0;
+      }
+      .pour.on {
+        animation: pour-in 0.8s var(--ease-enter) forwards;
+      }
+      @keyframes pour-in {
+        from {
+          clip-path: inset(0 0 100% 0);
+          opacity: 0;
+        }
+        to {
+          clip-path: inset(0 0 -20% 0);
+          opacity: 1;
+        }
+      }
 
-/* ==========================================================
+      /* ==========================================================
    NAV — frosted espresso
 ========================================================== */
-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(15,10,6,0.88);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border-sub);
-}
-.nav-in {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-.nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    color: var(--cream-bright);
-}
-.nav-logo em { font-style: italic; color: var(--caramel-light); }
-.nav-links { display: flex; gap: 0.25rem; margin-left: auto; }
-.nav-links a {
-    padding: 0.4rem 0.85rem;
-    font-size: 0.84rem;
-    color: var(--muted-bright);
-    border-radius: var(--radius);
-    transition: var(--ease);
-}
-.nav-links a:hover { color: var(--cream); background: var(--caramel-dim); }
-.nav-cta {
-    padding: 0.5rem 1.2rem;
-    background: var(--caramel);
-    color: #0F0A06;
-    font-weight: 500;
-    font-size: 0.82rem;
-    border-radius: var(--radius-md);
-    transition: var(--ease);
-    white-space: nowrap;
-}
-.nav-cta:hover { background: var(--caramel-light); transform: translateY(-2px); }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(15, 10, 6, 0.88);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border-sub);
+      }
+      .nav-in {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--cream-bright);
+      }
+      .nav-logo em {
+        font-style: italic;
+        color: var(--caramel-light);
+      }
+      .nav-links {
+        display: flex;
+        gap: 0.25rem;
+        margin-left: auto;
+      }
+      .nav-links a {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.84rem;
+        color: var(--muted-bright);
+        border-radius: var(--radius);
+        transition: var(--ease);
+      }
+      .nav-links a:hover {
+        color: var(--cream);
+        background: var(--caramel-dim);
+      }
+      .nav-cta {
+        padding: 0.5rem 1.2rem;
+        background: var(--caramel);
+        color: #0f0a06;
+        font-weight: 500;
+        font-size: 0.82rem;
+        border-radius: var(--radius-md);
+        transition: var(--ease);
+        white-space: nowrap;
+      }
+      .nav-cta:hover {
+        background: var(--caramel-light);
+        transform: translateY(-2px);
+      }
 
-/* ==========================================================
+      /* ==========================================================
    HERO — copy + printed receipt
 ========================================================== */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 0 6rem;
-    position: relative;
-    overflow: hidden;
-    /* linen crosshatch from the guide */
-    background-image:
-        linear-gradient(rgba(201,123,44,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,123,44,0.035) 1px, transparent 1px);
-    background-size: 32px 32px;
-}
-.hero::after { /* warm radial glow */
-    content: '';
-    position: absolute;
-    top: 20%; right: 10%;
-    width: 640px; height: 480px;
-    background: radial-gradient(ellipse, rgba(201,123,44,0.09) 0%, transparent 70%);
-    pointer-events: none;
-}
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 4rem;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-}
-.hero-overline {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--muted-bright);
-    margin-bottom: 1.6rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.hero-overline::before { content: ''; width: 32px; height: 1px; background: var(--muted); }
-.hero h1 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(2.8rem, 6vw, 4.8rem);
-    line-height: 1.02;
-    color: var(--cream-bright);
-    margin-bottom: 1.4rem;
-}
-.hero h1 em { font-style: italic; color: var(--caramel-light); }
-.hero-sub {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--muted-bright);
-    line-height: 1.75;
-    max-width: 480px;
-    margin-bottom: 2.2rem;
-}
-.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.4rem; }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 8rem 0 6rem;
+        position: relative;
+        overflow: hidden;
+        /* linen crosshatch from the guide */
+        background-image:
+          linear-gradient(rgba(201, 123, 44, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(201, 123, 44, 0.035) 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .hero::after {
+        /* warm radial glow */
+        content: "";
+        position: absolute;
+        top: 20%;
+        right: 10%;
+        width: 640px;
+        height: 480px;
+        background: radial-gradient(
+          ellipse,
+          rgba(201, 123, 44, 0.09) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-overline {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted-bright);
+        margin-bottom: 1.6rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hero-overline::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--muted);
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(2.8rem, 6vw, 4.8rem);
+        line-height: 1.02;
+        color: var(--cream-bright);
+        margin-bottom: 1.4rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--caramel-light);
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        font-weight: 300;
+        color: var(--muted-bright);
+        line-height: 1.75;
+        max-width: 480px;
+        margin-bottom: 2.2rem;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.4rem;
+      }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 1.9rem;
-    border-radius: var(--radius-md);
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.95rem;
-    cursor: pointer;
-    border: none;
-    transition: var(--ease);
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-}
-.btn-primary { background: var(--caramel); color: #0F0A06; }
-.btn-primary:hover { background: var(--caramel-light); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,123,44,0.35); }
-.btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--cream); }
-.btn-outline:hover { border-color: var(--caramel); color: var(--caramel-light); }
-.btn-pulse { animation: btn-pulse 2.8s ease infinite; }
-@keyframes btn-pulse {
-    0%,100% { box-shadow: 0 0 0 0 rgba(201,123,44,0.4); }
-    50%      { box-shadow: 0 0 0 10px rgba(201,123,44,0); }
-}
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.9rem;
+        border-radius: var(--radius-md);
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: none;
+        transition: var(--ease);
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: var(--caramel);
+        color: #0f0a06;
+      }
+      .btn-primary:hover {
+        background: var(--caramel-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(201, 123, 44, 0.35);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--border);
+        color: var(--cream);
+      }
+      .btn-outline:hover {
+        border-color: var(--caramel);
+        color: var(--caramel-light);
+      }
+      .btn-pulse {
+        animation: btn-pulse 2.8s ease infinite;
+      }
+      @keyframes btn-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(201, 123, 44, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 10px rgba(201, 123, 44, 0);
+        }
+      }
 
-.hero-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.75rem;
-    border-radius: var(--radius-pill);
-    font-weight: 700;
-    background: var(--caramel-dim);
-    border: 1px solid var(--caramel-border);
-    color: var(--caramel-light);
-}
-.badge.b-latte { background: var(--latte-dim); border-color: rgba(232,196,133,0.25); color: var(--latte); }
+      .hero-badges {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: var(--radius-pill);
+        font-weight: 700;
+        background: var(--caramel-dim);
+        border: 1px solid var(--caramel-border);
+        color: var(--caramel-light);
+      }
+      .badge.b-latte {
+        background: var(--latte-dim);
+        border-color: rgba(232, 196, 133, 0.25);
+        color: var(--latte);
+      }
 
-/* ---------- The receipt ---------- */
-.receipt-zone { display: flex; justify-content: center; position: relative; }
-/* steam rising behind the receipt */
-.receipt-steam {
-    position: absolute;
-    top: -70px; left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
-    height: 80px;
-    z-index: 0;
-}
-.wisp {
-    width: 6px; height: 64px;
-    background: linear-gradient(to top, rgba(238,224,196,0.5) 0%, rgba(238,224,196,0.1) 65%, transparent 100%);
-    border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%;
-    filter: blur(3.5px);
-    animation: wisp-rise 3.2s ease-in-out infinite;
-    transform-origin: bottom center;
-    will-change: transform, opacity;
-}
-.wisp-a { animation-delay: 0s;   width: 5px; height: 58px; }
-.wisp-b { animation-delay: 0.9s; width: 7px; height: 72px; filter: blur(4px); }
-.wisp-c { animation-delay: 1.8s; width: 5px; height: 56px; }
-@keyframes wisp-rise {
-    0%   { opacity: 0;    transform: translateX(0)    scaleX(1)    translateY(0); }
-    12%  { opacity: 0.7; }
-    38%  { opacity: 0.55; transform: translateX(7px)  scaleX(1.4)  translateY(-18px); }
-    65%  { opacity: 0.25; transform: translateX(-5px) scaleX(0.85) translateY(-38px); }
-    100% { opacity: 0;    transform: translateX(3px)  scaleX(1.15) translateY(-58px); }
-}
+      /* ---------- The receipt ---------- */
+      .receipt-zone {
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+      /* steam rising behind the receipt */
+      .receipt-steam {
+        position: absolute;
+        top: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        height: 80px;
+        z-index: 0;
+      }
+      .wisp {
+        width: 6px;
+        height: 64px;
+        background: linear-gradient(
+          to top,
+          rgba(238, 224, 196, 0.5) 0%,
+          rgba(238, 224, 196, 0.1) 65%,
+          transparent 100%
+        );
+        border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%;
+        filter: blur(3.5px);
+        animation: wisp-rise 3.2s ease-in-out infinite;
+        transform-origin: bottom center;
+        will-change: transform, opacity;
+      }
+      .wisp-a {
+        animation-delay: 0s;
+        width: 5px;
+        height: 58px;
+      }
+      .wisp-b {
+        animation-delay: 0.9s;
+        width: 7px;
+        height: 72px;
+        filter: blur(4px);
+      }
+      .wisp-c {
+        animation-delay: 1.8s;
+        width: 5px;
+        height: 56px;
+      }
+      @keyframes wisp-rise {
+        0% {
+          opacity: 0;
+          transform: translateX(0) scaleX(1) translateY(0);
+        }
+        12% {
+          opacity: 0.7;
+        }
+        38% {
+          opacity: 0.55;
+          transform: translateX(7px) scaleX(1.4) translateY(-18px);
+        }
+        65% {
+          opacity: 0.25;
+          transform: translateX(-5px) scaleX(0.85) translateY(-38px);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(3px) scaleX(1.15) translateY(-58px);
+        }
+      }
 
-.receipt {
-    position: relative;
-    width: 320px;
-    background: var(--cream-bright);
-    color: var(--surface-1);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    line-height: 1.7;
-    padding: 1.8rem 1.6rem 2.2rem;
-    transform: rotate(2.5deg);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3);
-    transition: transform 0.4s var(--ease-enter);
-    z-index: 1;
-}
-.receipt:hover { transform: rotate(0deg) translateY(-4px); }
-/* torn sawtooth bottom edge */
-.receipt::after {
-    content: '';
-    position: absolute;
-    bottom: -11px; left: 0; right: 0;
-    height: 12px;
-    background:
-        linear-gradient(-45deg, var(--cream-bright) 6px, transparent 0) 0 0 / 12px 12px repeat-x,
-        linear-gradient(45deg, var(--cream-bright) 6px, transparent 0) 6px 0 / 12px 12px repeat-x;
-}
-.r-head { text-align: center; margin-bottom: 0.8rem; }
-.r-shop { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.18em; }
-.r-meta { font-size: 0.62rem; color: #7A5C3E; letter-spacing: 0.08em; }
-.r-rule { border: none; border-top: 1.5px dashed rgba(28,18,9,0.35); margin: 0.7rem 0; }
-.r-row { display: flex; justify-content: space-between; gap: 1rem; }
-.r-row .qty { flex-shrink: 0; }
-.r-sub { color: #7A5C3E; font-size: 0.65rem; padding-left: 1rem; }
-.r-total { font-weight: 700; font-size: 0.85rem; }
-.r-thanks { text-align: center; letter-spacing: 0.2em; margin-top: 0.9rem; font-size: 0.65rem; }
-.r-barcode {
-    height: 38px;
-    margin-top: 0.9rem;
-    background: repeating-linear-gradient(90deg,
-        var(--surface-1) 0 2px,  transparent 2px 5px,
-        var(--surface-1) 5px 6px, transparent 6px 11px,
-        var(--surface-1) 11px 14px, transparent 14px 17px,
-        var(--surface-1) 17px 18px, transparent 18px 22px);
-}
-.r-barcode-num { text-align: center; font-size: 0.6rem; letter-spacing: 0.35em; color: #7A5C3E; }
-/* rubber stamp */
-.r-stamp {
-    position: absolute;
-    top: 29%; right: -18px;
-    transform: rotate(-14deg);
-    border: 3px double rgba(154,92,24,0.75);
-    color: rgba(154,92,24,0.75);
-    border-radius: var(--radius);
-    padding: 0.3rem 0.7rem;
-    font-weight: 700;
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    pointer-events: none;
-}
+      .receipt {
+        position: relative;
+        width: 320px;
+        background: var(--cream-bright);
+        color: var(--surface-1);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        line-height: 1.7;
+        padding: 1.8rem 1.6rem 2.2rem;
+        transform: rotate(2.5deg);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.55),
+          0 4px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.4s var(--ease-enter);
+        z-index: 1;
+      }
+      .receipt:hover {
+        transform: rotate(0deg) translateY(-4px);
+      }
+      /* torn sawtooth bottom edge */
+      .receipt::after {
+        content: "";
+        position: absolute;
+        bottom: -11px;
+        left: 0;
+        right: 0;
+        height: 12px;
+        background:
+          linear-gradient(-45deg, var(--cream-bright) 6px, transparent 0) 0 0 /
+            12px 12px repeat-x,
+          linear-gradient(45deg, var(--cream-bright) 6px, transparent 0) 6px 0 /
+            12px 12px repeat-x;
+      }
+      .r-head {
+        text-align: center;
+        margin-bottom: 0.8rem;
+      }
+      .r-shop {
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.18em;
+      }
+      .r-meta {
+        font-size: 0.62rem;
+        color: #7a5c3e;
+        letter-spacing: 0.08em;
+      }
+      .r-rule {
+        border: none;
+        border-top: 1.5px dashed rgba(28, 18, 9, 0.35);
+        margin: 0.7rem 0;
+      }
+      .r-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .r-row .qty {
+        flex-shrink: 0;
+      }
+      .r-sub {
+        color: #7a5c3e;
+        font-size: 0.65rem;
+        padding-left: 1rem;
+      }
+      .r-total {
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+      .r-thanks {
+        text-align: center;
+        letter-spacing: 0.2em;
+        margin-top: 0.9rem;
+        font-size: 0.65rem;
+      }
+      .r-barcode {
+        height: 38px;
+        margin-top: 0.9rem;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--surface-1) 0 2px,
+          transparent 2px 5px,
+          var(--surface-1) 5px 6px,
+          transparent 6px 11px,
+          var(--surface-1) 11px 14px,
+          transparent 14px 17px,
+          var(--surface-1) 17px 18px,
+          transparent 18px 22px
+        );
+      }
+      .r-barcode-num {
+        text-align: center;
+        font-size: 0.6rem;
+        letter-spacing: 0.35em;
+        color: #7a5c3e;
+      }
+      /* rubber stamp */
+      .r-stamp {
+        position: absolute;
+        top: 29%;
+        right: -18px;
+        transform: rotate(-14deg);
+        border: 3px double rgba(154, 92, 24, 0.75);
+        color: rgba(154, 92, 24, 0.75);
+        border-radius: var(--radius);
+        padding: 0.3rem 0.7rem;
+        font-weight: 700;
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    WAVE DIVIDERS
 ========================================================== */
-.wave { line-height: 0; display: block; overflow: hidden; }
-.wave svg { display: block; width: 100%; }
+      .wave {
+        line-height: 0;
+        display: block;
+        overflow: hidden;
+      }
+      .wave svg {
+        display: block;
+        width: 100%;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    MARQUEE — caramel ticker
 ========================================================== */
-.marquee-outer { overflow: hidden; background: var(--caramel); }
-.marquee-track { display: flex; width: max-content; animation: mq 24s linear infinite; }
-@keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0.85rem 2.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #0F0A06;
-    white-space: nowrap;
-}
-.marquee-item .sep { width: 5px; height: 5px; background: rgba(15,10,6,0.4); border-radius: 50%; flex-shrink: 0; }
+      .marquee-outer {
+        overflow: hidden;
+        background: var(--caramel);
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: mq 24s linear infinite;
+      }
+      @keyframes mq {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.85rem 2.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #0f0a06;
+        white-space: nowrap;
+      }
+      .marquee-item .sep {
+        width: 5px;
+        height: 5px;
+        background: rgba(15, 10, 6, 0.4);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    MENU SECTION — projects on parchment
 ========================================================== */
-.menu-section {
-    background: var(--parchment);
-    color: var(--surface-1);
-    padding: 6rem 0 7rem;
-    position: relative;
-}
-.menu-section .sec-h2 { color: var(--surface-1); }
-.menu-section .sec-h2 em { color: var(--caramel-dark); }
-.menu-section .sec-sub { color: #6B5138; }
-.menu-section .sec-label { color: var(--caramel-dark); }
-.menu-section .sec-label::before { background: var(--caramel-dark); }
+      .menu-section {
+        background: var(--parchment);
+        color: var(--surface-1);
+        padding: 6rem 0 7rem;
+        position: relative;
+      }
+      .menu-section .sec-h2 {
+        color: var(--surface-1);
+      }
+      .menu-section .sec-h2 em {
+        color: var(--caramel-dark);
+      }
+      .menu-section .sec-sub {
+        color: #6b5138;
+      }
+      .menu-section .sec-label {
+        color: var(--caramel-dark);
+      }
+      .menu-section .sec-label::before {
+        background: var(--caramel-dark);
+      }
 
-.menu-board {
-    margin-top: 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem 4.5rem;
-}
-.dish { position: relative; }
-.dish-line {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-}
-.dish-name {
-    font-family: var(--font-display);
-    font-size: 1.9rem;
-    line-height: 1.1;
-    color: var(--surface-1);
-    white-space: nowrap;
-}
-.dish-name a { color: inherit; transition: var(--ease); }
-.dish-name a:hover { color: var(--caramel-dark); }
-/* dot leader — the café menu classic */
-.dish-dots {
-    flex: 1;
-    border-bottom: 2px dotted rgba(28,18,9,0.35);
-    transform: translateY(-6px);
-    min-width: 30px;
-}
-.dish-no {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--caramel-dark);
-    white-space: nowrap;
-}
-.dish-desc {
-    font-size: 0.92rem;
-    color: #5C452E;
-    line-height: 1.65;
-    margin: 0.6rem 0 0.9rem;
-    max-width: 480px;
-}
-.dish-foot { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-.stack-pill {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: rgba(201,123,44,0.14);
-    border: 1px solid rgba(154,92,24,0.35);
-    color: var(--caramel-dark);
-    padding: 0.22rem 0.6rem;
-    border-radius: var(--radius-pill);
-    font-weight: 700;
-}
-.dish-links { margin-left: auto; display: flex; gap: 1rem; }
-.dish-links a {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--caramel-dark);
-    transition: var(--ease);
-}
-.dish-links a:hover { color: var(--roast); }
+      .menu-board {
+        margin-top: 3.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem 4.5rem;
+      }
+      .dish {
+        position: relative;
+      }
+      .dish-line {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+      }
+      .dish-name {
+        font-family: var(--font-display);
+        font-size: 1.9rem;
+        line-height: 1.1;
+        color: var(--surface-1);
+        white-space: nowrap;
+      }
+      .dish-name a {
+        color: inherit;
+        transition: var(--ease);
+      }
+      .dish-name a:hover {
+        color: var(--caramel-dark);
+      }
+      /* dot leader — the café menu classic */
+      .dish-dots {
+        flex: 1;
+        border-bottom: 2px dotted rgba(28, 18, 9, 0.35);
+        transform: translateY(-6px);
+        min-width: 30px;
+      }
+      .dish-no {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--caramel-dark);
+        white-space: nowrap;
+      }
+      .dish-desc {
+        font-size: 0.92rem;
+        color: #5c452e;
+        line-height: 1.65;
+        margin: 0.6rem 0 0.9rem;
+        max-width: 480px;
+      }
+      .dish-foot {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+      .stack-pill {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: rgba(201, 123, 44, 0.14);
+        border: 1px solid rgba(154, 92, 24, 0.35);
+        color: var(--caramel-dark);
+        padding: 0.22rem 0.6rem;
+        border-radius: var(--radius-pill);
+        font-weight: 700;
+      }
+      .dish-links {
+        margin-left: auto;
+        display: flex;
+        gap: 1rem;
+      }
+      .dish-links a {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--caramel-dark);
+        transition: var(--ease);
+      }
+      .dish-links a:hover {
+        color: var(--roast);
+      }
 
-/* roast level tag with pips (from guide) */
-.roast-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.3rem 0.75rem;
-    border-radius: var(--radius);
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border: 1px solid rgba(154,92,24,0.35);
-    color: var(--caramel-dark);
-    background: rgba(201,123,44,0.08);
-}
-.rt-pips { display: flex; gap: 3px; }
-.rt-pip { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.25; }
-.rt-pip.active { opacity: 1; }
+      /* roast level tag with pips (from guide) */
+      .roast-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.3rem 0.75rem;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid rgba(154, 92, 24, 0.35);
+        color: var(--caramel-dark);
+        background: rgba(201, 123, 44, 0.08);
+      }
+      .rt-pips {
+        display: flex;
+        gap: 3px;
+      }
+      .rt-pip {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: 0.25;
+      }
+      .rt-pip.active {
+        opacity: 1;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    BREW METHODS — skills as tasting flights (tabs)
 ========================================================== */
-.brew-section {
-    padding: 6.5rem 0 7rem;
-    background-color: var(--surface-2);
-    background-image: radial-gradient(circle, rgba(201,123,44,0.1) 1px, transparent 1px);
-    background-size: 24px 24px;
-}
-.brew-tabs {
-    display: flex;
-    gap: 0.75rem;
-    margin: 2.8rem 0 2rem;
-    flex-wrap: wrap;
-}
-.brew-tab {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 1.4rem;
-    background: var(--surface-1);
-    border: 1px solid var(--border-sub);
-    border-radius: var(--radius-pill);
-    color: var(--muted-bright);
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: var(--ease);
-}
-.brew-tab:hover { border-color: var(--border); color: var(--cream); }
-.brew-tab.active {
-    background: var(--caramel);
-    border-color: var(--caramel);
-    color: #0F0A06;
-    font-weight: 600;
-}
-.brew-panel {
-    display: none;
-    background: var(--surface-1);
-    border: 1px solid var(--border-sub);
-    border-radius: var(--radius-lg);
-    padding: 2.5rem;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-}
-.brew-panel.active { display: grid; animation: pour-in 0.55s var(--ease-enter); }
-.bp-title {
-    font-family: var(--font-display);
-    font-size: 1.9rem;
-    color: var(--cream-bright);
-    margin-bottom: 0.3rem;
-}
-.bp-title em { font-style: italic; color: var(--caramel-light); }
-.bp-method {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--caramel);
-    margin-bottom: 1.1rem;
-}
-.bp-desc { color: var(--muted-bright); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.4rem; }
-.bp-notes {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--latte);
-    border-left: 2px solid var(--caramel);
-    padding-left: 1rem;
-}
-.bp-skills { display: flex; flex-wrap: wrap; gap: 0.55rem; align-content: flex-start; }
-.bp-skill {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    padding: 0.45rem 0.9rem;
-    background: var(--caramel-dim);
-    border: 1px solid var(--caramel-border);
-    color: var(--caramel-light);
-    border-radius: var(--radius-pill);
-}
-.extraction { margin-top: 1.6rem; width: 100%; }
-.ext-label {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted-bright);
-    margin-bottom: 0.45rem;
-}
-.ext-bar { height: 8px; background: rgba(201,123,44,0.1); border-radius: var(--radius-pill); overflow: hidden; }
-.ext-fill {
-    display: block;
-    height: 100%;
-    width: 0;
-    border-radius: var(--radius-pill);
-    background: linear-gradient(90deg, var(--caramel-dark), var(--caramel), var(--latte));
-    transition: width 1.2s var(--ease-enter);
-}
+      .brew-section {
+        padding: 6.5rem 0 7rem;
+        background-color: var(--surface-2);
+        background-image: radial-gradient(
+          circle,
+          rgba(201, 123, 44, 0.1) 1px,
+          transparent 1px
+        );
+        background-size: 24px 24px;
+      }
+      .brew-tabs {
+        display: flex;
+        gap: 0.75rem;
+        margin: 2.8rem 0 2rem;
+        flex-wrap: wrap;
+      }
+      .brew-tab {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.75rem 1.4rem;
+        background: var(--surface-1);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-pill);
+        color: var(--muted-bright);
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--ease);
+      }
+      .brew-tab:hover {
+        border-color: var(--border);
+        color: var(--cream);
+      }
+      .brew-tab.active {
+        background: var(--caramel);
+        border-color: var(--caramel);
+        color: #0f0a06;
+        font-weight: 600;
+      }
+      .brew-panel {
+        display: none;
+        background: var(--surface-1);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 2.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+      .brew-panel.active {
+        display: grid;
+        animation: pour-in 0.55s var(--ease-enter);
+      }
+      .bp-title {
+        font-family: var(--font-display);
+        font-size: 1.9rem;
+        color: var(--cream-bright);
+        margin-bottom: 0.3rem;
+      }
+      .bp-title em {
+        font-style: italic;
+        color: var(--caramel-light);
+      }
+      .bp-method {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--caramel);
+        margin-bottom: 1.1rem;
+      }
+      .bp-desc {
+        color: var(--muted-bright);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1.4rem;
+      }
+      .bp-notes {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.05rem;
+        color: var(--latte);
+        border-left: 2px solid var(--caramel);
+        padding-left: 1rem;
+      }
+      .bp-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        align-content: flex-start;
+      }
+      .bp-skill {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        padding: 0.45rem 0.9rem;
+        background: var(--caramel-dim);
+        border: 1px solid var(--caramel-border);
+        color: var(--caramel-light);
+        border-radius: var(--radius-pill);
+      }
+      .extraction {
+        margin-top: 1.6rem;
+        width: 100%;
+      }
+      .ext-label {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted-bright);
+        margin-bottom: 0.45rem;
+      }
+      .ext-bar {
+        height: 8px;
+        background: rgba(201, 123, 44, 0.1);
+        border-radius: var(--radius-pill);
+        overflow: hidden;
+      }
+      .ext-fill {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: var(--radius-pill);
+        background: linear-gradient(
+          90deg,
+          var(--caramel-dark),
+          var(--caramel),
+          var(--latte)
+        );
+        transition: width 1.2s var(--ease-enter);
+      }
 
-/* ==========================================================
+      /* ==========================================================
    RECIPE CARD — code showcase
 ========================================================== */
-.recipe-section { padding: 6.5rem 0 7rem; background: var(--surface-1); }
-.recipe-grid {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 3.5rem;
-    align-items: center;
-    margin-top: 3rem;
-}
-.recipe-copy .bp-notes { margin-top: 1.5rem; }
-.terminal {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-}
-.term-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.85rem 1.2rem;
-    background: var(--surface-1);
-    border-bottom: 1px solid var(--border-sub);
-}
-.term-dot { width: 11px; height: 11px; border-radius: 50%; }
-.td-1 { background: var(--roast-light); }
-.td-2 { background: var(--caramel); }
-.td-3 { background: var(--latte); }
-.term-name {
-    margin-left: 0.8rem;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-}
-.term-body {
-    padding: 1.5rem 1.7rem;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    line-height: 1.85;
-    overflow-x: auto;
-}
-.code-line { display: block; white-space: pre; opacity: 0; transform: translateY(5px); transition: opacity 0.3s ease, transform 0.3s ease; }
-.code-line.on { opacity: 1; transform: none; }
-.c-com { color: var(--muted); font-style: italic; }
-.c-key { color: var(--caramel); }
-.c-fn  { color: var(--latte); }
-.c-str { color: #A8B380; }
-.c-num { color: #C88787; }
-.c-txt { color: var(--cream); }
-.caret {
-    display: inline-block;
-    width: 8px; height: 15px;
-    background: var(--caramel-light);
-    vertical-align: text-bottom;
-    animation: blink 1s steps(1) infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
+      .recipe-section {
+        padding: 6.5rem 0 7rem;
+        background: var(--surface-1);
+      }
+      .recipe-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 3.5rem;
+        align-items: center;
+        margin-top: 3rem;
+      }
+      .recipe-copy .bp-notes {
+        margin-top: 1.5rem;
+      }
+      .terminal {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+      }
+      .term-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.2rem;
+        background: var(--surface-1);
+        border-bottom: 1px solid var(--border-sub);
+      }
+      .term-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      .td-1 {
+        background: var(--roast-light);
+      }
+      .td-2 {
+        background: var(--caramel);
+      }
+      .td-3 {
+        background: var(--latte);
+      }
+      .term-name {
+        margin-left: 0.8rem;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+      .term-body {
+        padding: 1.5rem 1.7rem;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+      .code-line {
+        display: block;
+        white-space: pre;
+        opacity: 0;
+        transform: translateY(5px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+      .code-line.on {
+        opacity: 1;
+        transform: none;
+      }
+      .c-com {
+        color: var(--muted);
+        font-style: italic;
+      }
+      .c-key {
+        color: var(--caramel);
+      }
+      .c-fn {
+        color: var(--latte);
+      }
+      .c-str {
+        color: #a8b380;
+      }
+      .c-num {
+        color: #c88787;
+      }
+      .c-txt {
+        color: var(--cream);
+      }
+      .caret {
+        display: inline-block;
+        width: 8px;
+        height: 15px;
+        background: var(--caramel-light);
+        vertical-align: text-bottom;
+        animation: blink 1s steps(1) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
 
-/* ==========================================================
+      /* ==========================================================
    CUPPING NOTES — about, overlapping layers (from guide)
 ========================================================== */
-.notes-section { padding-top: 6.5rem; }
-.notes-l1 {
-    background: var(--caramel);
-    color: #0F0A06;
-    padding: 4.5rem 0 7rem;
-    position: relative;
-    z-index: 1;
-}
-.notes-l1 .sec-label { color: rgba(15,10,6,0.65); }
-.notes-l1 .sec-label::before { background: rgba(15,10,6,0.65); }
-.notes-l1 .sec-h2 { color: #0F0A06; }
-.notes-l1 .sec-h2 em { color: var(--surface-1); }
-.notes-l1 p { color: rgba(15,10,6,0.72); max-width: 520px; font-size: 1rem; line-height: 1.75; }
-.notes-l1-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; position: relative; }
-.float-card {
-    background: var(--surface-1);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem 1.8rem;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-    max-width: 280px;
-    justify-self: end;
-}
-.fc-label {
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--caramel);
-    margin-bottom: 0.4rem;
-}
-.fc-num { font-family: var(--font-display); font-size: 2.4rem; color: var(--cream-bright); line-height: 1; }
-.fc-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+      .notes-section {
+        padding-top: 6.5rem;
+      }
+      .notes-l1 {
+        background: var(--caramel);
+        color: #0f0a06;
+        padding: 4.5rem 0 7rem;
+        position: relative;
+        z-index: 1;
+      }
+      .notes-l1 .sec-label {
+        color: rgba(15, 10, 6, 0.65);
+      }
+      .notes-l1 .sec-label::before {
+        background: rgba(15, 10, 6, 0.65);
+      }
+      .notes-l1 .sec-h2 {
+        color: #0f0a06;
+      }
+      .notes-l1 .sec-h2 em {
+        color: var(--surface-1);
+      }
+      .notes-l1 p {
+        color: rgba(15, 10, 6, 0.72);
+        max-width: 520px;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .notes-l1-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 3rem;
+        align-items: center;
+        position: relative;
+      }
+      .float-card {
+        background: var(--surface-1);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem 1.8rem;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        max-width: 280px;
+        justify-self: end;
+      }
+      .fc-label {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--caramel);
+        margin-bottom: 0.4rem;
+      }
+      .fc-num {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        color: var(--cream-bright);
+        line-height: 1;
+      }
+      .fc-sub {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.3rem;
+      }
 
-.notes-l2 {
-    background: var(--surface-1);
-    margin-top: -3rem;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    position: relative;
-    z-index: 2;
-    padding: 4rem 0 6.5rem;
-    border-top: 1px solid var(--border-sub);
-}
-.tasting-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-    margin-top: 2.5rem;
-}
-.taste-card {
-    background: var(--surface-2);
-    border: 1px solid var(--border-sub);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-.taste-card:hover { transform: translateY(-6px); border-color: var(--border); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
-.taste-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-.taste-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--cream-bright); margin-bottom: 0.35rem; }
-.taste-desc { font-size: 0.8rem; color: var(--muted-bright); line-height: 1.55; }
+      .notes-l2 {
+        background: var(--surface-1);
+        margin-top: -3rem;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: relative;
+        z-index: 2;
+        padding: 4rem 0 6.5rem;
+        border-top: 1px solid var(--border-sub);
+      }
+      .tasting-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+      }
+      .taste-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-sub);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        text-align: center;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .taste-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--border);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      }
+      .taste-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+      .taste-name {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        color: var(--cream-bright);
+        margin-bottom: 0.35rem;
+      }
+      .taste-desc {
+        font-size: 0.8rem;
+        color: var(--muted-bright);
+        line-height: 1.55;
+      }
 
-.notes-l3 {
-    background: var(--bg);
-    margin-top: -2.5rem;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    position: relative;
-    z-index: 3;
-    padding: 4rem 0 5rem;
-    border-top: 1px solid var(--border-sub);
-}
-.pull-quote {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1.4rem, 2.6vw, 2rem);
-    color: var(--cream);
-    line-height: 1.45;
-    max-width: 760px;
-    position: relative;
-    padding-left: 2rem;
-}
-.pull-quote::before {
-    content: '"';
-    position: absolute;
-    left: -0.5rem; top: -2.5rem;
-    font-size: 8rem;
-    color: rgba(201,123,44,0.12);
-    font-style: italic;
-}
-.pq-attr {
-    margin-top: 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted-bright);
-    padding-left: 2rem;
-}
+      .notes-l3 {
+        background: var(--bg);
+        margin-top: -2.5rem;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        position: relative;
+        z-index: 3;
+        padding: 4rem 0 5rem;
+        border-top: 1px solid var(--border-sub);
+      }
+      .pull-quote {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: clamp(1.4rem, 2.6vw, 2rem);
+        color: var(--cream);
+        line-height: 1.45;
+        max-width: 760px;
+        position: relative;
+        padding-left: 2rem;
+      }
+      .pull-quote::before {
+        content: '"';
+        position: absolute;
+        left: -0.5rem;
+        top: -2.5rem;
+        font-size: 8rem;
+        color: rgba(201, 123, 44, 0.12);
+        font-style: italic;
+      }
+      .pq-attr {
+        margin-top: 1.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted-bright);
+        padding-left: 2rem;
+      }
 
-/* ==========================================================
+      /* ==========================================================
    LAST CALL — contact
 ========================================================== */
-.lastcall {
-    padding: 7rem 0 6rem;
-    text-align: center;
-    background: radial-gradient(ellipse 80% 60% at 50% 45%, var(--surface-3) 0%, var(--bg) 100%);
-    position: relative;
-    overflow: hidden;
-}
-.lastcall .steam-center {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 12px;
-    height: 80px;
-    margin-bottom: 0.5rem;
-}
-.lastcall .cup-icon { font-size: 2.6rem; line-height: 1; margin-bottom: 2rem; }
-.lastcall h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--cream-bright);
-    line-height: 1.05;
-    margin-bottom: 1.2rem;
-}
-.lastcall h2 em { font-style: italic; color: var(--caramel-light); }
-.lastcall p { color: var(--muted-bright); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
-.lastcall .ctas { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-.lc-email {
-    display: block;
-    margin-top: 2rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    color: var(--muted-bright);
-}
-.lc-email a { color: var(--caramel-light); border-bottom: 1px dashed var(--caramel-border); padding-bottom: 2px; }
+      .lastcall {
+        padding: 7rem 0 6rem;
+        text-align: center;
+        background: radial-gradient(
+          ellipse 80% 60% at 50% 45%,
+          var(--surface-3) 0%,
+          var(--bg) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      .lastcall .steam-center {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 12px;
+        height: 80px;
+        margin-bottom: 0.5rem;
+      }
+      .lastcall .cup-icon {
+        font-size: 2.6rem;
+        line-height: 1;
+        margin-bottom: 2rem;
+      }
+      .lastcall h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        color: var(--cream-bright);
+        line-height: 1.05;
+        margin-bottom: 1.2rem;
+      }
+      .lastcall h2 em {
+        font-style: italic;
+        color: var(--caramel-light);
+      }
+      .lastcall p {
+        color: var(--muted-bright);
+        max-width: 480px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.7;
+      }
+      .lastcall .ctas {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .lc-email {
+        display: block;
+        margin-top: 2rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        color: var(--muted-bright);
+      }
+      .lc-email a {
+        color: var(--caramel-light);
+        border-bottom: 1px dashed var(--caramel-border);
+        padding-bottom: 2px;
+      }
 
-footer {
-    background: var(--surface-1);
-    border-top: 1px solid var(--border-sub);
-    padding: 2.6rem 0;
-}
-.foot-in {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-.foot-logo { font-family: var(--font-display); font-size: 1.2rem; color: var(--cream-bright); }
-.foot-logo em { font-style: italic; color: var(--caramel-light); }
-.foot-meta { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-.foot-links { display: flex; gap: 1.5rem; }
-.foot-links a { font-size: 0.82rem; color: var(--muted-bright); transition: var(--ease); }
-.foot-links a:hover { color: var(--caramel-light); }
+      footer {
+        background: var(--surface-1);
+        border-top: 1px solid var(--border-sub);
+        padding: 2.6rem 0;
+      }
+      .foot-in {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .foot-logo {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        color: var(--cream-bright);
+      }
+      .foot-logo em {
+        font-style: italic;
+        color: var(--caramel-light);
+      }
+      .foot-meta {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .foot-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .foot-links a {
+        font-size: 0.82rem;
+        color: var(--muted-bright);
+        transition: var(--ease);
+      }
+      .foot-links a:hover {
+        color: var(--caramel-light);
+      }
 
-/* ==========================================================
+      /* ==========================================================
    RESPONSIVE
 ========================================================== */
-@media (max-width: 960px) {
-    .nav-links { display: none; }
-    .hero-grid { grid-template-columns: 1fr; gap: 5rem; }
-    .receipt-zone { padding-top: 2rem; }
-    .menu-board { grid-template-columns: 1fr; gap: 3rem; }
-    .brew-panel { grid-template-columns: 1fr; gap: 2rem; }
-    .recipe-grid { grid-template-columns: 1fr; }
-    .notes-l1-grid { grid-template-columns: 1fr; }
-    .float-card { justify-self: start; }
-    .tasting-grid { grid-template-columns: repeat(2, 1fr); }
-    .dish-name { white-space: normal; font-size: 1.6rem; }
-}
-@media (max-width: 560px) {
-    .tasting-grid { grid-template-columns: 1fr; }
-    .receipt { width: 290px; }
-}
+      @media (max-width: 960px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 5rem;
+        }
+        .receipt-zone {
+          padding-top: 2rem;
+        }
+        .menu-board {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .brew-panel {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .recipe-grid {
+          grid-template-columns: 1fr;
+        }
+        .notes-l1-grid {
+          grid-template-columns: 1fr;
+        }
+        .float-card {
+          justify-self: start;
+        }
+        .tasting-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .dish-name {
+          white-space: normal;
+          font-size: 1.6rem;
+        }
+      }
+      @media (max-width: 560px) {
+        .tasting-grid {
+          grid-template-columns: 1fr;
+        }
+        .receipt {
+          width: 290px;
+        }
+      }
 
-/* ==========================================================
+      /* ==========================================================
    REDUCED MOTION
 ========================================================== */
-@media (prefers-reduced-motion: reduce) {
-    .marquee-track { animation: none; }
-    .wisp, .btn-pulse, .caret { animation: none; }
-    .pour { opacity: 1; clip-path: none; }
-    .code-line { opacity: 1; transform: none; }
-    html { scroll-behavior: auto; }
-}
-</style>
-</head>
-<body>
+      @media (prefers-reduced-motion: reduce) {
+        .marquee-track {
+          animation: none;
+        }
+        .wisp,
+        .btn-pulse,
+        .caret {
+          animation: none;
+        }
+        .pour {
+          opacity: 1;
+          clip-path: none;
+        }
+        .code-line {
+          opacity: 1;
+          transform: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cup-level"></div>
 
-<div id="cup-level"></div>
-
-<!-- ================= NAV ================= -->
-<nav>
-    <div class="nav-in">
-        <a class="nav-logo" href="#top">Jess <em>Rodriguez</em></a>
+    <!-- ================= NAV ================= -->
+    <nav>
+      <div class="nav-in">
+        <a class="nav-logo" href="#top">Jessna <em>Rodriguez</em></a>
         <div class="nav-links">
-            <a href="#menu">The Menu</a>
-            <a href="#brews">Brew Methods</a>
-            <a href="#recipe">The Recipe</a>
-            <a href="#notes">Cupping Notes</a>
+          <a href="#menu">The Menu</a>
+          <a href="#brews">Brew Methods</a>
+          <a href="#recipe">The Recipe</a>
+          <a href="#notes">Cupping Notes</a>
         </div>
         <a class="nav-cta" href="#order">Place an Order</a>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<!-- ================= HERO ================= -->
-<header class="hero" id="top">
-    <div class="inner hero-grid">
+    <!-- ================= HERO ================= -->
+    <header class="hero" id="top">
+      <div class="inner hero-grid">
         <div>
-            <div class="hero-overline">Full-Stack Developer · Open for Orders</div>
-            <h1>Full-stack code, <em>pulled fresh</em> daily.</h1>
-            <p class="hero-sub">
-                I design and build web applications the way a good bar pulls espresso —
-                measured, repeatable, and never rushed. Databases to interfaces,
-                every layer gets the same attention.
-            </p>
-            <div class="hero-ctas">
-                <a href="#menu" class="btn btn-primary btn-pulse">Read the Menu</a>
-                <a href="#order" class="btn btn-outline">Place an Order</a>
-            </div>
-            <div class="hero-badges">
-                <span class="badge">Six Years Behind the Bar</span>
-                <span class="badge b-latte">Full Stack</span>
-                <span class="badge">Remote Friendly</span>
-            </div>
+          <div class="hero-overline">
+            Full-Stack Developer · Open for Orders
+          </div>
+          <h1>Full-stack code, <em>pulled fresh</em> daily.</h1>
+          <p class="hero-sub">
+            I design and build web applications the way a good bar pulls
+            espresso — measured, repeatable, and never rushed. Databases to
+            interfaces, every layer gets the same attention.
+          </p>
+          <div class="hero-ctas">
+            <a href="#menu" class="btn btn-primary btn-pulse">Read the Menu</a>
+            <a href="#order" class="btn btn-outline">Place an Order</a>
+          </div>
+          <div class="hero-badges">
+            <span class="badge">Six Years Behind the Bar</span>
+            <span class="badge b-latte">Full Stack</span>
+            <span class="badge">Remote Friendly</span>
+          </div>
         </div>
 
         <!-- The receipt -->
         <div class="receipt-zone">
-            <div class="receipt-steam" aria-hidden="true">
-                <div class="wisp wisp-a"></div>
-                <div class="wisp wisp-b"></div>
-                <div class="wisp wisp-c"></div>
-            </div>
-            <div class="receipt" aria-label="Résumé printed as a café receipt">
-                <div class="r-head">
-                    <div class="r-shop">JESS DEV CO.</div>
-                    <div class="r-meta">EST. 2020 · SERVED ANYWHERE</div>
-                    <div class="r-meta">ORDER #2026-0706 · 09:04 AM</div>
-                </div>
-                <hr class="r-rule" />
-                <div class="r-row"><span>ITEM</span><span class="qty">QTY</span></div>
-                <hr class="r-rule" />
-                <div class="r-row"><span>FULL-STACK DEVELOPER</span><span class="qty">x1</span></div>
-                <div class="r-sub">└ REACT / TYPESCRIPT</div>
-                <div class="r-sub">└ NODE / POSTGRESQL</div>
-                <div class="r-sub">└ DOCKER / AWS / CI-CD</div>
-                <div class="r-row"><span>YEARS EXPERIENCE</span><span class="qty">6</span></div>
-                <div class="r-row"><span>PROJECTS SHIPPED</span><span class="qty">40+</span></div>
-                <div class="r-row"><span>PROD INCIDENTS CAUSED</span><span class="qty">few</span></div>
-                <div class="r-row"><span>OWNED &amp; FIXED</span><span class="qty">all</span></div>
-                <div class="r-row"><span>CUPS CONSUMED</span><span class="qty">&#8734;</span></div>
-                <hr class="r-rule" />
-                <div class="r-row"><span>SUBTOTAL</span><span class="qty">passion</span></div>
-                <div class="r-row r-total"><span>TOTAL</span><span class="qty">hire me</span></div>
-                <hr class="r-rule" />
-                <div class="r-thanks">*** THANK YOU, COME AGAIN ***</div>
-                <div class="r-barcode" aria-hidden="true"></div>
-                <div class="r-barcode-num">J3SS·DEV·2026</div>
-                <div class="r-stamp">Freshly Brewed</div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- wave into marquee -->
-<div class="wave" style="background: var(--bg);">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
-        <path d="M0,30 C480,55 960,5 1440,30 L1440,60 L0,60 Z" fill="#C97B2C"/>
-    </svg>
-</div>
-
-<!-- ================= MARQUEE ================= -->
-<div class="marquee-outer" aria-hidden="true">
-    <div class="marquee-track">
-        <span class="marquee-item">TypeScript<span class="sep"></span></span>
-        <span class="marquee-item">React<span class="sep"></span></span>
-        <span class="marquee-item">Node.js<span class="sep"></span></span>
-        <span class="marquee-item">PostgreSQL<span class="sep"></span></span>
-        <span class="marquee-item">GraphQL<span class="sep"></span></span>
-        <span class="marquee-item">Docker · AWS<span class="sep"></span></span>
-        <span class="marquee-item">Redis<span class="sep"></span></span>
-        <span class="marquee-item">TypeScript<span class="sep"></span></span>
-        <span class="marquee-item">React<span class="sep"></span></span>
-        <span class="marquee-item">Node.js<span class="sep"></span></span>
-        <span class="marquee-item">PostgreSQL<span class="sep"></span></span>
-        <span class="marquee-item">GraphQL<span class="sep"></span></span>
-        <span class="marquee-item">Docker · AWS<span class="sep"></span></span>
-        <span class="marquee-item">Redis<span class="sep"></span></span>
-    </div>
-</div>
-
-<!-- asymmetric pour wave into parchment -->
-<div class="wave" style="background: var(--caramel);">
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;">
-        <path d="M0,60 C480,10 960,70 1440,20 L1440,80 L0,80 Z" fill="#F2EBD9"/>
-    </svg>
-</div>
-
-<!-- ================= THE MENU — PROJECTS ================= -->
-<section class="menu-section" id="menu">
-    <div class="inner">
-        <div class="pour">
-            <div class="sec-label">Today's Menu · Selected Work</div>
-            <h2 class="sec-h2">Four courses,<br />roasted <em>in-house.</em></h2>
-            <p class="sec-sub">
-                Every project on the board was sourced, built, and shipped end to end.
-                Roast level indicates how deep the work runs in the stack — light means
-                interface-forward, dark means infrastructure all the way down.
-            </p>
-        </div>
-
-        <div class="menu-board">
-            <article class="dish pour">
-                <div class="dish-line">
-                    <h3 class="dish-name"><a href="#">Crema</a></h3>
-                    <span class="dish-dots"></span>
-                    <span class="dish-no">№ 01</span>
-                </div>
-                <p class="dish-desc">
-                    A design system and component library serving twelve product teams —
-                    tokens, primitives, and docs that made "consistent" the default instead
-                    of the exception.
-                </p>
-                <div class="dish-foot">
-                    <span class="roast-tag">Light
-                        <span class="rt-pips"><span class="rt-pip active"></span><span class="rt-pip"></span><span class="rt-pip"></span><span class="rt-pip"></span></span>
-                    </span>
-                    <span class="stack-pill">React</span>
-                    <span class="stack-pill">TypeScript</span>
-                    <span class="stack-pill">Storybook</span>
-                    <div class="dish-links"><a href="#">Demo ↗</a><a href="#">Code ↗</a></div>
-                </div>
-            </article>
-
-            <article class="dish pour">
-                <div class="dish-line">
-                    <h3 class="dish-name"><a href="#">Percolate</a></h3>
-                    <span class="dish-dots"></span>
-                    <span class="dish-no">№ 02</span>
-                </div>
-                <p class="dish-desc">
-                    Real-time job queue dashboard — live WebSocket telemetry for tens of
-                    thousands of daily tasks, with retry choreography you can actually
-                    watch drip through.
-                </p>
-                <div class="dish-foot">
-                    <span class="roast-tag">Medium
-                        <span class="rt-pips"><span class="rt-pip active"></span><span class="rt-pip active"></span><span class="rt-pip"></span><span class="rt-pip"></span></span>
-                    </span>
-                    <span class="stack-pill">Node.js</span>
-                    <span class="stack-pill">WebSockets</span>
-                    <span class="stack-pill">Redis</span>
-                    <div class="dish-links"><a href="#">Demo ↗</a><a href="#">Code ↗</a></div>
-                </div>
-            </article>
-
-            <article class="dish pour">
-                <div class="dish-line">
-                    <h3 class="dish-name"><a href="#">Doppio</a></h3>
-                    <span class="dish-dots"></span>
-                    <span class="dish-no">№ 03</span>
-                </div>
-                <p class="dish-desc">
-                    A/B testing platform — because every good decision deserves a double
-                    shot. Feature flags, variant assignment, and significance math the
-                    marketing team stopped arguing with.
-                </p>
-                <div class="dish-foot">
-                    <span class="roast-tag">Med-Dark
-                        <span class="rt-pips"><span class="rt-pip active"></span><span class="rt-pip active"></span><span class="rt-pip active"></span><span class="rt-pip"></span></span>
-                    </span>
-                    <span class="stack-pill">GraphQL</span>
-                    <span class="stack-pill">PostgreSQL</span>
-                    <span class="stack-pill">React</span>
-                    <div class="dish-links"><a href="#">Demo ↗</a><a href="#">Code ↗</a></div>
-                </div>
-            </article>
-
-            <article class="dish pour">
-                <div class="dish-line">
-                    <h3 class="dish-name"><a href="#">Redeye</a></h3>
-                    <span class="dish-dots"></span>
-                    <span class="dish-no">№ 04</span>
-                </div>
-                <p class="dish-desc">
-                    Overnight ETL pipeline and analytics warehouse. Ingests millions of
-                    events while everyone sleeps, serves answers before the first
-                    stand-up. Strong stuff.
-                </p>
-                <div class="dish-foot">
-                    <span class="roast-tag">Dark
-                        <span class="rt-pips"><span class="rt-pip active"></span><span class="rt-pip active"></span><span class="rt-pip active"></span><span class="rt-pip active"></span></span>
-                    </span>
-                    <span class="stack-pill">Python</span>
-                    <span class="stack-pill">Docker</span>
-                    <span class="stack-pill">AWS</span>
-                    <div class="dish-links"><a href="#">Case Study ↗</a><a href="#">Code ↗</a></div>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- inverted rise wave out of parchment -->
-<div class="wave" style="background: #F2EBD9;">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
-        <path d="M0,35 C480,0 960,40 1440,0 L1440,60 L0,60 Z" fill="#2A1B0E"/>
-    </svg>
-</div>
-
-<!-- ================= BREW METHODS — SKILLS ================= -->
-<section class="brew-section" id="brews">
-    <div class="inner">
-        <div class="pour">
-            <div class="sec-label">Brew Methods · Skills</div>
-            <h2 class="sec-h2">Same beans,<br />different <em>extractions.</em></h2>
-            <p class="sec-sub">
-                Pick a method. Each one is a different way I work the stack —
-                dialed in over six years of daily service.
-            </p>
-        </div>
-
-        <div class="brew-tabs" role="tablist">
-            <button class="brew-tab active" role="tab" data-brew="espresso">☕ Espresso</button>
-            <button class="brew-tab" role="tab" data-brew="pourover">🫖 Pour-Over</button>
-            <button class="brew-tab" role="tab" data-brew="coldbrew">🧊 Cold Brew</button>
-            <button class="brew-tab" role="tab" data-brew="lab">⚗️ The Lab</button>
-        </div>
-
-        <div class="brew-panel active" data-panel="espresso">
-            <div>
-                <div class="bp-method">25–30 seconds · high pressure · instant feedback</div>
-                <h3 class="bp-title">Frontend — <em>concentrated.</em></h3>
-                <p class="bp-desc">
-                    Interfaces are espresso: short extraction, zero room to hide flaws.
-                    I build component systems that render fast, read clearly, and hold up
-                    under a designer's squint — accessible by default, not by audit.
-                </p>
-                <div class="bp-notes">Tasting notes: crisp interactions, layout that never shifts, honest empty states.</div>
-            </div>
-            <div>
-                <div class="bp-skills">
-                    <span class="bp-skill">React</span><span class="bp-skill">TypeScript</span>
-                    <span class="bp-skill">Vite</span><span class="bp-skill">CSS Architecture</span>
-                    <span class="bp-skill">Accessibility</span><span class="bp-skill">Animation</span>
-                    <span class="bp-skill">State Management</span>
-                </div>
-                <div class="extraction">
-                    <div class="ext-label"><span>Extraction</span><span>95%</span></div>
-                    <div class="ext-bar"><span class="ext-fill" data-fill="95%"></span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="brew-panel" data-panel="pourover">
-            <div>
-                <div class="bp-method">3–4 minutes · deliberate · structure is everything</div>
-                <h3 class="bp-title">Backend — <em>structured.</em></h3>
-                <p class="bp-desc">
-                    APIs are pour-overs: the quality is decided by the setup. I design
-                    services with clean contracts, honest error handling, and docs the
-                    next developer thanks you for — REST or GraphQL, whatever the cup calls for.
-                </p>
-                <div class="bp-notes">Tasting notes: versioned endpoints, graceful failure, queues that never clog.</div>
-            </div>
-            <div>
-                <div class="bp-skills">
-                    <span class="bp-skill">Node.js</span><span class="bp-skill">Go</span>
-                    <span class="bp-skill">REST</span><span class="bp-skill">GraphQL</span>
-                    <span class="bp-skill">Auth &amp; Sessions</span><span class="bp-skill">WebSockets</span>
-                    <span class="bp-skill">Job Queues</span>
-                </div>
-                <div class="extraction">
-                    <div class="ext-label"><span>Extraction</span><span>92%</span></div>
-                    <div class="ext-bar"><span class="ext-fill" data-fill="92%"></span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="brew-panel" data-panel="coldbrew">
-            <div>
-                <div class="bp-method">18 hours · slow extraction · smooth at scale</div>
-                <h3 class="bp-title">Data &amp; Infra — <em>patient.</em></h3>
-                <p class="bp-desc">
-                    Databases and infrastructure reward patience. I model schemas that
-                    survive pivots, tune the queries everyone else gave up on, and wire
-                    deploys that are boring in the best possible way.
-                </p>
-                <div class="bp-notes">Tasting notes: indexed reads, zero-downtime migrations, dashboards before alarms.</div>
-            </div>
-            <div>
-                <div class="bp-skills">
-                    <span class="bp-skill">PostgreSQL</span><span class="bp-skill">Redis</span>
-                    <span class="bp-skill">Docker</span><span class="bp-skill">AWS</span>
-                    <span class="bp-skill">CI / CD</span><span class="bp-skill">Observability</span>
-                    <span class="bp-skill">Query Tuning</span>
-                </div>
-                <div class="extraction">
-                    <div class="ext-label"><span>Extraction</span><span>88%</span></div>
-                    <div class="ext-bar"><span class="ext-fill" data-fill="88%"></span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="brew-panel" data-panel="lab">
-            <div>
-                <div class="bp-method">continuous · measured · where recipes get dialed in</div>
-                <h3 class="bp-title">Quality &amp; Tooling — <em>calibrated.</em></h3>
-                <p class="bp-desc">
-                    Every great café weighs its shots. I treat tests and tooling the same
-                    way — coverage where it counts, e2e flows for the money paths, and DX
-                    tooling so the whole team pours faster.
-                </p>
-                <div class="bp-notes">Tasting notes: green pipelines, honest coverage, lint rules people don't fight.</div>
-            </div>
-            <div>
-                <div class="bp-skills">
-                    <span class="bp-skill">Vitest</span><span class="bp-skill">Playwright</span>
-                    <span class="bp-skill">Testing Library</span><span class="bp-skill">GitHub Actions</span>
-                    <span class="bp-skill">Monitoring</span><span class="bp-skill">Code Review</span>
-                </div>
-                <div class="extraction">
-                    <div class="ext-label"><span>Extraction</span><span>90%</span></div>
-                    <div class="ext-bar"><span class="ext-fill" data-fill="90%"></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- latte-art swirl wave -->
-<div class="wave" style="background: var(--surface-2);">
-    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style="height:70px;">
-        <path d="M0,50 C150,25 280,60 450,35 C580,15 720,62 900,38 C1020,22 1160,55 1300,32 C1360,22 1410,45 1440,35 L1440,70 L0,70 Z" fill="#1C1209"/>
-    </svg>
-</div>
-
-<!-- ================= THE RECIPE — CODE ================= -->
-<section class="recipe-section" id="recipe">
-    <div class="inner">
-        <div class="pour">
-            <div class="sec-label">The Recipe · Code Sample</div>
-            <h2 class="sec-h2">Read before <em>you sip.</em></h2>
-        </div>
-        <div class="recipe-grid">
-            <div class="recipe-copy pour">
-                <p class="sec-sub">
-                    I write code like a recipe card: someone else should be able to make
-                    the same cup without calling me. Clear names, small functions, and
-                    the occasional strong opinion about tea.
-                </p>
-                <div class="bp-notes">
-                    Yes — that's a real HTTP status code. RFC 2324 has been law since 1998.
-                </div>
-            </div>
-
-            <div class="terminal pour" id="terminal">
-                <div class="term-bar">
-                    <span class="term-dot td-1"></span><span class="term-dot td-2"></span><span class="term-dot td-3"></span>
-                    <span class="term-name">brew-api.ts — the most important endpoint</span>
-                </div>
-                <div class="term-body" aria-label="TypeScript code sample">
-<span class="code-line"><span class="c-com">// POST /api/brew — orders come in, coffee goes out</span></span>
-<span class="code-line"><span class="c-txt">app.</span><span class="c-fn">post</span><span class="c-txt">(</span><span class="c-str">"/api/brew"</span><span class="c-txt">, </span><span class="c-key">async</span><span class="c-txt"> (req, res) => {</span></span>
-<span class="code-line"><span class="c-txt">  </span><span class="c-key">const</span><span class="c-txt"> { bean, method } = req.body;</span></span>
-<span class="code-line"><span class="c-txt"> </span></span>
-<span class="code-line"><span class="c-txt">  </span><span class="c-key">if</span><span class="c-txt"> (method === </span><span class="c-str">"tea"</span><span class="c-txt">) {</span></span>
-<span class="code-line"><span class="c-txt">    </span><span class="c-key">return</span><span class="c-txt"> res.</span><span class="c-fn">status</span><span class="c-txt">(</span><span class="c-num">418</span><span class="c-txt">).</span><span class="c-fn">json</span><span class="c-txt">({ error: </span><span class="c-str">"I'm a teapot"</span><span class="c-txt"> });</span></span>
-<span class="code-line"><span class="c-txt">  }</span></span>
-<span class="code-line"><span class="c-txt"> </span></span>
-<span class="code-line"><span class="c-txt">  </span><span class="c-key">const</span><span class="c-txt"> cup = </span><span class="c-key">await</span><span class="c-txt"> barista.</span><span class="c-fn">brew</span><span class="c-txt">({ bean, ratio: </span><span class="c-num">1 / 16</span><span class="c-txt"> });</span></span>
-<span class="code-line"><span class="c-txt">  metrics.</span><span class="c-fn">track</span><span class="c-txt">(</span><span class="c-str">"caffeine.deployed"</span><span class="c-txt">, cup.mg);</span></span>
-<span class="code-line"><span class="c-txt"> </span></span>
-<span class="code-line"><span class="c-txt">  res.</span><span class="c-fn">status</span><span class="c-txt">(</span><span class="c-num">201</span><span class="c-txt">).</span><span class="c-fn">json</span><span class="c-txt">({ ...cup, note: </span><span class="c-str">"careful — served hot"</span><span class="c-txt"> });</span></span>
-<span class="code-line"><span class="c-txt">});</span> <span class="caret"></span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ================= CUPPING NOTES — ABOUT ================= -->
-<section class="notes-section" id="notes">
-    <div class="notes-l1">
-        <div class="inner notes-l1-grid">
-            <div>
-                <div class="sec-label">Cupping Notes · About</div>
-                <h2 class="sec-h2">The person behind<br />the <em>counter.</em></h2>
-                <p>
-                    I'm Jess — a full-stack developer who believes software and coffee fail
-                    the same way: rushing the process, skipping the measurements, and
-                    serving it before it's ready. So I don't. I've spent six years building
-                    for startups and product teams, and I still get excited when a query
-                    plan comes back clean.
-                </p>
-            </div>
-            <div class="float-card">
-                <div class="fc-label">Currently Brewing</div>
-                <div class="fc-num">v2.0</div>
-                <div class="fc-sub">of an open-source job queue visualizer — ships this fall</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="notes-l2">
-        <div class="inner">
-            <div class="sec-label pour">Flavor Profile</div>
-            <div class="tasting-grid">
-                <div class="taste-card pour">
-                    <div class="taste-icon">🍫</div>
-                    <div class="taste-name">Body</div>
-                    <div class="taste-desc">Systems thinking with follow-through — I ship whole features, not fragments.</div>
-                </div>
-                <div class="taste-card pour">
-                    <div class="taste-icon">🍒</div>
-                    <div class="taste-name">Brightness</div>
-                    <div class="taste-desc">Curiosity that stays caffeinated — new tools get evaluated, not worshipped.</div>
-                </div>
-                <div class="taste-card pour">
-                    <div class="taste-icon">🍯</div>
-                    <div class="taste-name">Sweetness</div>
-                    <div class="taste-desc">Reviews and mentoring that leave the codebase — and the team — better.</div>
-                </div>
-                <div class="taste-card pour">
-                    <div class="taste-icon">🌰</div>
-                    <div class="taste-name">Finish</div>
-                    <div class="taste-desc">Documentation, tests, and handoffs so clean you'd never know I left.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="notes-l3">
-        <div class="inner">
-            <blockquote class="pull-quote pour">
-                Jess is the engineer you hand the messy, load-bearing problem to —
-                and get back something simple enough that everyone claims it was
-                obvious all along.
-            </blockquote>
-            <div class="pq-attr">— Former Engineering Lead · SaaS Platform Team</div>
-        </div>
-    </div>
-</section>
-
-<!-- ================= LAST CALL — CONTACT ================= -->
-<section class="lastcall" id="order">
-    <div class="inner">
-        <div class="steam-center" aria-hidden="true">
+          <div class="receipt-steam" aria-hidden="true">
             <div class="wisp wisp-a"></div>
             <div class="wisp wisp-b"></div>
             <div class="wisp wisp-c"></div>
+          </div>
+          <div class="receipt" aria-label="Résumé printed as a café receipt">
+            <div class="r-head">
+              <div class="r-shop">JESS DEV CO.</div>
+              <div class="r-meta">EST. 2020 · SERVED ANYWHERE</div>
+              <div class="r-meta">ORDER #2026-0706 · 09:04 AM</div>
+            </div>
+            <hr class="r-rule" />
+            <div class="r-row">
+              <span>ITEM</span><span class="qty">QTY</span>
+            </div>
+            <hr class="r-rule" />
+            <div class="r-row">
+              <span>FULL-STACK DEVELOPER</span><span class="qty">x1</span>
+            </div>
+            <div class="r-sub">└ REACT / TYPESCRIPT</div>
+            <div class="r-sub">└ NODE / POSTGRESQL</div>
+            <div class="r-sub">└ DOCKER / AWS / CI-CD</div>
+            <div class="r-row">
+              <span>YEARS EXPERIENCE</span><span class="qty">6</span>
+            </div>
+            <div class="r-row">
+              <span>PROJECTS SHIPPED</span><span class="qty">40+</span>
+            </div>
+            <div class="r-row">
+              <span>PROD INCIDENTS CAUSED</span><span class="qty">few</span>
+            </div>
+            <div class="r-row">
+              <span>OWNED &amp; FIXED</span><span class="qty">all</span>
+            </div>
+            <div class="r-row">
+              <span>CUPS CONSUMED</span><span class="qty">&#8734;</span>
+            </div>
+            <hr class="r-rule" />
+            <div class="r-row">
+              <span>SUBTOTAL</span><span class="qty">passion</span>
+            </div>
+            <div class="r-row r-total">
+              <span>TOTAL</span><span class="qty">hire me</span>
+            </div>
+            <hr class="r-rule" />
+            <div class="r-thanks">*** THANK YOU, COME AGAIN ***</div>
+            <div class="r-barcode" aria-hidden="true"></div>
+            <div class="r-barcode-num">J3SS·DEV·2026</div>
+            <div class="r-stamp">Freshly Brewed</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- wave into marquee -->
+    <div class="wave" style="background: var(--bg)">
+      <svg
+        viewBox="0 0 1440 60"
+        preserveAspectRatio="none"
+        style="height: 60px"
+      >
+        <path d="M0,30 C480,55 960,5 1440,30 L1440,60 L0,60 Z" fill="#C97B2C" />
+      </svg>
+    </div>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee-outer" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">TypeScript<span class="sep"></span></span>
+        <span class="marquee-item">React<span class="sep"></span></span>
+        <span class="marquee-item">Node.js<span class="sep"></span></span>
+        <span class="marquee-item">PostgreSQL<span class="sep"></span></span>
+        <span class="marquee-item">GraphQL<span class="sep"></span></span>
+        <span class="marquee-item">Docker · AWS<span class="sep"></span></span>
+        <span class="marquee-item">Redis<span class="sep"></span></span>
+        <span class="marquee-item">TypeScript<span class="sep"></span></span>
+        <span class="marquee-item">React<span class="sep"></span></span>
+        <span class="marquee-item">Node.js<span class="sep"></span></span>
+        <span class="marquee-item">PostgreSQL<span class="sep"></span></span>
+        <span class="marquee-item">GraphQL<span class="sep"></span></span>
+        <span class="marquee-item">Docker · AWS<span class="sep"></span></span>
+        <span class="marquee-item">Redis<span class="sep"></span></span>
+      </div>
+    </div>
+
+    <!-- asymmetric pour wave into parchment -->
+    <div class="wave" style="background: var(--caramel)">
+      <svg
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        style="height: 80px"
+      >
+        <path
+          d="M0,60 C480,10 960,70 1440,20 L1440,80 L0,80 Z"
+          fill="#F2EBD9"
+        />
+      </svg>
+    </div>
+
+    <!-- ================= THE MENU — PROJECTS ================= -->
+    <section class="menu-section" id="menu">
+      <div class="inner">
+        <div class="pour">
+          <div class="sec-label">Today's Menu · Selected Work</div>
+          <h2 class="sec-h2">Four courses,<br />roasted <em>in-house.</em></h2>
+          <p class="sec-sub">
+            Every project on the board was sourced, built, and shipped end to
+            end. Roast level indicates how deep the work runs in the stack —
+            light means interface-forward, dark means infrastructure all the way
+            down.
+          </p>
+        </div>
+
+        <div class="menu-board">
+          <article class="dish pour">
+            <div class="dish-line">
+              <h3 class="dish-name"><a href="#">Crema</a></h3>
+              <span class="dish-dots"></span>
+              <span class="dish-no">№ 01</span>
+            </div>
+            <p class="dish-desc">
+              A design system and component library serving twelve product teams
+              — tokens, primitives, and docs that made "consistent" the default
+              instead of the exception.
+            </p>
+            <div class="dish-foot">
+              <span class="roast-tag"
+                >Light
+                <span class="rt-pips"
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip"></span><span class="rt-pip"></span
+                  ><span class="rt-pip"></span
+                ></span>
+              </span>
+              <span class="stack-pill">React</span>
+              <span class="stack-pill">TypeScript</span>
+              <span class="stack-pill">Storybook</span>
+              <div class="dish-links">
+                <a href="#">Demo ↗</a><a href="#">Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish pour">
+            <div class="dish-line">
+              <h3 class="dish-name"><a href="#">Percolate</a></h3>
+              <span class="dish-dots"></span>
+              <span class="dish-no">№ 02</span>
+            </div>
+            <p class="dish-desc">
+              Real-time job queue dashboard — live WebSocket telemetry for tens
+              of thousands of daily tasks, with retry choreography you can
+              actually watch drip through.
+            </p>
+            <div class="dish-foot">
+              <span class="roast-tag"
+                >Medium
+                <span class="rt-pips"
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip"></span><span class="rt-pip"></span
+                ></span>
+              </span>
+              <span class="stack-pill">Node.js</span>
+              <span class="stack-pill">WebSockets</span>
+              <span class="stack-pill">Redis</span>
+              <div class="dish-links">
+                <a href="#">Demo ↗</a><a href="#">Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish pour">
+            <div class="dish-line">
+              <h3 class="dish-name"><a href="#">Doppio</a></h3>
+              <span class="dish-dots"></span>
+              <span class="dish-no">№ 03</span>
+            </div>
+            <p class="dish-desc">
+              A/B testing platform — because every good decision deserves a
+              double shot. Feature flags, variant assignment, and significance
+              math the marketing team stopped arguing with.
+            </p>
+            <div class="dish-foot">
+              <span class="roast-tag"
+                >Med-Dark
+                <span class="rt-pips"
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip"></span
+                ></span>
+              </span>
+              <span class="stack-pill">GraphQL</span>
+              <span class="stack-pill">PostgreSQL</span>
+              <span class="stack-pill">React</span>
+              <div class="dish-links">
+                <a href="#">Demo ↗</a><a href="#">Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish pour">
+            <div class="dish-line">
+              <h3 class="dish-name"><a href="#">Redeye</a></h3>
+              <span class="dish-dots"></span>
+              <span class="dish-no">№ 04</span>
+            </div>
+            <p class="dish-desc">
+              Overnight ETL pipeline and analytics warehouse. Ingests millions
+              of events while everyone sleeps, serves answers before the first
+              stand-up. Strong stuff.
+            </p>
+            <div class="dish-foot">
+              <span class="roast-tag"
+                >Dark
+                <span class="rt-pips"
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip active"></span
+                  ><span class="rt-pip active"></span
+                ></span>
+              </span>
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">Docker</span>
+              <span class="stack-pill">AWS</span>
+              <div class="dish-links">
+                <a href="#">Case Study ↗</a><a href="#">Code ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- inverted rise wave out of parchment -->
+    <div class="wave" style="background: #f2ebd9">
+      <svg
+        viewBox="0 0 1440 60"
+        preserveAspectRatio="none"
+        style="height: 60px"
+      >
+        <path d="M0,35 C480,0 960,40 1440,0 L1440,60 L0,60 Z" fill="#2A1B0E" />
+      </svg>
+    </div>
+
+    <!-- ================= BREW METHODS — SKILLS ================= -->
+    <section class="brew-section" id="brews">
+      <div class="inner">
+        <div class="pour">
+          <div class="sec-label">Brew Methods · Skills</div>
+          <h2 class="sec-h2">
+            Same beans,<br />different <em>extractions.</em>
+          </h2>
+          <p class="sec-sub">
+            Pick a method. Each one is a different way I work the stack — dialed
+            in over six years of daily service.
+          </p>
+        </div>
+
+        <div class="brew-tabs" role="tablist">
+          <button class="brew-tab active" role="tab" data-brew="espresso">
+            ☕ Espresso
+          </button>
+          <button class="brew-tab" role="tab" data-brew="pourover">
+            🫖 Pour-Over
+          </button>
+          <button class="brew-tab" role="tab" data-brew="coldbrew">
+            🧊 Cold Brew
+          </button>
+          <button class="brew-tab" role="tab" data-brew="lab">
+            ⚗️ The Lab
+          </button>
+        </div>
+
+        <div class="brew-panel active" data-panel="espresso">
+          <div>
+            <div class="bp-method">
+              25–30 seconds · high pressure · instant feedback
+            </div>
+            <h3 class="bp-title">Frontend — <em>concentrated.</em></h3>
+            <p class="bp-desc">
+              Interfaces are espresso: short extraction, zero room to hide
+              flaws. I build component systems that render fast, read clearly,
+              and hold up under a designer's squint — accessible by default, not
+              by audit.
+            </p>
+            <div class="bp-notes">
+              Tasting notes: crisp interactions, layout that never shifts,
+              honest empty states.
+            </div>
+          </div>
+          <div>
+            <div class="bp-skills">
+              <span class="bp-skill">React</span
+              ><span class="bp-skill">TypeScript</span>
+              <span class="bp-skill">Vite</span
+              ><span class="bp-skill">CSS Architecture</span>
+              <span class="bp-skill">Accessibility</span
+              ><span class="bp-skill">Animation</span>
+              <span class="bp-skill">State Management</span>
+            </div>
+            <div class="extraction">
+              <div class="ext-label">
+                <span>Extraction</span><span>95%</span>
+              </div>
+              <div class="ext-bar">
+                <span class="ext-fill" data-fill="95%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brew-panel" data-panel="pourover">
+          <div>
+            <div class="bp-method">
+              3–4 minutes · deliberate · structure is everything
+            </div>
+            <h3 class="bp-title">Backend — <em>structured.</em></h3>
+            <p class="bp-desc">
+              APIs are pour-overs: the quality is decided by the setup. I design
+              services with clean contracts, honest error handling, and docs the
+              next developer thanks you for — REST or GraphQL, whatever the cup
+              calls for.
+            </p>
+            <div class="bp-notes">
+              Tasting notes: versioned endpoints, graceful failure, queues that
+              never clog.
+            </div>
+          </div>
+          <div>
+            <div class="bp-skills">
+              <span class="bp-skill">Node.js</span
+              ><span class="bp-skill">Go</span>
+              <span class="bp-skill">REST</span
+              ><span class="bp-skill">GraphQL</span>
+              <span class="bp-skill">Auth &amp; Sessions</span
+              ><span class="bp-skill">WebSockets</span>
+              <span class="bp-skill">Job Queues</span>
+            </div>
+            <div class="extraction">
+              <div class="ext-label">
+                <span>Extraction</span><span>92%</span>
+              </div>
+              <div class="ext-bar">
+                <span class="ext-fill" data-fill="92%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brew-panel" data-panel="coldbrew">
+          <div>
+            <div class="bp-method">
+              18 hours · slow extraction · smooth at scale
+            </div>
+            <h3 class="bp-title">Data &amp; Infra — <em>patient.</em></h3>
+            <p class="bp-desc">
+              Databases and infrastructure reward patience. I model schemas that
+              survive pivots, tune the queries everyone else gave up on, and
+              wire deploys that are boring in the best possible way.
+            </p>
+            <div class="bp-notes">
+              Tasting notes: indexed reads, zero-downtime migrations, dashboards
+              before alarms.
+            </div>
+          </div>
+          <div>
+            <div class="bp-skills">
+              <span class="bp-skill">PostgreSQL</span
+              ><span class="bp-skill">Redis</span>
+              <span class="bp-skill">Docker</span
+              ><span class="bp-skill">AWS</span>
+              <span class="bp-skill">CI / CD</span
+              ><span class="bp-skill">Observability</span>
+              <span class="bp-skill">Query Tuning</span>
+            </div>
+            <div class="extraction">
+              <div class="ext-label">
+                <span>Extraction</span><span>88%</span>
+              </div>
+              <div class="ext-bar">
+                <span class="ext-fill" data-fill="88%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brew-panel" data-panel="lab">
+          <div>
+            <div class="bp-method">
+              continuous · measured · where recipes get dialed in
+            </div>
+            <h3 class="bp-title">
+              Quality &amp; Tooling — <em>calibrated.</em>
+            </h3>
+            <p class="bp-desc">
+              Every great café weighs its shots. I treat tests and tooling the
+              same way — coverage where it counts, e2e flows for the money
+              paths, and DX tooling so the whole team pours faster.
+            </p>
+            <div class="bp-notes">
+              Tasting notes: green pipelines, honest coverage, lint rules people
+              don't fight.
+            </div>
+          </div>
+          <div>
+            <div class="bp-skills">
+              <span class="bp-skill">Vitest</span
+              ><span class="bp-skill">Playwright</span>
+              <span class="bp-skill">Testing Library</span
+              ><span class="bp-skill">GitHub Actions</span>
+              <span class="bp-skill">Monitoring</span
+              ><span class="bp-skill">Code Review</span>
+            </div>
+            <div class="extraction">
+              <div class="ext-label">
+                <span>Extraction</span><span>90%</span>
+              </div>
+              <div class="ext-bar">
+                <span class="ext-fill" data-fill="90%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- latte-art swirl wave -->
+    <div class="wave" style="background: var(--surface-2)">
+      <svg
+        viewBox="0 0 1440 70"
+        preserveAspectRatio="none"
+        style="height: 70px"
+      >
+        <path
+          d="M0,50 C150,25 280,60 450,35 C580,15 720,62 900,38 C1020,22 1160,55 1300,32 C1360,22 1410,45 1440,35 L1440,70 L0,70 Z"
+          fill="#1C1209"
+        />
+      </svg>
+    </div>
+
+    <!-- ================= THE RECIPE — CODE ================= -->
+    <section class="recipe-section" id="recipe">
+      <div class="inner">
+        <div class="pour">
+          <div class="sec-label">The Recipe · Code Sample</div>
+          <h2 class="sec-h2">Read before <em>you sip.</em></h2>
+        </div>
+        <div class="recipe-grid">
+          <div class="recipe-copy pour">
+            <p class="sec-sub">
+              I write code like a recipe card: someone else should be able to
+              make the same cup without calling me. Clear names, small
+              functions, and the occasional strong opinion about tea.
+            </p>
+            <div class="bp-notes">
+              Yes — that's a real HTTP status code. RFC 2324 has been law since
+              1998.
+            </div>
+          </div>
+
+          <div class="terminal pour" id="terminal">
+            <div class="term-bar">
+              <span class="term-dot td-1"></span
+              ><span class="term-dot td-2"></span
+              ><span class="term-dot td-3"></span>
+              <span class="term-name"
+                >brew-api.ts — the most important endpoint</span
+              >
+            </div>
+            <div class="term-body" aria-label="TypeScript code sample">
+              <span class="code-line"
+                ><span class="c-com"
+                  >// POST /api/brew — orders come in, coffee goes out</span
+                ></span
+              >
+              <span class="code-line"
+                ><span class="c-txt">app.</span><span class="c-fn">post</span
+                ><span class="c-txt">(</span
+                ><span class="c-str">"/api/brew"</span
+                ><span class="c-txt">, </span><span class="c-key">async</span
+                ><span class="c-txt"> (req, res) => {</span></span
+              >
+              <span class="code-line"
+                ><span class="c-txt"> </span><span class="c-key">const</span
+                ><span class="c-txt"> { bean, method } = req.body;</span></span
+              >
+              <span class="code-line"><span class="c-txt"> </span></span>
+              <span class="code-line"
+                ><span class="c-txt"> </span><span class="c-key">if</span
+                ><span class="c-txt"> (method === </span
+                ><span class="c-str">"tea"</span
+                ><span class="c-txt">) {</span></span
+              >
+              <span class="code-line"
+                ><span class="c-txt"> </span><span class="c-key">return</span
+                ><span class="c-txt"> res.</span><span class="c-fn">status</span
+                ><span class="c-txt">(</span><span class="c-num">418</span
+                ><span class="c-txt">).</span><span class="c-fn">json</span
+                ><span class="c-txt">({ error: </span
+                ><span class="c-str">"I'm a teapot"</span
+                ><span class="c-txt"> });</span></span
+              >
+              <span class="code-line"><span class="c-txt"> }</span></span>
+              <span class="code-line"><span class="c-txt"> </span></span>
+              <span class="code-line"
+                ><span class="c-txt"> </span><span class="c-key">const</span
+                ><span class="c-txt"> cup = </span
+                ><span class="c-key">await</span
+                ><span class="c-txt"> barista.</span
+                ><span class="c-fn">brew</span
+                ><span class="c-txt">({ bean, ratio: </span
+                ><span class="c-num">1 / 16</span
+                ><span class="c-txt"> });</span></span
+              >
+              <span class="code-line"
+                ><span class="c-txt"> metrics.</span
+                ><span class="c-fn">track</span><span class="c-txt">(</span
+                ><span class="c-str">"caffeine.deployed"</span
+                ><span class="c-txt">, cup.mg);</span></span
+              >
+              <span class="code-line"><span class="c-txt"> </span></span>
+              <span class="code-line"
+                ><span class="c-txt"> res.</span><span class="c-fn">status</span
+                ><span class="c-txt">(</span><span class="c-num">201</span
+                ><span class="c-txt">).</span><span class="c-fn">json</span
+                ><span class="c-txt">({ ...cup, note: </span
+                ><span class="c-str">"careful — served hot"</span
+                ><span class="c-txt"> });</span></span
+              >
+              <span class="code-line"
+                ><span class="c-txt">});</span> <span class="caret"></span
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CUPPING NOTES — ABOUT ================= -->
+    <section class="notes-section" id="notes">
+      <div class="notes-l1">
+        <div class="inner notes-l1-grid">
+          <div>
+            <div class="sec-label">Cupping Notes · About</div>
+            <h2 class="sec-h2">The person behind<br />the <em>counter.</em></h2>
+            <p>
+              I'm Jess — a full-stack developer who believes software and coffee
+              fail the same way: rushing the process, skipping the measurements,
+              and serving it before it's ready. So I don't. I've spent six years
+              building for startups and product teams, and I still get excited
+              when a query plan comes back clean.
+            </p>
+          </div>
+          <div class="float-card">
+            <div class="fc-label">Currently Brewing</div>
+            <div class="fc-num">v2.0</div>
+            <div class="fc-sub">
+              of an open-source job queue visualizer — ships this fall
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes-l2">
+        <div class="inner">
+          <div class="sec-label pour">Flavor Profile</div>
+          <div class="tasting-grid">
+            <div class="taste-card pour">
+              <div class="taste-icon">🍫</div>
+              <div class="taste-name">Body</div>
+              <div class="taste-desc">
+                Systems thinking with follow-through — I ship whole features,
+                not fragments.
+              </div>
+            </div>
+            <div class="taste-card pour">
+              <div class="taste-icon">🍒</div>
+              <div class="taste-name">Brightness</div>
+              <div class="taste-desc">
+                Curiosity that stays caffeinated — new tools get evaluated, not
+                worshipped.
+              </div>
+            </div>
+            <div class="taste-card pour">
+              <div class="taste-icon">🍯</div>
+              <div class="taste-name">Sweetness</div>
+              <div class="taste-desc">
+                Reviews and mentoring that leave the codebase — and the team —
+                better.
+              </div>
+            </div>
+            <div class="taste-card pour">
+              <div class="taste-icon">🌰</div>
+              <div class="taste-name">Finish</div>
+              <div class="taste-desc">
+                Documentation, tests, and handoffs so clean you'd never know I
+                left.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes-l3">
+        <div class="inner">
+          <blockquote class="pull-quote pour">
+            Jess is the engineer you hand the messy, load-bearing problem to —
+            and get back something simple enough that everyone claims it was
+            obvious all along.
+          </blockquote>
+          <div class="pq-attr">
+            — Former Engineering Lead · SaaS Platform Team
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LAST CALL — CONTACT ================= -->
+    <section class="lastcall" id="order">
+      <div class="inner">
+        <div class="steam-center" aria-hidden="true">
+          <div class="wisp wisp-a"></div>
+          <div class="wisp wisp-b"></div>
+          <div class="wisp wisp-c"></div>
         </div>
         <div class="cup-icon">☕</div>
         <h2 class="pour">Let's put something<br />on the <em>tab.</em></h2>
         <p class="pour">
-            Whether it's a greenfield build, a rescue mission, or a team that needs
-            another pair of steady hands — the bar is open. First consult is on the house.
+          Whether it's a greenfield build, a rescue mission, or a team that
+          needs another pair of steady hands — the bar is open. First consult is
+          on the house.
         </p>
         <div class="ctas">
-            <a class="btn btn-primary btn-pulse" href="mailto:hello@jess.dev">Start an Order</a>
-            <a class="btn btn-outline" href="#">Download Résumé</a>
+          <a class="btn btn-primary btn-pulse" href="mailto:hello@jess.dev"
+            >Start an Order</a
+          >
+          <a class="btn btn-outline" href="#">Download Résumé</a>
         </div>
-        <span class="lc-email">or write directly: <a href="mailto:hello@jess.dev">hello@jess.dev</a></span>
-    </div>
-</section>
+        <span class="lc-email"
+          >or write directly:
+          <a href="mailto:hello@jess.dev">hello@jess.dev</a></span
+        >
+      </div>
+    </section>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-    <div class="foot-in">
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="foot-in">
         <div>
-            <div class="foot-logo">Jess <em>Rodriguez</em></div>
-            <div class="foot-meta">Full-Stack Developer · Roasted &amp; Served 2026</div>
+          <div class="foot-logo">Jess <em>Rodriguez</em></div>
+          <div class="foot-meta">
+            Full-Stack Developer · Roasted &amp; Served 2026
+          </div>
         </div>
         <div class="foot-links">
-            <a href="#">GitHub</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Writing</a>
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Writing</a>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script>
-/* ---------- Coffee-level scroll bar ---------- */
-const cupLevel = document.getElementById('cup-level');
-addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    cupLevel.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
-}, { passive: true });
+    <script>
+      /* ---------- Coffee-level scroll bar ---------- */
+      const cupLevel = document.getElementById("cup-level");
+      addEventListener(
+        "scroll",
+        () => {
+          const max = document.documentElement.scrollHeight - innerHeight;
+          cupLevel.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + "%";
+        },
+        { passive: true },
+      );
 
-/* ---------- Pour-in reveals ---------- */
-const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('on');
-        io.unobserve(e.target);
-    });
-}, { threshold: 0.2 });
-document.querySelectorAll('.pour').forEach((el) => io.observe(el));
+      /* ---------- Pour-in reveals ---------- */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("on");
+            io.unobserve(e.target);
+          });
+        },
+        { threshold: 0.2 },
+      );
+      document.querySelectorAll(".pour").forEach((el) => io.observe(el));
 
-/* ---------- Brew method tabs ---------- */
-const tabs = document.querySelectorAll('.brew-tab');
-const panels = document.querySelectorAll('.brew-panel');
-function fillExtraction(panel) {
-    panel.querySelectorAll('.ext-fill').forEach((f) => {
-        f.style.width = '0';
-        requestAnimationFrame(() => requestAnimationFrame(() => { f.style.width = f.dataset.fill; }));
-    });
-}
-tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.classList.remove('active'));
-        panels.forEach((p) => p.classList.remove('active'));
-        tab.classList.add('active');
-        const panel = document.querySelector(`[data-panel="${tab.dataset.brew}"]`);
-        panel.classList.add('active');
-        fillExtraction(panel);
-    });
-});
-/* animate first panel's meter when scrolled into view */
-const brewIO = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        fillExtraction(document.querySelector('.brew-panel.active'));
-        brewIO.disconnect();
-    });
-}, { threshold: 0.3 });
-brewIO.observe(document.querySelector('.brew-section'));
+      /* ---------- Brew method tabs ---------- */
+      const tabs = document.querySelectorAll(".brew-tab");
+      const panels = document.querySelectorAll(".brew-panel");
+      function fillExtraction(panel) {
+        panel.querySelectorAll(".ext-fill").forEach((f) => {
+          f.style.width = "0";
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => {
+              f.style.width = f.dataset.fill;
+            }),
+          );
+        });
+      }
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+          tab.classList.add("active");
+          const panel = document.querySelector(
+            `[data-panel="${tab.dataset.brew}"]`,
+          );
+          panel.classList.add("active");
+          fillExtraction(panel);
+        });
+      });
+      /* animate first panel's meter when scrolled into view */
+      const brewIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            fillExtraction(document.querySelector(".brew-panel.active"));
+            brewIO.disconnect();
+          });
+        },
+        { threshold: 0.3 },
+      );
+      brewIO.observe(document.querySelector(".brew-section"));
 
-/* ---------- Terminal line-by-line pour ---------- */
-const termIO = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const lines = e.target.querySelectorAll('.code-line');
-        lines.forEach((line, i) => setTimeout(() => line.classList.add('on'), 350 + i * 160));
-        termIO.disconnect();
-    });
-}, { threshold: 0.4 });
-termIO.observe(document.getElementById('terminal'));
-</script>
-
-</body>
+      /* ---------- Terminal line-by-line pour ---------- */
+      const termIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const lines = e.target.querySelectorAll(".code-line");
+            lines.forEach((line, i) =>
+              setTimeout(() => line.classList.add("on"), 350 + i * 160),
+            );
+            termIO.disconnect();
+          });
+        },
+        { threshold: 0.4 },
+      );
+      termIO.observe(document.getElementById("terminal"));
+    </script>
+  </body>
 </html>
