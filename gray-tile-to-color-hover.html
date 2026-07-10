@@ -1,0 +1,238 @@
+<style>
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 640px) {
+    .logo-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .logo-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .logo-item {
+    background: #ffffff;
+    border: 1px solid rgba(9, 58, 81, 0.08);
+    border-radius: 1rem;
+    padding: 1.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5rem;
+    transition: all 0.25s ease;
+  }
+  .logo-item:hover {
+    border-color: rgba(1, 166, 230, 0.3);
+    box-shadow: 0 4px 16px rgba(1, 166, 230, 0.08);
+  }
+  .logo-item img {
+    max-height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.25s ease;
+  }
+  .logo-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+  .logo-item span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.4;
+  }
+</style>
+<section class="logos-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3.5rem">
+      <p class="section-eyebrow" style="text-align: center">
+        Our Technology Partners
+      </p>
+      <h2 class="section-title section-title--lg">
+        Trusted Across the Nation By
+      </h2>
+    </div>
+    <div class="logo-grid">
+      <div class="logo-item">
+        <img
+          src="partner-logos/toshiba.png"
+          alt="Toshiba"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Toshiba</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/xerox.png"
+          alt="Xerox"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Xerox</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/lexmark.png"
+          alt="Lexmark"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Lexmark</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/microsoft.png"
+          alt="Microsoft"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Microsoft</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/watchguard.png"
+          alt="Watchguard"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Watchguard</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/dell.png"
+          alt="Dell"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Dell</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/datto.png"
+          alt="Datto"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Datto</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/m-files.png"
+          alt="M-Files"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">M-Files</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/xmedius.png"
+          alt="XMedius"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">XMedius</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/papercut.png"
+          alt="Papercut"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Papercut</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/duplo.png"
+          alt="Duplo"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Duplo</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/epson.png"
+          alt="Epson"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Epson</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/infosec.png"
+          alt="Infosec"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Infosec</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/kyocera.png"
+          alt="Kyocera"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Kyocera</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/brother.png"
+          alt="Brother"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Brother</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/abbyy.png"
+          alt="ABBYY"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">ABBYY</span>
+      </div>
+      <div class="logo-item">
+        <img
+          src="partner-logos/boise-chamber.png"
+          alt="Boise Chamber of Commerce"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        /><span style="display: none">Boise Chamber of Commerce</span>
+      </div>
+    </div>
+  </div>
+</section>
