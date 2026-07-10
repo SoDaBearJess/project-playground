@@ -6,6 +6,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react-site/SoDaBearJess # your subfolder
     steps:
       - uses: actions/checkout@v6
 
@@ -23,5 +26,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/ # ./build/ for CRA — trailing slash matters
+          local-dir: ./react-site/SoDaBearJess/dist/ # ./build/ for CRA — trailing slash matters
           server-dir: public_html/ # trailing slash matters
