@@ -5,20 +5,30 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on:
+      ubuntu-latest
+
+      # Run all `run:` steps inside the React subfolder (where package.json lives).
+    # Change "react" to whatever your subfolder is called.
     defaults:
       run:
         working-directory: ./react-site/SoDaBearJess # your subfolder
     steps:
+      # 1. Pull the repository onto the runner.
       - uses: actions/checkout@v6
-
+      # 2. Provide Node.js v24 runtime. v6 of setup-node runs on the Node 24 runtime,
+      # which clears the "Node 20 is deprecated" warning.
       - uses: actions/setup-node@v6
         with:
           node-version: 24
 
+      # 3. Install exactly what the lockfile specifies, then build.
+      # These run inside ./react-site/SoDaBearJess thanks to the working-directory default above
       - run: npm ci
       - run: npm run build # dist/ for Vite, build/ for
-
+      # 4. Gather everything that should go live into one folder ("deploy").
+      #    This step runs at the repo ROOT, so it overrides working-directory.
+      #    -R = recursive (needed for folders); plain cp is fine for single files.
       - name: Assemble files to deploy
         working-directory: ${{ github.workspace }}
         run: |
@@ -35,4 +45,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           local-dir: ./deploy/ # trailing slash matters
-          server-dir: public_html/ # trailing slash matters
+          # If files end up in a NESTED public_html, your FTP account is already
+          # rooted inside public_html -> change the next line to:  server-dir: ./
+          server-dir: public_html/
