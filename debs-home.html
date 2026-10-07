@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deb's Digital Tips | Find, Organize &amp; Enjoy Your Photos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =====================================================================
+   DEB'S DIGITAL TIPS · HOMEPAGE MOCKUP
+   Built on the style guide in sandbox/debs-style-guide.html:
+   raspberry #A5314D + plum #6F266D (from the live site), warm paper,
+   Prata + Montserrat + Caveat captions, photo-print theme.
+   ---------------------------------------------------------------------
+   Photos are labeled .ph placeholders — add src to the <img> to fill.
+   ===================================================================== */
+
+      :root {
+        --rasp: #a5314d;
+        --rasp-deep: #872841;
+        --rasp-tint: #f9eef1;
+        --plum: #6f266d;
+        --plum-deep: #571e55;
+        --plum-tint: #f4ecf4;
+
+        --paper: #fdfbfa;
+        --cream: #f7f2f0;
+        --ink: #332e30;
+        --muted: #6e6366;
+        --line: #eadfe1;
+
+        --radius: 14px;
+        --radius-lg: 22px;
+        --shadow-soft: 0 18px 40px -26px rgba(51, 46, 48, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--rasp);
+        color: #fff;
+      }
+
+      .display {
+        font-family: "Prata", serif;
+        font-weight: 400;
+      }
+
+      .hand {
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+      }
+
+      a {
+        color: var(--rasp);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--plum);
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .wrap {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* ---------- image placeholder ---------- */
+      .ph {
+        position: relative;
+        background: #efe6e5;
+        overflow: hidden;
+      }
+
+      .ph::after {
+        content: attr(data-label);
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        text-align: center;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #b5a3a3;
+      }
+
+      .ph img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+      }
+
+      .ph img[src] {
+        display: block;
+        z-index: 1;
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 999px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition:
+          transform 0.25s,
+          background 0.25s,
+          color 0.25s,
+          border-color 0.25s;
+      }
+
+      .btn-rasp {
+        background: var(--rasp);
+        color: #fff;
+      }
+
+      .btn-rasp:hover {
+        background: var(--rasp-deep);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: none;
+        border-color: var(--rasp);
+        color: var(--rasp);
+      }
+
+      .btn-outline:hover {
+        background: var(--rasp);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .text-link {
+        font-weight: 600;
+        color: var(--rasp);
+        border-bottom: 2px solid var(--rasp-tint);
+        padding-bottom: 2px;
+      }
+
+      .text-link:hover {
+        border-color: var(--rasp);
+      }
+
+      /* ---------- header ---------- */
+      .site-head {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(253, 251, 250, 0.94);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .site-head .inner {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 16px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        font-family: "Prata", serif;
+        font-size: 21px;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+
+      .logo em {
+        font-style: normal;
+        color: var(--rasp);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .nav a {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .nav a:hover {
+        color: var(--rasp);
+      }
+
+      .nav .btn {
+        padding: 10px 22px;
+        font-size: 12.5px;
+      }
+
+      @media (max-width: 760px) {
+        .nav a:not(.btn) {
+          display: none;
+        }
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        padding: 84px 0 96px;
+        overflow: hidden;
+      }
+
+      .hero .inner {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
+      }
+
+      .hero .kicker {
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 30px;
+        color: var(--plum);
+      }
+
+      .hero h1 {
+        margin: 10px 0 20px;
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1.14;
+        font-weight: 400;
+      }
+
+      .hero h1 em {
+        font-style: normal;
+        color: var(--rasp);
+      }
+
+      .hero p {
+        max-width: 48ch;
+        font-size: 17px;
+      }
+
+      .hero .btns {
+        margin-top: 32px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      /* print stack */
+      .print-stack {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+      }
+
+      .print {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px 12px 14px;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .print .ph {
+        border-radius: 3px;
+      }
+
+      .print .cap {
+        margin-top: 10px;
+        text-align: center;
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 22px;
+        color: var(--ink);
+      }
+
+      .print.main {
+        position: relative;
+        z-index: 2;
+        width: min(340px, 78%);
+        margin-right: 10%;
+        transform: rotate(2deg);
+      }
+
+      .print.main .ph {
+        aspect-ratio: 1/1;
+      }
+
+      .print.side {
+        position: absolute;
+        z-index: 1;
+        width: min(220px, 48%);
+      }
+
+      .print.side.a {
+        top: -6px;
+        left: 2%;
+        transform: rotate(-7deg);
+      }
+
+      .print.side.b {
+        bottom: -26px;
+        right: -2%;
+        width: min(190px, 42%);
+        transform: rotate(7deg);
+        z-index: 3;
+      }
+
+      .print.side .ph {
+        aspect-ratio: 1/1;
+      }
+
+      .print.side .cap {
+        font-size: 19px;
+      }
+
+      /* ---------- help band ---------- */
+      .help {
+        background: var(--rasp-tint);
+        padding: 92px 0;
+      }
+
+      .sec-head {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto 52px;
+      }
+
+      .sec-head .hand-note {
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 27px;
+        color: var(--rasp);
+      }
+
+      .sec-head h2 {
+        margin: 8px 0 14px;
+        font-size: clamp(28px, 3.6vw, 40px);
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .sec-head p {
+        font-size: 16px;
+      }
+
+      .help-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .help-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 38px 32px 40px;
+        text-align: center;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .help-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .help-card .step {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: var(--rasp-tint);
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 26px;
+        color: var(--rasp);
+        margin-bottom: 20px;
+      }
+
+      .help-card h3 {
+        margin: 0 0 12px;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-size: 22px;
+      }
+
+      .help-card p {
+        font-size: 14.5px;
+      }
+
+      .help-card .more {
+        display: inline-block;
+        margin-top: 18px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--rasp);
+      }
+
+      /* ---------- tips ---------- */
+      .tips {
+        padding: 96px 0;
+      }
+
+      .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .tip-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        display: block;
+        color: var(--ink);
+      }
+
+      .tip-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
+        color: var(--ink);
+      }
+
+      .tip-card .ph {
+        aspect-ratio: 16/9;
+      }
+
+      .tip-card .pad {
+        padding: 22px 24px 26px;
+      }
+
+      .tip-card .tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rasp);
+      }
+
+      .tip-card h3 {
+        margin: 10px 0 8px;
+        font-size: 18px;
+        font-weight: 400;
+        font-family: "Prata", serif;
+        line-height: 1.45;
+      }
+
+      .tip-card .date {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .tips .more-row {
+        text-align: center;
+        margin-top: 44px;
+      }
+
+      /* ---------- videos ---------- */
+      .videos {
+        background: var(--plum-tint);
+        padding: 92px 0;
+      }
+
+      .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .video-card {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        display: block;
+      }
+
+      .video-card .ph {
+        aspect-ratio: 16/10;
+      }
+
+      .video-card .play {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          180deg,
+          rgba(51, 46, 48, 0) 40%,
+          rgba(51, 46, 48, 0.66) 100%
+        );
+        transition: background 0.3s;
+      }
+
+      .video-card:hover .play {
+        background: linear-gradient(
+          180deg,
+          rgba(51, 46, 48, 0.08) 40%,
+          rgba(51, 46, 48, 0.72) 100%
+        );
+      }
+
+      .video-card .badge {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.94);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--plum);
+        font-size: 19px;
+        padding-left: 4px;
+        transition: transform 0.3s;
+      }
+
+      .video-card:hover .badge {
+        transform: scale(1.08);
+      }
+
+      .video-card .vtitle {
+        position: absolute;
+        z-index: 3;
+        left: 22px;
+        right: 22px;
+        bottom: 18px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+
+      .videos .more-row {
+        text-align: center;
+        margin-top: 44px;
+      }
+
+      /* ---------- about ---------- */
+      .about {
+        padding: 100px 0;
+      }
+
+      .about .inner {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .about .print {
+        width: min(330px, 90%);
+        transform: rotate(-2.5deg);
+        margin: 0 auto;
+      }
+
+      .about .print .ph {
+        aspect-ratio: 4/5;
+      }
+
+      .about .hand-note {
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 27px;
+        color: var(--plum);
+      }
+
+      .about h2 {
+        margin: 8px 0 18px;
+        font-size: clamp(28px, 3.6vw, 40px);
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .about p {
+        margin-bottom: 16px;
+      }
+
+      .about .btns {
+        margin-top: 28px;
+      }
+
+      /* ---------- newsletter ---------- */
+      .newsletter-sec {
+        padding: 0 0 100px;
+      }
+
+      .newsletter {
+        background: var(--plum);
+        border-radius: var(--radius-lg);
+        padding: 52px 48px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+        color: #fff;
+      }
+
+      .newsletter h2 {
+        margin: 0 0 12px;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-size: clamp(24px, 3vw, 32px);
+        line-height: 1.25;
+      }
+
+      .newsletter p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 15px;
+      }
+
+      .newsletter form {
+        display: flex;
+        gap: 12px;
+      }
+
+      .newsletter input {
+        flex: 1;
+        min-width: 0;
+        padding: 14px 18px;
+        border-radius: 999px;
+        border: 0;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+      }
+
+      .newsletter input:focus {
+        outline: 3px solid var(--rasp);
+      }
+
+      .newsletter .fine {
+        margin-top: 12px;
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.64);
+      }
+
+      /* ---------- footer ---------- */
+      .site-foot {
+        border-top: 1px solid var(--line);
+        background: var(--cream);
+        padding: 64px 0 48px;
+      }
+
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 44px;
+      }
+
+      .site-foot .logo {
+        display: block;
+        margin-bottom: 14px;
+      }
+
+      .site-foot p {
+        font-size: 14px;
+        max-width: 38ch;
+      }
+
+      .foot-col h4 {
+        margin: 0 0 16px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--plum);
+      }
+
+      .foot-col a {
+        display: block;
+        font-size: 14px;
+        color: var(--muted);
+        padding: 5px 0;
+      }
+
+      .foot-col a:hover {
+        color: var(--rasp);
+      }
+
+      .foot-base {
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 12.5px;
+        color: var(--muted);
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 920px) {
+        .hero .inner,
+        .about .inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+
+        .help-grid,
+        .tips-grid,
+        .videos-grid {
+          grid-template-columns: 1fr;
+          max-width: 480px;
+          margin: 0 auto;
+        }
+
+        .newsletter {
+          grid-template-columns: 1fr;
+          padding: 40px 32px;
+        }
+
+        .foot-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .newsletter form {
+          flex-direction: column;
+        }
+
+        .print.side {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================ HEADER ============================ -->
+    <header class="site-head">
+      <div class="inner">
+        <a href="#" class="logo">deb's <em>digital</em> tips</a>
+        <nav class="nav">
+          <a href="#">Getting Started</a>
+          <a href="#">Deb's Tips</a>
+          <a href="#">Videos</a>
+          <a href="#">Resources</a>
+          <a href="#newsletter" class="btn btn-rasp">Sign Me Up!</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero">
+      <div class="wrap inner">
+        <div>
+          <div class="kicker">welcome! I'm so glad you're here</div>
+          <h1 class="display">Let's tame your <em>photo life</em>, together.</h1>
+          <p>
+            I love helping people find, organize, and enjoy their family photos
+            and memories. Simple is the motto I shoot for: a safe, organized
+            way to enjoy your memories in the easiest way possible.
+          </p>
+          <div class="btns">
+            <a href="#" class="btn btn-rasp">Get Started</a>
+            <a href="#" class="btn btn-outline">Read Deb's Tips</a>
+          </div>
+        </div>
+
+        <div class="print-stack">
+          <div class="print side a">
+            <div class="ph" data-label="Photo"></div>
+            <div class="cap">the shoebox years</div>
+          </div>
+          <div class="print main">
+            <div class="ph" data-label="Photo — family looking at album"></div>
+            <div class="cap">memories, found again</div>
+          </div>
+          <div class="print side b">
+            <div class="ph" data-label="Photo"></div>
+            <div class="cap">finally organized!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HELP BAND ============================ -->
+    <section class="help">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="hand-note">what can I help you with?</div>
+          <h2 class="display">Three steps to a photo life you'll love</h2>
+          <p>
+            Wherever your photos live right now — phones, shoeboxes, old hard
+            drives — this is the path we'll take.
+          </p>
+        </div>
+        <div class="help-grid">
+          <div class="help-card">
+            <span class="step">1</span>
+            <h3>Find</h3>
+            <p>
+              Gather photos from every phone, drive, and shoebox into one safe
+              place, so nothing gets lost or forgotten.
+            </p>
+            <a href="#" class="more">Start here →</a>
+          </div>
+          <div class="help-card">
+            <span class="step">2</span>
+            <h3>Organize</h3>
+            <p>
+              Sort the keepers from the clutter with simple systems you can
+              actually stick with — no perfectionism required.
+            </p>
+            <a href="#" class="more">See how →</a>
+          </div>
+          <div class="help-card">
+            <span class="step">3</span>
+            <h3>Enjoy</h3>
+            <p>
+              Turn your favorites into albums, calendars, and gifts your
+              family will actually look at for years to come.
+            </p>
+            <a href="#" class="more">Get inspired →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ RECENT TIPS ============================ -->
+    <section class="tips">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="hand-note">fresh from the blog</div>
+          <h2 class="display">Deb's latest tips</h2>
+        </div>
+        <div class="tips-grid">
+          <a href="#" class="tip-card">
+            <div class="ph" data-label="Post photo — day 10"></div>
+            <div class="pad">
+              <div class="tag">Challenge &middot; Day 10</div>
+              <h3>Account preservation and legacy settings</h3>
+              <div class="date">October 10, 2025</div>
+            </div>
+          </a>
+          <a href="#" class="tip-card">
+            <div class="ph" data-label="Post photo — day 9"></div>
+            <div class="pad">
+              <div class="tag">Challenge &middot; Day 9</div>
+              <h3>Facial recognition: getting to know the People tab</h3>
+              <div class="date">October 9, 2025</div>
+            </div>
+          </a>
+          <a href="#" class="tip-card">
+            <div class="ph" data-label="Post photo — day 8"></div>
+            <div class="pad">
+              <div class="tag">Challenge &middot; Day 8</div>
+              <h3>Using the declutter and compare tools</h3>
+              <div class="date">October 8, 2025</div>
+            </div>
+          </a>
+        </div>
+        <div class="more-row">
+          <a href="#" class="text-link">See all of Deb's tips</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ VIDEOS ============================ -->
+    <section class="videos">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="hand-note">watch &amp; learn</div>
+          <h2 class="display">Short videos, simple steps</h2>
+          <p>
+            Prefer to see it done? Follow along click by click — most videos
+            are just a few minutes long.
+          </p>
+        </div>
+        <div class="videos-grid">
+          <a href="#" class="video-card">
+            <div class="ph" data-label="Video thumbnail"></div>
+            <div class="play"><span class="badge">▶</span></div>
+            <div class="vtitle">Help! I Can't Find My Vault!</div>
+          </a>
+          <a href="#" class="video-card">
+            <div class="ph" data-label="Video thumbnail"></div>
+            <div class="play"><span class="badge">▶</span></div>
+            <div class="vtitle">How To Create a Custom Christmas Ornament</div>
+          </a>
+          <a href="#" class="video-card">
+            <div class="ph" data-label="Video thumbnail"></div>
+            <div class="play"><span class="badge">▶</span></div>
+            <div class="vtitle">How To Create a Custom Desktop Calendar</div>
+          </a>
+        </div>
+        <div class="more-row">
+          <a href="#" class="text-link">Browse all videos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ ABOUT ============================ -->
+    <section class="about">
+      <div class="wrap inner">
+        <div class="print">
+          <div class="ph" data-label="Photo — Deb"></div>
+          <div class="cap">hi, I'm Deb!</div>
+        </div>
+        <div>
+          <div class="hand-note">meet Deb</div>
+          <h2 class="display">This is my happy work</h2>
+          <p>
+            Hi, I'm Deb Aldape Rodriguez, and I'm here to help you take great
+            photos of your life, organize them so you can find them again, and
+            get them into a format where you can enjoy them for years to come.
+          </p>
+          <p>
+            I've been an Ambassador with Forever.com since 2015 (and used
+            their software much longer than that!). This site is my notebook
+            to help others who are interested in or using their products. When
+            you ask me for help, it makes me smile.
+          </p>
+          <div class="btns">
+            <a href="#" class="btn btn-outline">More About Deb</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ NEWSLETTER ============================ -->
+    <section class="newsletter-sec" id="newsletter">
+      <div class="wrap">
+        <div class="newsletter">
+          <div>
+            <h2>Get my email tips newsletter!</h2>
+            <p>
+              I often share information through emails before it gets
+              published on my site. If you want to stay in the know, just
+              enter your deets below. (I promise not to rhyme all the time.)
+            </p>
+          </div>
+          <div>
+            <form onsubmit="return false">
+              <input type="email" placeholder="Your email address" />
+              <button class="btn btn-rasp" type="submit">Sign Me Up!</button>
+            </form>
+            <div class="fine">
+              I won't send you spam. Ick! You can unsubscribe at any time.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="site-foot">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div>
+            <a href="#" class="logo">deb's <em>digital</em> tips</a>
+            <p>
+              Helping you find, organize, and enjoy your family photos and
+              memories — the simple way.
+            </p>
+          </div>
+          <div class="foot-col">
+            <h4>Explore</h4>
+            <a href="#">Getting Started</a>
+            <a href="#">Deb's Tips</a>
+            <a href="#">Videos</a>
+            <a href="#">Resources</a>
+          </div>
+          <div class="foot-col">
+            <h4>About</h4>
+            <a href="#">Meet Deb</a>
+            <a href="#">FAQs</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="foot-base">
+          <span
+            >Copyright &copy; 2009&ndash;2026 Deb's Digital Tips. All rights
+            reserved worldwide.</span
+          >
+          <span class="hand" style="font-size: 20px; color: var(--rasp)"
+            >happy to help!</span
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

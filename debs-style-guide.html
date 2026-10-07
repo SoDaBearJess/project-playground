@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Style Guide | Deb's Digital Tips</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =====================================================================
+   DEB'S DIGITAL TIPS · STYLE GUIDE
+   Refresh of debsdigitaltips.com keeping the current palette:
+   raspberry pink primary (#a5314d) + plum purple accent (#6f266d),
+   both pulled straight from the live site's theme.
+   Theme: warm, personal, photo prints and memories.
+   ---------------------------------------------------------------------
+   Photos are labeled .ph placeholders — add src to the <img> to fill.
+   ===================================================================== */
+
+      :root {
+        /* color — from the live site */
+        --rasp: #a5314d;
+        --rasp-deep: #872841;
+        --rasp-tint: #f9eef1;
+        --plum: #6f266d;
+        --plum-deep: #571e55;
+        --plum-tint: #f4ecf4;
+
+        /* neutrals */
+        --paper: #fdfbfa;
+        --cream: #f7f2f0;
+        --ink: #332e30;
+        --muted: #6e6366;
+        --line: #eadfe1;
+
+        /* shape */
+        --radius: 14px;
+        --radius-lg: 22px;
+        --shadow-soft: 0 18px 40px -26px rgba(51, 46, 48, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--rasp);
+        color: #fff;
+      }
+
+      .display {
+        font-family: "Prata", serif;
+        font-weight: 400;
+      }
+
+      .hand {
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+      }
+
+      a {
+        color: var(--rasp);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--plum);
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      /* ---------- image placeholder ---------- */
+      .ph {
+        position: relative;
+        background: #efe6e5;
+        overflow: hidden;
+      }
+
+      .ph::after {
+        content: attr(data-label);
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        text-align: center;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #b5a3a3;
+      }
+
+      .ph img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+      }
+
+      .ph img[src] {
+        display: block;
+        z-index: 1;
+      }
+
+      /* ---------- guide chrome ---------- */
+      .guide-head {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 84px 28px 56px;
+        text-align: center;
+      }
+
+      .guide-head .kicker {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--plum);
+      }
+
+      .guide-head h1 {
+        margin: 18px 0 14px;
+        font-size: clamp(34px, 5vw, 56px);
+        line-height: 1.12;
+        font-weight: 400;
+      }
+
+      .guide-head p {
+        max-width: 56ch;
+        margin: 0 auto;
+      }
+
+      .section {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 64px 28px;
+        border-top: 1px solid var(--line);
+      }
+
+      .sec-label {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 36px;
+      }
+
+      .sec-label .num {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: var(--rasp);
+      }
+
+      .sec-label h2 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 400;
+      }
+
+      .sec-note {
+        max-width: 62ch;
+        margin: -22px 0 34px;
+        font-size: 14.5px;
+      }
+
+      /* ---------- 01 wordmark ---------- */
+      .wordmark-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 64px 28px;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .wordmark {
+        font-family: "Prata", serif;
+        font-size: clamp(30px, 4.6vw, 48px);
+        color: var(--ink);
+        line-height: 1.1;
+      }
+
+      .wordmark em {
+        font-style: normal;
+        color: var(--rasp);
+      }
+
+      .wordmark-sub {
+        margin-top: 14px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: var(--plum);
+      }
+
+      .wordmark-tag {
+        margin-top: 22px;
+        font-size: 24px;
+        color: var(--muted);
+      }
+
+      /* ---------- 02 color ---------- */
+      .swatch-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .swatch {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .swatch .chip {
+        height: 110px;
+      }
+
+      .swatch .meta {
+        padding: 16px 18px 18px;
+      }
+
+      .swatch .name {
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .swatch .hex {
+        font-size: 12.5px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        margin-top: 2px;
+      }
+
+      .swatch .use {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 10px;
+        line-height: 1.55;
+      }
+
+      /* ---------- 03 type ---------- */
+      .type-row {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 28px;
+        padding: 26px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: baseline;
+      }
+
+      .type-row:last-child {
+        border-bottom: 0;
+      }
+
+      .type-row .spec {
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .t-h1 {
+        font-family: "Prata", serif;
+        font-size: clamp(32px, 4.4vw, 46px);
+        line-height: 1.15;
+      }
+
+      .t-h2 {
+        font-family: "Prata", serif;
+        font-size: 29px;
+        line-height: 1.25;
+      }
+
+      .t-h3 {
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .t-body {
+        max-width: 60ch;
+        color: var(--muted);
+      }
+
+      .t-caption {
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 26px;
+        color: var(--plum);
+      }
+
+      /* ---------- 04 buttons ---------- */
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 999px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition:
+          transform 0.25s,
+          background 0.25s,
+          color 0.25s,
+          border-color 0.25s;
+      }
+
+      .btn-rasp {
+        background: var(--rasp);
+        color: #fff;
+      }
+
+      .btn-rasp:hover {
+        background: var(--rasp-deep);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .btn-plum {
+        background: var(--plum);
+        color: #fff;
+      }
+
+      .btn-plum:hover {
+        background: var(--plum-deep);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: none;
+        border-color: var(--rasp);
+        color: var(--rasp);
+      }
+
+      .btn-outline:hover {
+        background: var(--rasp);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .text-link {
+        font-weight: 600;
+        color: var(--rasp);
+        border-bottom: 2px solid var(--rasp-tint);
+        padding-bottom: 2px;
+      }
+
+      .text-link:hover {
+        border-color: var(--rasp);
+      }
+
+      /* ---------- 05 photo treatment ---------- */
+      .photo-demo {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .print-stack {
+        position: relative;
+        padding: 30px 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .print {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px 12px 14px;
+        box-shadow: var(--shadow-soft);
+        width: min(300px, 70%);
+      }
+
+      .print .ph {
+        aspect-ratio: 1/1;
+        border-radius: 3px;
+      }
+
+      .print .cap {
+        margin-top: 10px;
+        text-align: center;
+        font-family: "Caveat", cursive;
+        font-weight: 600;
+        font-size: 22px;
+        color: var(--ink);
+      }
+
+      .print.back {
+        position: absolute;
+        top: 0;
+        width: min(260px, 60%);
+        transform: rotate(-6deg) translateX(-62%);
+        z-index: 0;
+      }
+
+      .print.front {
+        position: relative;
+        transform: rotate(2.5deg);
+        z-index: 1;
+      }
+
+      .photo-rules {
+        display: grid;
+        gap: 16px;
+      }
+
+      .photo-rule {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 14px;
+        align-items: start;
+        font-size: 14.5px;
+        color: var(--muted);
+      }
+
+      .photo-rule .dot {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--rasp-tint);
+        color: var(--rasp);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+
+      /* ---------- 06 components ---------- */
+      .comp-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .chip {
+        padding: 7px 16px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        background: var(--plum-tint);
+        color: var(--plum);
+      }
+
+      .chip.active {
+        background: var(--plum);
+        color: #fff;
+      }
+
+      .tip-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .tip-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .tip-card .ph {
+        aspect-ratio: 16/9;
+      }
+
+      .tip-card .pad {
+        padding: 22px 24px 26px;
+      }
+
+      .tip-card .tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rasp);
+      }
+
+      .tip-card h3 {
+        margin: 10px 0 8px;
+        font-size: 18.5px;
+        font-weight: 400;
+        font-family: "Prata", serif;
+        line-height: 1.4;
+      }
+
+      .tip-card .date {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .video-card {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+      }
+
+      .video-card .ph {
+        aspect-ratio: 16/10;
+      }
+
+      .video-card .play {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          180deg,
+          rgba(51, 46, 48, 0) 40%,
+          rgba(51, 46, 48, 0.66) 100%
+        );
+      }
+
+      .video-card .badge {
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.94);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--rasp);
+        font-size: 20px;
+        padding-left: 4px;
+      }
+
+      .video-card .vtitle {
+        position: absolute;
+        z-index: 3;
+        left: 22px;
+        right: 22px;
+        bottom: 18px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15.5px;
+      }
+
+      .newsletter {
+        margin-top: 24px;
+        background: var(--plum);
+        border-radius: var(--radius-lg);
+        padding: 44px 40px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 36px;
+        align-items: center;
+        color: #fff;
+      }
+
+      .newsletter h3 {
+        margin: 0 0 10px;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-size: 26px;
+      }
+
+      .newsletter p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 14.5px;
+      }
+
+      .newsletter form {
+        display: flex;
+        gap: 12px;
+      }
+
+      .newsletter input {
+        flex: 1;
+        min-width: 0;
+        padding: 14px 18px;
+        border-radius: 999px;
+        border: 0;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+      }
+
+      .newsletter input:focus {
+        outline: 3px solid var(--rasp);
+      }
+
+      .newsletter .fine {
+        margin-top: 12px;
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.64);
+      }
+
+      /* ---------- 07 voice ---------- */
+      .voice-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .voice-panel {
+        border-radius: var(--radius-lg);
+        padding: 32px 32px 36px;
+      }
+
+      .voice-panel.always {
+        background: var(--rasp-tint);
+      }
+
+      .voice-panel.never {
+        background: var(--cream);
+      }
+
+      .voice-panel h3 {
+        margin: 0 0 18px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .voice-panel.always h3 {
+        color: var(--rasp);
+      }
+
+      .voice-panel.never h3 {
+        color: var(--muted);
+      }
+
+      .voice-panel ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        font-size: 14.5px;
+        color: var(--muted);
+      }
+
+      .voice-panel li {
+        padding-left: 24px;
+        position: relative;
+      }
+
+      .voice-panel.always li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--rasp);
+        font-weight: 700;
+      }
+
+      .voice-panel.never li::before {
+        content: "✕";
+        position: absolute;
+        left: 0;
+        color: #b5a3a3;
+        font-weight: 700;
+      }
+
+      /* ---------- footer ---------- */
+      .guide-foot {
+        border-top: 1px solid var(--line);
+        margin-top: 24px;
+        padding: 44px 28px 64px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .guide-foot .hand {
+        display: block;
+        font-size: 26px;
+        color: var(--rasp);
+        margin-bottom: 8px;
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 860px) {
+        .swatch-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .type-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .photo-demo,
+        .comp-grid,
+        .voice-grid,
+        .newsletter {
+          grid-template-columns: 1fr;
+        }
+
+        .print.back {
+          display: none;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .swatch-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .newsletter form {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================ HEADER ============================ -->
+    <header class="guide-head">
+      <div class="kicker">Brand &amp; UI Style Guide</div>
+      <h1 class="display">deb's digital tips</h1>
+      <p>
+        A refreshed look that keeps the raspberry pink and plum purple Deb's
+        readers already know, warmed up with a photo-print theme that fits the
+        heart of the site: finding, organizing, and enjoying family memories.
+      </p>
+    </header>
+
+    <!-- ============================ 01 WORDMARK ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">01</span>
+        <h2 class="display">Wordmark</h2>
+      </div>
+      <div class="wordmark-card">
+        <div class="wordmark">deb's <em>digital</em> tips</div>
+        <div class="wordmark-sub">find &middot; organize &middot; enjoy</div>
+        <div class="wordmark-tag hand">tame your photo life!</div>
+      </div>
+    </section>
+
+    <!-- ============================ 02 COLOR ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">02</span>
+        <h2 class="display">Color</h2>
+      </div>
+      <p class="sec-note">
+        Raspberry and plum come straight from the current site. The refresh
+        adds soft tints of each so pages can feel colorful without heavy
+        blocks of saturated color, plus warm neutrals in place of pure white
+        and gray.
+      </p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="chip" style="background: #a5314d"></div>
+          <div class="meta">
+            <div class="name">Raspberry</div>
+            <div class="hex">#A5314D</div>
+            <div class="use">
+              Primary. Buttons, links, highlights, and the wordmark accent.
+            </div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: #872841"></div>
+          <div class="meta">
+            <div class="name">Raspberry deep</div>
+            <div class="hex">#872841</div>
+            <div class="use">Hover states and small emphasis text.</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: #f9eef1"></div>
+          <div class="meta">
+            <div class="name">Raspberry tint</div>
+            <div class="hex">#F9EEF1</div>
+            <div class="use">
+              Soft section backgrounds, callouts, and checklist panels.
+            </div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: #6f266d"></div>
+          <div class="meta">
+            <div class="name">Plum</div>
+            <div class="hex">#6F266D</div>
+            <div class="use">
+              Accent. Category chips, the newsletter panel, and captions.
+            </div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: #f4ecf4"></div>
+          <div class="meta">
+            <div class="name">Plum tint</div>
+            <div class="hex">#F4ECF4</div>
+            <div class="use">Chip backgrounds and subtle alternate bands.</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: #fdfbfa; border-bottom: 1px solid #eadfe1"></div>
+          <div class="meta">
+            <div class="name">Warm paper</div>
+            <div class="hex">#FDFBFA</div>
+            <div class="use">
+              Page background. Ink #332E30 for text, line #EADFE1 for borders.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 03 TYPE ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">03</span>
+        <h2 class="display">Typography</h2>
+      </div>
+      <p class="sec-note">
+        Prata and Montserrat are already loaded on the live site, so the
+        refresh simply uses them with more intention. Caveat is the one
+        addition: a handwritten style reserved for photo captions and small
+        personal asides, like a note on the back of a print.
+      </p>
+      <div class="type-row">
+        <div class="spec">Prata<br />Page title</div>
+        <div class="t-h1">Memories made simple</div>
+      </div>
+      <div class="type-row">
+        <div class="spec">Prata<br />Section heading</div>
+        <div class="t-h2">What can I help you with?</div>
+      </div>
+      <div class="type-row">
+        <div class="spec">Montserrat 700<br />Card heading</div>
+        <div class="t-h3">Account preservation and legacy settings</div>
+      </div>
+      <div class="type-row">
+        <div class="spec">Montserrat 400<br />Body 16px</div>
+        <div class="t-body">
+          My goal is to help you tame your photo life. Simple is the motto I
+          shoot for: a safe, organized way to enjoy your memories in the
+          easiest way possible.
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="spec">Caveat 600<br />Captions only</div>
+        <div class="t-caption">summer at the lake, 1987</div>
+      </div>
+    </section>
+
+    <!-- ============================ 04 BUTTONS ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">04</span>
+        <h2 class="display">Buttons &amp; links</h2>
+      </div>
+      <p class="sec-note">
+        Pill buttons keep things friendly. Raspberry is the default action,
+        plum is reserved for the newsletter, and the outline style handles
+        secondary actions like Read More.
+      </p>
+      <div class="btn-row">
+        <a href="#" class="btn btn-rasp">Get Started</a>
+        <a href="#" class="btn btn-plum">Sign Me Up!</a>
+        <a href="#" class="btn btn-outline">Read More</a>
+        <a href="#" class="text-link">See all of Deb's tips</a>
+      </div>
+    </section>
+
+    <!-- ============================ 05 PHOTO TREATMENT ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">05</span>
+        <h2 class="display">Photo treatment</h2>
+      </div>
+      <div class="photo-demo">
+        <div class="print-stack">
+          <div class="print back">
+            <div class="ph" data-label="Photo"></div>
+            <div class="cap">the shoebox years</div>
+          </div>
+          <div class="print front">
+            <div class="ph" data-label="Photo — family memory"></div>
+            <div class="cap">finally organized!</div>
+          </div>
+        </div>
+        <div class="photo-rules">
+          <div class="photo-rule">
+            <span class="dot">1</span>
+            <span
+              >Feature photos get the print treatment: a white frame, a soft
+              shadow, and a slight tilt, like a snapshot laid on a table.</span
+            >
+          </div>
+          <div class="photo-rule">
+            <span class="dot">2</span>
+            <span
+              >Captions are handwritten in Caveat, short and personal. They do
+              the storytelling; the layout stays quiet.</span
+            >
+          </div>
+          <div class="photo-rule">
+            <span class="dot">3</span>
+            <span
+              >Everyday images (cards, thumbnails) skip the frame and just use
+              rounded corners, so the print style stays special.</span
+            >
+          </div>
+          <div class="photo-rule">
+            <span class="dot">4</span>
+            <span
+              >Use real family-style photos: hands holding prints, albums,
+              kitchen-table sorting. No sterile stock laptops.</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 06 COMPONENTS ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">06</span>
+        <h2 class="display">Components</h2>
+      </div>
+
+      <div class="chip-row">
+        <span class="chip active">All tips</span>
+        <span class="chip">Getting started</span>
+        <span class="chip">Organizing</span>
+        <span class="chip">Videos</span>
+        <span class="chip">Projects</span>
+      </div>
+
+      <div class="comp-grid">
+        <article class="tip-card">
+          <div class="ph" data-label="Post photo"></div>
+          <div class="pad">
+            <div class="tag">Deb's Tips &middot; Day 10</div>
+            <h3>Account preservation and legacy settings</h3>
+            <div class="date">October 10, 2025</div>
+          </div>
+        </article>
+
+        <div class="video-card">
+          <div class="ph" data-label="Video thumbnail"></div>
+          <div class="play">
+            <div class="badge">▶</div>
+          </div>
+          <div class="vtitle">Help! I Can't Find My Vault!</div>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div>
+          <h3>Get my email tips newsletter!</h3>
+          <p>
+            I often share information through emails before it gets published
+            on my site. If you want to stay in the know, just enter your deets
+            below.
+          </p>
+        </div>
+        <div>
+          <form onsubmit="return false">
+            <input type="email" placeholder="Your email address" />
+            <button class="btn btn-rasp" type="submit">Sign Me Up!</button>
+          </form>
+          <div class="fine">
+            I won't send you spam. Ick! You can unsubscribe at any time.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 07 VOICE ============================ -->
+    <section class="section">
+      <div class="sec-label">
+        <span class="num">07</span>
+        <h2 class="display">Voice &amp; tone</h2>
+      </div>
+      <p class="sec-note">
+        Deb's voice is the brand: first person, encouraging, and happy to
+        help. The design should never sound more formal than she does.
+      </p>
+      <div class="voice-grid">
+        <div class="voice-panel always">
+          <h3>Always</h3>
+          <ul>
+            <li>Write in first person: "I'm so glad you're here!"</li>
+            <li>Keep it simple — one idea per tip, plain words.</li>
+            <li>Encourage: progress over perfection, start anywhere.</li>
+            <li>Let a little humor through ("Ick!" is on brand).</li>
+            <li>End with an invitation to reach out.</li>
+          </ul>
+        </div>
+        <div class="voice-panel never">
+          <h3>Never</h3>
+          <ul>
+            <li>Tech jargon without a plain-English explanation.</li>
+            <li>Guilt about photo backlogs or disorganized libraries.</li>
+            <li>Corporate "we" — it's Deb, one person who loves this.</li>
+            <li>Walls of text; break everything into friendly steps.</li>
+            <li>Pushy sales language around newsletters or products.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FOOT ============================ -->
+    <footer class="guide-foot">
+      <span class="hand">happy to help!</span>
+      Deb's Digital Tips &middot; style guide concept &middot; raspberry
+      #A5314D &middot; plum #6F266D &middot; Prata + Montserrat + Caveat
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<style>
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 640px) {
+    .logo-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .logo-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .logo-item {
+    background: #ffffff;
+    border: 1px solid rgba(9, 58, 81, 0.08);
+    border-radius: 1rem;
+    padding: 1.25rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5rem;
+    transition: all 0.25s ease;
+  }
+  .logo-item:hover {
+    border-color: rgba(1, 166, 230, 0.3);
+    box-shadow: 0 4px 16px rgba(1, 166, 230, 0.08);
+  }
+  .logo-item img {
+    max-height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.25s ease;
+  }
+  .logo-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+  .logo-item span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.4;
+  }
+</style>
